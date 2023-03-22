@@ -113,7 +113,7 @@ button,
     align-items: center;
     cursor: pointer;
     text-align: center;
-    background-color: #eae8d8;
+    background-color: var(--backgroundSecundario);
     width: 15vw;
     height: 15vh;
     border-radius: .4rem;
@@ -176,6 +176,7 @@ button,
     margin: 0 auto;
     padding: 15px;
     display: flex;
+    flex-direction: column;
   }
   .right-column {
     width: 35%;
@@ -232,7 +233,7 @@ button,
    
   .cart-btn {
     display: inline-block;
-    background-color: #7DC855;
+    background-color:var(--principal);
     border-radius: 6px;
     font-size: 16px;
     color: #FFFFFF;
@@ -241,10 +242,56 @@ button,
     transition: all .5s;
   }
   .cart-btn:hover {
-    background-color: #64af3d;
+    background-color: var(--principal);
   }
   .extras{
     display: flex;
     gap: 10px;
    
   }
+  .footerSection {
+    width: 100vw;
+    margin-top: 10vh;
+    background-color: var(--principal);
+    color: #ffffff;
+}
+
+.containerImg__footer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerImg__footer img {
+    margin-top: 2vh;
+    width: 20vw;
+}
+
+.container__information-footer {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5vh;
+}
+
+.mainContainer__footer,
+.container-contact__Footer,
+.container-horarios__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container-brand__footer {
+    width: 100vw;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3vw;
+    margin-bottom: 5vh;
+
+}

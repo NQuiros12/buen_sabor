@@ -24,64 +24,90 @@
   </head>
   <body>
     <section class="header__container">
-        <div class="container__navigation">
-            <ul class="headerList">
-                <li><img class="logoHeader" src="./images/Image 4.png"></li>
-                <li class="itemListHeader">Home</li>
-                <li class="itemListHeader">Menu</li>
-            </ul>
-        </div>
-        <div class="container__search">
-            <input type="text" placeholder="Busca un producto" />
-            <button>Buscar</button>
-        </div>
-        <div class="container__actions">
-            <ul class="headerList">
-                <li class="itemListHeader">Carrito</li>
-                <li><button class="buttonIngresar">Ingresar / Registrarse</button></li>
-                <li class="itemListHeader">Usuario</li>
-            </ul>
-        </div>
+      <div class="container__navigation">
+        <ul class="headerList">
+          <li><img class="logoHeader" src="./images/Image 4.png" /></li>
+          <li class="itemListHeader">Home</li>
+          <li class="itemListHeader">Menu</li>
+        </ul>
+      </div>
+      <div class="container__search">
+        <input type="text" placeholder="Busca un producto" />
+        <button>Buscar</button>
+      </div>
+      <div class="container__actions">
+        <ul class="headerList">
+          <li class="itemListHeader">Carrito</li>
+          <li>
+            <button class="buttonIngresar">Ingresar / Registrarse</button>
+          </li>
+          <li class="itemListHeader">Usuario</li>
+        </ul>
+      </div>
     </section>
     <div class="product-description">
-        <span>Hamburguesas</span>
-        <h1>Hamburgesa MacMiller</h1>
-      </div>
+      <span>Hamburguesas</span>
+      <h1>Hamburgesa MacMiller</h1>
+    </div>
+    <div class="left-column">
+      <img src="hamb.jpeg" />
+    </div>
     <main class="container">
-        
-  
-        <!-- accesos rapidos -->
-      <!-- Left Column / Headphones Image -->
-        <div class="left-column">
-            <img src="hamb.jpeg" />
-        </div>
-      
+      <div class="product-description">
+        <h1>Descripcion producto</h1>
+        <p>Esta es una hamburguesa bien chida</p>
+      </div>
 
       <!-- Right Column -->
       <div class="right-column">
         <!-- Product Description -->
-        
+
         <!-- Product Configuration -->
         <div class="product-configuration">
           <!-- Cable Configuration -->
-          <div class="extras">
-            <span>Agregar extras</span>
+          <div>
+            <label>Cantidad</label>
 
-            <div class="extras">
-              <button>Extra Queso</button>
-              <button>Extra Carne</button>
-              <button>Extra Bacon</button>
-            </div>
-
+            <select id="number">
+              <option selected disabled>Selecciona tu hamburguesa</option>
+              <option value="value1">1</option>
+              <option value="value2">2</option>
+              <option value="value3">3</option>
+            </select>
           </div>
         </div>
-
+        <br />
         <!-- Product Pricing -->
         <div class="product-price">
           <span>148$</span>
+          <br />
           <a href="#" class="cart-btn">Agregar al carrito</a>
         </div>
       </div>
     </main>
+    <section class="footerSection">
+      <div class="containerImg__footer">
+        <img src="./images/Image 4.png" />
+      </div>
+      <div class="mainContainer__footer">
+        <div class="container__information-footer">
+          <div class="container-contact__Footer">
+            <p>Ubicacion</p>
+            <p>Cuesta del madero, 284</p>
+          </div>
+          <div class="container-horarios__footer">
+            <p>Horarios</p>
+            <p>8:00 a 22:00</p>
+          </div>
+          <div class="container-horarios__footer">
+            <p>Contactenos</p>
+            <p>+54 9 261 123 4567</p>
+          </div>
+        </div>
+        <div class="container-brand__footer">
+          <p>© Todos los derechos reservados, Ven Rapido y Sabroso</p>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
