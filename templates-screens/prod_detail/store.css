@@ -1,0 +1,250 @@
+:root {
+    --principal: #0f232f;
+    --secundario: #fcfffc;
+    --terciario: #ba3423;
+    --background: #ffffff;
+    --backgroundSecundario: #eae8d8;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+button,
+.itemListHeader {
+    cursor: pointer;
+}
+
+.container__principal {
+    background-color: var(--background);
+    width: 100vw;
+    height: 100vh;
+}
+
+.header__container {
+    height: 8vh;
+    width: 100vw;
+    display: flex;
+    background-color: var(--principal);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container__navigation,
+.container__actions {
+    width: 30vw;
+
+}
+
+.container__search {
+    width: 40vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container__search button {
+    width: 10vw;
+    border-radius: .4rem;
+    height: 4.2vh;
+    margin-left: .8rem;
+    border: none;
+}
+
+.container__search input {
+    width: 30vw;
+    height: 4vh;
+    border-radius: .4rem;
+    border: none;
+    outline: none;
+    font-size: 1.5vh;
+    padding-left: 2rem;
+}
+
+.container__search input::placeholder {
+    font-size: 1.5vh;
+
+}
+
+.container__navigation ul,
+.container__actions ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    color: var(--secundario);
+    text-align: center;
+}
+
+.headerList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoHeader {
+    width: 5vw;
+}
+
+.buttonIngresar {
+    width: 10vw;
+    border-radius: .4rem;
+    height: 4.2vh;
+    border: none;
+}
+
+.container__principalAtajos{
+    width: 100vw;
+    height: 20vh;   
+    display: flex;
+    justify-content: center;
+}
+.container__atajos{
+    display: flex;
+    justify-content: space-around;
+    width: 70vw;
+    margin-top: 7vh;
+}
+.principal__atajos-containerimg{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    background-color: #eae8d8;
+    width: 15vw;
+    height: 15vh;
+    border-radius: .4rem;
+
+}
+.principal__atajos-containerimg img{
+    width: 5vw;
+}
+.containerProduct__section{
+    margin-top: 10vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+.containerPrincipal__product{
+    display: grid;
+    width: 70vw;
+    grid-template-columns: repeat(4, 1fr);
+    max-height: 60vh;
+    overflow-y: auto;
+}
+.containerTarget{
+    margin-top: 2vh;
+    width: 17vw;
+    height: 35vh;
+    border-radius: .4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:#ebecec;
+}
+.containerTarget img{
+    width: 15vw;
+    height: 25vh;
+    border-radius: .4rem;
+    box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.descript__product{
+    margin-top: 2vh;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+   
+}
+
+.descript__product p {
+    font-size: 2.5vh;
+    font-weight: 400;
+}
+/* Columns */
+.left-column {
+    width: 65%;
+    z-index: 1000;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+  }
+  .right-column {
+    width: 35%;
+    margin-top: 60px;
+  }
+  /* Left Column */
+.left-column img {
+    width: 80%;
+    transition: all 0.3s ease;
+  }
+   
+  .left-column img.active {
+    opacity: 1;
+  }
+  /* Product Description */
+.product-description {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+    
+  }
+  .product-description span {
+    font-size: 12px;
+    color: #358ED7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    
+  }
+  .product-description h1 {
+    font-weight: 300;
+    font-size: 52px;
+    color: #43484D;
+    letter-spacing: -2px;
+    margin-left: 10vw;
+}
+.product-description p {
+    font-size: 16px;
+    font-weight: 300;
+    color: #86939E;
+    line-height: 24px;
+}
+/* Product Price */
+.product-price {
+    display: flex;
+    align-items: center;
+  }
+   
+  .product-price span {
+    font-size: 26px;
+    font-weight: 300;
+    color: #43474D;
+    margin-right: 20px;
+  }
+   
+  .cart-btn {
+    display: inline-block;
+    background-color: #7DC855;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 30px;
+    transition: all .5s;
+  }
+  .cart-btn:hover {
+    background-color: #64af3d;
+  }
+  .extras{
+    display: flex;
+    gap: 10px;
+   
+  }
