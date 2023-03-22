@@ -1,0 +1,181 @@
+:root {
+    --principal: #0f232f;
+    --secundario: #fcfffc;
+    --terciario: #ba3423;
+    --background: #ffffff;
+    --backgroundSecundario: #eae8d8;
+
+}
+html{
+    overflow-x: hidden;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.containerPrincipal__login{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--backgroundSecundario);
+}
+.container__titleLogin{
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+}
+.container__titleLogin h2{
+    color: #000;
+    font-size: 2vw;
+    text-align: left;
+}
+.containerContent__login{
+    width: 60vw;
+    height: 80vh;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;   
+    background-color: #0f232f;
+    border-radius: .4rem;
+}
+.loginContainer{
+    height: 60vh;
+    width:  25vw;
+    margin-top: 8vh;
+    margin-left: 2.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--backgroundSecundario);
+    border-radius: 0.4rem;
+
+}
+.imgLoginContainer img{
+    height: 80vh;
+    width: 30vw;
+    border-radius:0rem .4rem .4rem 0rem;
+}
+
+
+.containerInputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 35vh;
+}
+.containerInput__login{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding:.4rem 1rem;
+    border-radius: .4rem;
+
+
+}
+.containerInput__login label{
+    color: #000;
+    font-weight: 500;
+    font-size: 1vw;
+    text-align: center;
+}   
+.containerInput__login input{
+    border: none;
+    outline: none;
+    font-size: 1vw;
+    height: 4vh;
+    border-radius: .4rem;
+    padding: .4rem;
+
+}
+.container__olvidoContraseña p{
+    font-size: 2vh;
+    cursor: pointer;
+}
+.containerButton__login{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.containerButton__login button{
+    width: 80%;
+    height: 5vh;
+    background-color: var(--principal);
+    color: #fff;
+    font-size: 1vw;
+    border-radius: .4rem;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+
+.textImgContainer{
+    position: absolute;
+    margin-top: 30vh;
+    margin-left: 2vw;
+    
+}
+
+.title{
+    text-align: center;
+    font-size:2.8vw;
+    font-weight: 500;
+    color: #fff;
+}
+.slogan{
+    font-size:1.5vw;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+}
+
+
+.google-btn {
+    width: 80%;
+    cursor: pointer;
+    height: 5vh;
+    background-color: #4285f4;
+    border-radius: .4rem;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .25);
+    display: flex;
+    justify-content: space-between;
+
+}
+.google-icon-wrapper {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3vw;
+    border-radius: .4rem;
+}
+.google-icon {
+    width: 2vw;
+}
+.containerTextGoolgle{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-text {
+    color: #fff;
+    font-size: 1vw;
+}
+.btn-text:hover {
+    box-shadow: 0 0 6px #4285f4;
+}
+.btn-text:active {
+    background: #1669F2;
+}
+
+.containerInput__login {
+    display: flex;
+    flex-direction: column;
+}
