@@ -10,6 +10,11 @@
     padding: 0;
     margin: 0;
     font-family: 'Poppins', sans-serif;
+
+}
+
+html {
+    overflow-x: hidden;
 }
 
 button,
@@ -94,20 +99,22 @@ button,
     border: none;
 }
 
-.container__principalAtajos{
+.container__principalAtajos {
     width: 100vw;
-    height: 20vh;   
+    height: 20vh;
     display: flex;
     justify-content: center;
 }
-.container__atajos{
+
+.container__atajos {
     display: flex;
     justify-content: space-around;
     width: 70vw;
     margin-top: 7vh;
 }
-.principal__atajos-containerimg{
-    display:flex;
+
+.principal__atajos-containerimg {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -119,23 +126,27 @@ button,
     border-radius: .4rem;
 
 }
-.principal__atajos-containerimg img{
+
+.principal__atajos-containerimg img {
     width: 5vw;
 }
-.containerProduct__section{
+
+.containerProduct__section {
     margin-top: 10vh;
     width: 100vw;
     display: flex;
     justify-content: center;
 }
-.containerPrincipal__product{
+
+.containerPrincipal__product {
     display: grid;
     width: 70vw;
     grid-template-columns: repeat(4, 1fr);
     max-height: 60vh;
     overflow-y: auto;
 }
-.containerTarget{
+
+.containerTarget {
     margin-top: 2vh;
     width: 17vw;
     height: 35vh;
@@ -144,9 +155,10 @@ button,
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color:#ebecec;
+    background-color: #ebecec;
 }
-.containerTarget img{
+
+.containerTarget img {
     width: 15vw;
     height: 25vh;
     border-radius: .4rem;
@@ -154,15 +166,62 @@ button,
     cursor: pointer;
 }
 
-.descript__product{
+.descript__product {
     margin-top: 2vh;
     display: flex;
     justify-content: space-around;
     width: 100%;
-   
+
 }
 
 .descript__product p {
     font-size: 2.5vh;
     font-weight: 400;
+}
+
+.footerSection {
+    width: 100vw;
+    margin-top: 10vh;
+    background-color: var(--principal);
+    color: #ffffff;
+}
+
+.containerImg__footer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerImg__footer img {
+    margin-top: 2vh;
+    width: 20vw;
+}
+
+.container__information-footer {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5vh;
+}
+
+.mainContainer__footer,
+.container-contact__Footer,
+.container-horarios__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container-brand__footer {
+    width: 100vw;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3vw;
+    margin-bottom: 5vh;
+
 }
