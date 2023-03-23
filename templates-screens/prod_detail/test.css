@@ -1,0 +1,140 @@
+:root {
+  --principal: #0f232f;
+  --secundario: #fcfffc;
+  --terciario: #ba3423;
+  --background: #ffffff;
+  --backgroundSecundario: #eae8d8;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+button,
+.itemListHeader {
+  cursor: pointer;
+}
+
+.container_titulo_foto {
+  background-color: var(--backgroundSecundario);
+  width: 100vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container_detalle_precio {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.detalles_producto {
+  text-align: center;
+  margin-right: 1em;
+  margin-left: 1em;
+  flex-grow: 1;
+}
+
+.product-price {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.price_description {
+  text-align: center;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+.price_description select {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  font-size: 1em;
+  border-radius: 5px;
+  border: none;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 1em;
+  margin-left: 1em;
+  flex-grow: 1;
+}
+
+.product-price h3 {
+  font-size: 3em;
+  color: var(--terciario);
+  font-weight: bold;
+}
+
+.cart-btn {
+  display: block;
+  background-color: var(--terciario);
+  color: var(--secundario);
+  padding: 1em;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-decoration: none;
+}
+
+.cart-btn:hover {
+  background-color: var(--secundario);
+  color: var(--terciario);
+  transition: 0.3s;
+}
+
+.footerSection {
+  background-color: var(--principal);
+  color: var(--secundario);
+  display: flex;
+  justify-content: center;
+}
+
+.containerImg__footer img {
+  width: 7em;
+  height: 7em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.mainContainer__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 100%;
+  max-width: 1200px;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+.container__information-footer {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-contact__Footer {
+  margin-right: 2em;
+}
+
+.container-horarios__footer {
+  margin-right: 2em;
+}
+
+.container-brand__footer {
+  margin-left: 2em;
+}

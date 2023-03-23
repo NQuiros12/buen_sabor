@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>store</title>
+    <title>prod_detail</title>
     <link rel="stylesheet" href="store.css" />
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
     <!-- fuente -->
@@ -23,51 +23,54 @@
     />
   </head>
   <body>
-    <section class="header__container">
-      <div class="container__navigation">
-        <ul class="headerList">
-          <li><img class="logoHeader" src="./images/Image 4.png" /></li>
-          <li class="itemListHeader">Home</li>
-          <li class="itemListHeader">Menu</li>
-        </ul>
-      </div>
-      <div class="container__search">
-        <input type="text" placeholder="Busca un producto" />
-        <button>Buscar</button>
-      </div>
-      <div class="container__actions">
-        <ul class="headerList">
-          <li class="itemListHeader">Carrito</li>
-          <li>
-            <button class="buttonIngresar">Ingresar / Registrarse</button>
-          </li>
-          <li class="itemListHeader">Usuario</li>
-        </ul>
-      </div>
-    </section>
-    <div class="product-description">
-      <span>Hamburguesas</span>
-      <h1>Hamburgesa MacMiller</h1>
-    </div>
-    <div class="left-column">
-      <img src="hamb.jpeg" />
-    </div>
-    <main class="container">
+    <!-- Header -->
+      <section class="header__container">
+        <div class="container__navigation">
+          <ul class="headerList">
+            <li><img class="logoHeader" src="./images/Image 4.png" /></li>
+            <li class="itemListHeader">Home</li>
+            <li class="itemListHeader">Menu</li>
+          </ul>
+        </div>
+        <div class="container__search">
+          <input type="text" placeholder="Busca un producto" />
+          <button>Buscar</button>
+        </div>
+        <div class="container__actions">
+          <ul class="headerList">
+            <li class="itemListHeader">Carrito</li>
+            <li>
+              <button class="buttonIngresar">Ingresar / Registrarse</button>
+            </li>
+            <li class="itemListHeader">Usuario</li>
+          </ul>
+        </div>
+      </section>
+      
+    <div id="container_main" class="container_titulo_foto">
+      <!-- Descripcion de producto -->
       <div class="product-description">
-        <h1>Descripcion producto</h1>
+        <h1>Hamburgesa MacMiller</h1>
+      </div>
+      <div class="left-column">
+        <img src="hamb.jpeg" />
+      </div>
+    </div>
+
+  <div class="container_detalle_precio">
+    <div class="contenedor_flexible">
+      <div class="detalles_producto">
+        <h1>Detalles producto</h1>
         <p>Esta es una hamburguesa bien chida</p>
       </div>
-
+  
       <!-- Right Column -->
       <div class="right-column">
-        <!-- Product Description -->
-
-        <!-- Product Configuration -->
-        <div class="product-configuration">
-          <!-- Cable Configuration -->
-          <div>
+          <div class ="product-price">
+            <h3>148$</h3>
+          </div>
+          <div class="price_description">
             <label>Cantidad</label>
-
             <select id="number">
               <option selected disabled>Selecciona tu hamburguesa</option>
               <option value="value1">1</option>
@@ -75,16 +78,17 @@
               <option value="value3">3</option>
             </select>
           </div>
-        </div>
-        <br />
+        
+        
         <!-- Product Pricing -->
-        <div class="product-price">
-          <span>148$</span>
-          <br />
+        <div class="button-carrito">
+
           <a href="#" class="cart-btn">Agregar al carrito</a>
         </div>
       </div>
-    </main>
+     </div>
+  </div>
+
     <section class="footerSection">
       <div class="containerImg__footer">
         <img src="./images/Image 4.png" />
