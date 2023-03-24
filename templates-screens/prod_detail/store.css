@@ -11,7 +11,10 @@
     margin: 0;
     font-family: 'Poppins', sans-serif;
 }
+html{
+    background-color: var(--backgroundSecundario);
 
+}
 button,
 .itemListHeader {
     cursor: pointer;
@@ -23,7 +26,7 @@ button,
     height: 60vh;
     display: flex;
     flex-direction: column;
-    
+    margin-bottom: 10vh;
 
 
 }
@@ -334,4 +337,66 @@ button,
     margin-left: 3vw;
     margin-bottom: 5vh;
 
+}
+/* <!-- Body productos --> */
+.container__principalBody {
+    align-items: center;
+    background: var(--backgroundSecundario);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+}
+
+.body__category {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+    width: 80vw;
+}
+
+.category-title {
+    display: flex;
+    justify-content: space-between;
+}
+.category-title h3{
+    font-size: 1rem;
+}
+.category-title h2{
+    font-size: 2rem;
+}
+.category__container-cards {
+    display: flex;
+    justify-content: space-between;
+}
+
+.category__card {
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 22%;
+}
+
+.category__card:hover {
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(196, 195, 181, 0);
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(196, 195, 181, 0);
+    transition: .5s;
+}
+
+.card-title{
+    font-size: 1.2rem;
+    padding-left: 5%;
+}
+.card-price{
+    font-size: 1rem;
+    padding-bottom: 2%;
+    padding-left: 5%;
+}
+.card-img{
+    height: 90%;
+    margin: auto;
+    width: 90%;
 }
