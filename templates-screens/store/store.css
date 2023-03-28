@@ -26,13 +26,33 @@ button,
 }
 
 .header__container {
-    height: 8vh;
+    height: 10vh;
     width: 100vw;
     display: flex;
     background-color: var(--principal);
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.subheader__container{
+    background-color: #f7583a;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.subcontainer__actions{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50vw;
+}
+.subheaderList{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    color: var(--background);
 }
 
 .container__navigation,
@@ -71,7 +91,9 @@ button,
 }
 
 .container__navigation ul,
-.container__actions ul {
+.container__actions ul,
+.subheader__container ul,
+.subcontainer__actions ul{
     list-style: none;
     display: flex;
     justify-content: space-around;
@@ -86,7 +108,9 @@ button,
 }
 
 .logoHeader {
-    width: 5vw;
+    width: 8vw;
+    height: 8vh;
+    object-fit: cover;
 }
 
 .buttonIngresar {
@@ -137,12 +161,17 @@ button,
     margin-top: 10vh;
     width: 100vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     background-color: var(--backgroundSecundario);
     margin-bottom: 10vh;
 }
 
 .containerPrincipal__product {
+    background-color:#ccc;
+    padding: 1rem;
+    border-radius: .4rem;
     display: grid;
     width: 70vw;
     grid-template-columns: repeat(4, 1fr);
@@ -231,13 +260,16 @@ button,
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 3vw;
-    margin-bottom: 5vh;
+    height: 6vh; 
+    background-color: #f7583a;
 
 }
 html {
     overflow-x: hidden;
     background-color: var(--backgroundSecundario);
+    margin: 0;
+    padding: 0;
+
 
 }
 
