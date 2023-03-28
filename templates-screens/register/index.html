@@ -23,102 +23,118 @@
     />
   </head>
   <body>
-      <!-- header -->
-      <section class="header__container">
-          <div class="container__navigation">
-              <ul class="headerList">
-                  <li><img class="logoHeader" src="./images/Image 4.png"></li>
-                  <li class="itemListHeader">Home <i class="fas fa-home"></i></li>
-                  <li class="itemListHeader">Menu <i class="fas fa-bars"></i></li>
-              </ul>
-          </div>
-          <div class="container__search">
-              <input type="text" placeholder="Busca un producto" />
-              <button>Buscar <i class="fas fa-search"></i></button>
-          </div>
-          <div class="container__actions">
-              <ul class="headerList">
-                  <li class="itemListHeader">Carrito <i class="fas fa-cart-plus"></i></li>
-                  <li><button class="buttonIngresar">Ingresar<i class="fas fa-sign-in-alt"></i></button></li>
-                  <li class="itemListHeader">Usuario <i class="fas fa-user-alt"></i></li>
-              </ul>
-          </div>
-      </section>
-    <div class="imagen_central">
-      <img src="logo.jpg" />
-    </div>
-    <div class="container__principal">
-      <div class="formulario">
-        <div class="input-wrapper">
-          <p for="nombre_in">Nombre</p>
-          <input id="nombre_in" />
-        </div>
-        <div class="input-wrapper">
-          <p for="apellido_in">Apellido</p>
-          <input id="apellido_in" />
-        </div>
-        <p>Email</p>
-        <textarea id="email_in" name="myTextArea" rows="1" cols="50"></textarea>
-        <br />
-        <div class="input-wrapper">
-          <p for="localidad_in">Localidad</p>
-          <input id="localidad_in" />
-        </div>
-        <div class="input-wrapper">
-          <p for="departamento_in">Departamento</p>
-          <input id="departamento_in" />
-        </div>
-        <br />
-
-        <br />
-        <div class="input-wrapper">
-          <p for="numero_in">Número</p>
-          <input id="numero_in" />
-        </div>
-        <div class="input-wrapper">
-          <p for="piso_in">Piso</p>
-          <input id="piso_in" />
-        </div>
-        <br />
-        <div class="input-wrapper">
-          <p for="password_in">Contraseña</p>
-          <input id="password_in" />
-        </div>
-        <div class="input-wrapper">
-          <p for="pass_confirm_in">Confirmar Contraseña</p>
-          <input id="pass_confirm_in" />
-        </div>
-        <br />
-        <button value="registro" id="registro">Registrarse</button>
-        <br />
-        <button value="google" id="google">Registrarse con Google</button>
+    <!-- header -->
+    <section class="header__container">
+      <div class="container__navigation">
+        <ul class="headerList">
+          <li><img class="logoHeader" src="./images/Image 4.png" /></li>
+          <li class="itemListHeader">Home <i class="fas fa-home"></i></li>
+          <li class="itemListHeader">Menu <i class="fas fa-bars"></i></li>
+        </ul>
       </div>
-      <!-- section Footer -->
-    </div>
+      <div class="container__search">
+        <input type="text" placeholder="Busca un producto" />
+        <button>Buscar <i class="fas fa-search"></i></button>
+      </div>
+      <div class="container__actions">
+        <ul class="headerList">
+          <li class="itemListHeader">
+            Carrito <i class="fas fa-cart-plus"></i>
+          </li>
+          <li>
+            <button class="buttonIngresar">
+              Ingresar<i class="fas fa-sign-in-alt"></i>
+            </button>
+          </li>
+          <li class="itemListHeader">
+            Usuario <i class="fas fa-user-alt"></i>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <div class="imagen_form">
+      <!--Imagen-->
+      <div class="imagen_central">
+        <img src="logo.jpg" />
+      </div>
+      <!--Formulario-->
+      <div class="container__principal">
+        <div class="formulario">
+          <div class="input-wrapper">
+            <p for="nombre_in">Nombre</p>
+            <input id="nombre_in" />
+          </div>
+          <div class="input-wrapper">
+            <p for="apellido_in">Apellido</p>
+            <input id="apellido_in" />
+          </div>
+          <p>Email</p>
+          <input class="email_in" type="email" id="email_in">
+          <br />
+          <div class="input-wrapper">
+            <p for="localidad_in">Localidad</p>
+            <input id="localidad_in" />
+          </div>
+          <div class="input-wrapper">
+            <p for="departamento_in">Departamento</p>
+            <input id="departamento_in" />
+          </div>
+          <br />
 
+          <br />
+          <div class="input-wrapper">
+            <p for="numero_in">Número</p>
+            <input id="numero_in" />
+          </div>
+          <div class="input-wrapper">
+            <p for="piso_in">Piso</p>
+            <input id="piso_in" />
+          </div>
+          <br />
+          <div class="input-wrapper">
+            <p for="password_in">Contraseña</p>
+            <input id="password_in" />
+          </div>
+          <div class="input-wrapper">
+            <p for="pass_confirm_in">Confirmar Contraseña</p>
+            <input id="pass_confirm_in" />
+          </div>
+          <div class="botones">
+            
+            <button class="buttonIngresar" value="registro" id="registro">
+              Registrarse
+            </button>
+            <button class="buttonIngresar" value="google" id="google">
+              Registrarse con Google
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- section Footer -->
     <section class="footerSection">
       <div class="containerImg__footer">
-          <img src="./images/Image 4.png">
+        <img src="./images/Image 4.png" />
       </div>
       <div class="mainContainer__footer">
-          <div class="container__information-footer">
-              <div class="container-contact__Footer">
-                  <p>Ubicacion <i class="fas fa-map-marked"></i></p>
-                  <p>Cuesta del madero, 284</p>
-              </div>
-              <div class="container-horarios__footer">
-                  <p>Horarios <i class="far fa-clock"></i></p>
-                  <p>8:00 a 22:00</p>
-              </div>
-              <div class="container-horarios__footer">
-                  <p>Contactenos <i class="fas fa-phone"></i></p>
-                  <p>+54 9 261 123 4567</p>
-              </div>
+        <div class="container__information-footer">
+          <div class="container-contact__Footer">
+            <p>Ubicacion <i class="fas fa-map-marked"></i></p>
+            <p>Cuesta del madero, 284</p>
           </div>
-          <div class="container-brand__footer">
-              <p>© Todos los derechos reservados, Ven Rapido y Sabroso</p>
+          <div class="container-horarios__footer">
+            <p>Horarios <i class="far fa-clock"></i></p>
+            <p>8:00 a 22:00</p>
           </div>
+          <div class="container-horarios__footer">
+            <p>Contactenos <i class="fas fa-phone"></i></p>
+            <p>+54 9 261 123 4567</p>
+          </div>
+        </div>
+        <div class="container-brand__footer">
+          <p>© Todos los derechos reservados, Ven Rapido y Sabroso</p>
+        </div>
       </div>
-  </section>
+    </section>
   </body>
 </html>
