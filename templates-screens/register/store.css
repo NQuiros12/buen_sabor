@@ -65,68 +65,101 @@ button,
   height: 100vh;
 
 }
-
 .header__container {
-  height: 8vh;
-  width: 100vw;
-  display: flex;
-  background-color: var(--principal);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    background-color: var(--principal);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.subheader__container{
+    background-color: #f7583a;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.subcontainer__actions{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50vw;
+}
+.subheaderList{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    color: var(--background);
 }
 
 .container__navigation,
 .container__actions {
-  width: 30vw;
+    width: 30vw;
+
 }
 
 .container__search {
-  width: 40vw;
-  display: flex;
-  justify-content: space-between;
+    width: 40vw;
+    display: flex;
+    justify-content: space-between;
 }
 
 .container__search button {
-  width: 10vw;
-  border-radius: 0.4rem;
-  height: 4.2vh;
-  margin-left: 0.8rem;
-  border: none;
+    width: 10vw;
+    border-radius: .4rem;
+    height: 4.2vh;
+    margin-left: .8rem;
+    border: none;
 }
 
 .container__search input {
-  width: 30vw;
-  height: 4vh;
-  border-radius: 0.4rem;
-  border: none;
-  outline: none;
-  font-size: 1.5vh;
-  padding-left: 2rem;
+    width: 30vw;
+    height: 4vh;
+    border-radius: .4rem;
+    border: none;
+    outline: none;
+    font-size: 1.5vh;
+    padding-left: 2rem;
 }
 
 .container__search input::placeholder {
-  font-size: 1.5vh;
+    font-size: 1.5vh;
+
 }
 
 .container__navigation ul,
-.container__actions ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  color: var(--secundario);
-  text-align: center;
+.container__actions ul,
+.subheader__container ul,
+.subcontainer__actions ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    color: var(--secundario);
+    text-align: center;
 }
 
 .headerList {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logoHeader {
-  width: 5vw;
+    width: 8vw;
+    height: 8vh;
+    object-fit: cover;
 }
+
+.buttonIngresar {
+    width: 10vw;
+    border-radius: .4rem;
+    height: 4.2vh;
+    border: none;
+}
+
 .botones{
  display:flex;
  flex-direction: column;
