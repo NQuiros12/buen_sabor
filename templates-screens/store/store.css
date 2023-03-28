@@ -26,7 +26,7 @@ button,
 }
 
 .header__container {
-    height: 8vh;
+    height: 14vh;
     width: 100vw;
     display: flex;
     background-color: var(--principal);
@@ -231,13 +231,15 @@ button,
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 3vw;
     margin-bottom: 5vh;
 
 }
 html {
     overflow-x: hidden;
     background-color: var(--backgroundSecundario);
+    margin: 0;
+    padding: 0;
+
 
 }
 
