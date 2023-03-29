@@ -84,9 +84,30 @@ button,
     font-size: 1.5vh;
 
 }
-
+.subheader__container{
+    background-color: #f7583a;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.subcontainer__actions{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50vw;
+}
+.subheaderList{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    color: var(--background);
+}
 .container__navigation ul,
-.container__actions ul {
+.container__actions ul,
+.subheader__container ul,
+.subcontainer__actions ul{
     list-style: none;
     display: flex;
     justify-content: space-around;
@@ -327,17 +348,6 @@ button,
     align-items: center;
 }
 
-
-.container-brand__footer {
-    width: 100vw;
-    margin-top: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 3vw;
-    margin-bottom: 5vh;
-
-}
 /* <!-- Body productos --> */
 .container__principalBody {
     align-items: center;
@@ -400,3 +410,39 @@ button,
     margin: auto;
     width: 90%;
 }
+.container-brand__footer {
+    width: 100vw;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6vh; 
+    background-color: #f7583a;
+
+}
+html {
+    overflow-x: hidden;
+    background-color: var(--backgroundSecundario);
+    margin: 0;
+    padding: 0;
+
+
+}
+
+/*========== SCROLL BAR ==========*/
+::-webkit-scrollbar {
+  width: .5vw; 
+  background-color: var(--backgroundSecundario);
+  border-radius: 0.4rem;
+ 
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--principal)   ;
+  border-radius: 0.5rem;  
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--terciario);
+    cursor: pointer;
+  }
+
