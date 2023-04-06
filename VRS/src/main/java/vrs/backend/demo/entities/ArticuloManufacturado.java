@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class ArticuloManufacturado implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idArticuloManufacturado;
+    private Long idArticuloManufacturado;
     @Column(name="tiempoEstimadoCocina")
     private int tiempoEstimadoCocina;
     @Column(name="denominacion")
