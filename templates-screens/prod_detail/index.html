@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prod_detail</title>
+    <link rel="stylesheet" href="store.css" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <!-- fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <!-- iconos -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <section class="header__container">
+      <div class="container__navigation">
+          <ul class="headerList">
+              <li><img class="logoHeader" src="./images/Image 4.png"></li>
+              <li class="itemListHeader">Home <i class="fas fa-home"></i></li>
+              
+          </ul>
+      </div>
+      <div class="container__search">
+          <input type="text" placeholder="Busca un producto" />
+          <button>Buscar <i class="fas fa-search"></i></button>
+      </div>
+      <div class="container__actions">
+          <ul class="headerList">
+              <li class="itemListHeader">Carrito <i class="fas fa-cart-plus"></i></li>
+              <li><button class="buttonIngresar">Ingresar<i class="fas fa-sign-in-alt"></i></button></li>
+    
+          </ul>
+      </div>
+  </section>
+  <section class="subheader__container">
+      <div class="subcontainer__actions">
+          <ul class="subheaderList">
+              <li class="itemListHeader">Menu <i class="fas fa-bars"></i></li>
+              <li class="itemListHeader">Ayuda <i class="fas fa-circle-question"></i></li>
+              <li class="itemListHeader">Ofertas <i class="fas fa-tags"></i></i></li>
+              <li class="itemListHeader">Registrarse <i class="fas fa-right-to-bracket"></i></li>
+          </ul>
+      </div>
+  </section>
+
+    <div id="container_main" class="container_titulo_foto">
+      <!-- Descripcion de producto -->
+      <div class="product-description">
+        <h1>Hamburgesa MacMiller</h1>
+      </div>
+      <div class="left-column">
+        <img src="hamb.jpeg" />
+      </div>
+    </div>
+
+    <div class="container_detalle_precio">
+      <div class="contenedor_flexible">
+        <div class="detalles_producto">
+          <h1>Detalles producto</h1>
+          <p>Esta es una hamburguesa bien chida</p>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-column">
+          <div class="product-price">
+            <h3>148$</h3>
+          </div>
+          <div class="price_description">
+            <label>Cantidad</label>
+            <select id="number">
+              <option selected disabled>Selecciona tu hamburguesa</option>
+              <option value="value1">1</option>
+              <option value="value2">2</option>
+              <option value="value3">3</option>
+            </select>
+          </div>
+
+          <!-- Product Pricing -->
+          <div class="button-carrito">
+            <a href="#" class="cart-btn">Agregar al carrito</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="body__category">
+      <div class="category-title">
+        <h2>Hamburguesas</h2>
+        <h3><a href="#">Ver Mas >></a></h3>
+      </div>
+      <div class="category__container-cards">
+        <div class="category__card">
+          <img class="card-img" src="images/hambur.png" />
+          <h3 class="card-title">Producto</h3>
+          <h4 class="card-price">$999</h4>
+        </div>
+        <div class="category__card">
+          <img class="card-img" src="images/hambur.png" />
+          <h3 class="card-title">Producto</h3>
+          <h4 class="card-price">$999</h4>
+        </div>
+        <div class="category__card">
+          <img class="card-img" src="images/hambur.png" />
+          <h3 class="card-title">Producto</h3>
+          <h4 class="card-price">$999</h4>
+        </div>
+        <div class="category__card">
+          <img class="card-img" src="images/hambur.png" />
+          <h3 class="card-title">Producto</h3>
+          <h4 class="card-price">$999</h4>
+        </div>
+      </div>
+    </div>
+
+    <section class="footerSection">
+      <div class="containerImg__footer">
+        <img src="./images/Image 4.png" />
+      </div>
+      <div class="mainContainer__footer">
+        <div class="container__information-footer">
+          <div class="container-contact__Footer">
+            <p>Ubicacion</p>
+            <p>Cuesta del madero, 284</p>
+          </div>
+          <div class="container-horarios__footer">
+            <p>Horarios</p>
+            <p>8:00 a 22:00</p>
+          </div>
+          <div class="container-horarios__footer">
+            <p>Contactenos</p>
+            <p>+54 9 261 123 4567</p>
+          </div>
+        </div>
+        <div class="container-brand__footer">
+          <p>© Todos los derechos reservados, Ven Rapido y Sabroso</p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
