@@ -6,6 +6,6 @@ import vrs.backend.demo.entities.Cliente;
 
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+public interface ClienteRepository extends BaseRepository<Cliente, Long> {
     // Métodos
 }

@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import vrs.backend.demo.entities.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends BaseRepository<Usuario, Long> {
 
 }

@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import vrs.backend.demo.entities.Domicilio;
 
 @Repository
-public interface DomicilioRepository extends JpaRepository<Domicilio, Long> {
+public interface DomicilioRepository extends BaseRepository<Domicilio, Long> {
 }

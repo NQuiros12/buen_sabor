@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import vrs.backend.demo.entities.Factura;
 
 @Repository
-public interface FacturaRepository extends JpaRepository<Factura, Long> {
+public interface FacturaRepository extends BaseRepository<Factura, Long> {
     // Métodos
 }

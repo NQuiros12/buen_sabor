@@ -14,11 +14,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Cliente implements Serializable {
+public class Cliente extends Base {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long clienteID;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "apellido")
@@ -28,4 +25,12 @@ public class Cliente implements Serializable {
     @Column(name = "email")
     private String email;
 
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_domicilio")
+    private Domicilio domicilio;
+
+    /*@OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "fk_usuario")
+    private Usuario usuario;*/
 }

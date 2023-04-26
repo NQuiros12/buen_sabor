@@ -17,11 +17,9 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Factura implements Serializable {
+public class Factura extends Base {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long facturaID;
+
     @Column(name = "fecha")
     private Date fecha;
     @Column(name = "numero")
@@ -37,6 +35,11 @@ public class Factura implements Serializable {
     @Column(name = "totalCosto")
     private double totalCosto;
 
-    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetalleFactura> detallesFactura = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinTable(
+            name = "factura_detalleFactura",
+            joinColumns = @JoinColumn(name = "facturaID"),
+            inverseJoinColumns = @JoinColumn(name = "detalleFacturaID")
+    )
+    private List<DetalleFactura> detalleFacturas = new ArrayList<DetalleFactura>();
 }

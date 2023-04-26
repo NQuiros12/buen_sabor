@@ -15,10 +15,8 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-public class DetalleFactura implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long detalleFacturaID;
+public class DetalleFactura extends Base {
+
     @Column(name = "cantidad")
     private int cantidad;
     @Column(name = "subtotal")

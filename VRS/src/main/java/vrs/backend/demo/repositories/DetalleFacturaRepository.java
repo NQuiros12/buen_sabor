@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import vrs.backend.demo.entities.DetalleFactura;
 
 @Repository
-public interface DetalleFacturaRepository extends JpaRepository<DetalleFactura, Long> {
+public interface DetalleFacturaRepository extends BaseRepository<DetalleFactura, Long> {
 }

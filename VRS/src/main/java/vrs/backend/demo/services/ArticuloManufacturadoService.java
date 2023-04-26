@@ -8,8 +8,9 @@ import vrs.backend.demo.repositories.ArticuloManufacturadoRepository;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class ArticuloManufacturadoService implements BaseService<ArticuloManufacturado>{
+
+public interface ArticuloManufacturadoService extends BaseService<ArticuloManufacturado, Long>{
+    /*
     //Declaramos una dependencia para que luego Spring la genere, esto seria lo mismo @Autowired
     private ArticuloManufacturadoRepository articuloManufacturadoRepository;
     public ArticuloManufacturadoService( ArticuloManufacturadoRepository articuloManufacturadoRepository){
@@ -81,4 +82,6 @@ public class ArticuloManufacturadoService implements BaseService<ArticuloManufac
             throw new Exception(e.getMessage());
         }
     }
+
+     */
 }

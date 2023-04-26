@@ -1,4 +1,4 @@
-package vrs.backend.demo.config;
+/*package vrs.backend.demo.config;
 
 import org.hibernate.envers.RevisionListener;
 import vrs.backend.demo.entities.audit.Revision;
@@ -8,3 +8,4 @@ public class CustomRevisionListener implements RevisionListener {
         final Revision revision = (Revision) revisionEntity;
     }
 }
+*/
