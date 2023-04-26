@@ -1,8 +1,8 @@
-package vrs.backend.demo.services;
+package vrs.backend.demo.genericos.services;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import vrs.backend.demo.entities.Base;
+import vrs.backend.demo.genericos.entities.Base;
 
 import java.io.Serializable;
 import java.util.List;

@@ -1,8 +1,8 @@
-package vrs.backend.demo.repositories;
+package vrs.backend.demo.genericos.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
-import vrs.backend.demo.entities.Base;
+import vrs.backend.demo.genericos.entities.Base;
 
 import java.io.Serializable;
 

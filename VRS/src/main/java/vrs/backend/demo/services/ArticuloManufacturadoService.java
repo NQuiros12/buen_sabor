@@ -1,15 +1,10 @@
 package vrs.backend.demo.services;
 
-import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Service;
 import vrs.backend.demo.entities.ArticuloManufacturado;
-import vrs.backend.demo.repositories.ArticuloManufacturadoRepository;
-
-import java.util.List;
-import java.util.Optional;
+import vrs.backend.demo.genericos.services.BaseService;
 
 
-public interface ArticuloManufacturadoService extends BaseService<ArticuloManufacturado, Long>{
+public interface ArticuloManufacturadoService extends BaseService<ArticuloManufacturado, Long> {
     /*
     //Declaramos una dependencia para que luego Spring la genere, esto seria lo mismo @Autowired
     private ArticuloManufacturadoRepository articuloManufacturadoRepository;

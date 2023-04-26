@@ -1,11 +1,8 @@
 package vrs.backend.demo.services;
 
-import lombok.Setter;
-import org.springframework.stereotype.Service;
 import vrs.backend.demo.entities.Cliente;
+import vrs.backend.demo.genericos.services.BaseService;
 
-import java.util.List;
-
-public interface ClienteService extends BaseService<Cliente, Long>{
+public interface ClienteService extends BaseService<Cliente, Long> {
 
 }

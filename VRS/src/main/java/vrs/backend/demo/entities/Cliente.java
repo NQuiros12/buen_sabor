@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
+import vrs.backend.demo.genericos.entities.Base;
 
 @Entity
 @Table(name = "Cliente")
@@ -30,7 +29,7 @@ public class Cliente extends Base {
     @JoinColumn(name = "fk_domicilio")
     private Domicilio domicilio;
 
-    /*@OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_usuario")
-    private Usuario usuario;*/
+    private Usuario usuario;
 }

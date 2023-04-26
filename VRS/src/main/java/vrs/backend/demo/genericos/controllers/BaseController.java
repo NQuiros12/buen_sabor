@@ -1,9 +1,9 @@
-package vrs.backend.demo.controllers.BaseController;
+package vrs.backend.demo.genericos.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import vrs.backend.demo.entities.Base;
+import vrs.backend.demo.genericos.entities.Base;
 
 import java.io.Serializable;
 

@@ -1,9 +1,8 @@
 package vrs.backend.demo.services;
 
 import vrs.backend.demo.entities.Factura;
+import vrs.backend.demo.genericos.services.BaseService;
 
-import java.util.List;
-
-public interface FacturaService extends BaseService<Factura, Long>{
+public interface FacturaService extends BaseService<Factura, Long> {
 
 }

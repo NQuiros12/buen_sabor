@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
+import vrs.backend.demo.genericos.entities.Base;
 
 @Entity
 @Table(name = "Domicilio")
