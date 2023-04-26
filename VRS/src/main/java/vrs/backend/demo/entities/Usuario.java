@@ -7,10 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vrs.backend.demo.genericos.entities.Base;
+import vrs.backend.demo.generics.entities.Base;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "Usuario")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

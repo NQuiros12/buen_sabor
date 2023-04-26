@@ -1,4 +1,4 @@
-package vrs.backend.demo.genericos.entities;
+package vrs.backend.demo.generics.entities;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

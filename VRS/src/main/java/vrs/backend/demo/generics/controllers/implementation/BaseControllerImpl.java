@@ -1,4 +1,4 @@
-package vrs.backend.demo.genericos.controllers.implementation;
+package vrs.backend.demo.generics.controllers.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,9 +7,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vrs.backend.demo.genericos.controllers.BaseController;
-import vrs.backend.demo.genericos.entities.Base;
-import vrs.backend.demo.genericos.services.implementation.BaseServiceImpl;
+import vrs.backend.demo.generics.controllers.BaseController;
+import vrs.backend.demo.generics.entities.Base;
+import vrs.backend.demo.generics.services.implementation.BaseServiceImpl;
 
 public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceImpl<E, Long>> implements BaseController<E, Long> {
 

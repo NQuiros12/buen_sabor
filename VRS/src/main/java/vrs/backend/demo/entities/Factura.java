@@ -5,11 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vrs.backend.demo.genericos.entities.Base;
+import vrs.backend.demo.generics.entities.Base;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "Factura")
@@ -34,7 +32,7 @@ public class Factura extends Base {
     private double totalVenta;
     @Column(name = "totalCosto")
     private double totalCosto;
-
+/*
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(
             name = "factura_detalleFactura",
@@ -42,4 +40,6 @@ public class Factura extends Base {
             inverseJoinColumns = @JoinColumn(name = "detalleFacturaID")
     )
     private List<DetalleFactura> detalleFacturas = new ArrayList<DetalleFactura>();
+
+ */
 }

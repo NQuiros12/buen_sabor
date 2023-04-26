@@ -1,12 +1,12 @@
-package vrs.backend.demo.genericos.services.implementation;
+package vrs.backend.demo.generics.services.implementation;
 
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import vrs.backend.demo.genericos.entities.Base;
-import vrs.backend.demo.genericos.repositories.BaseRepository;
-import vrs.backend.demo.genericos.services.BaseService;
+import vrs.backend.demo.generics.entities.Base;
+import vrs.backend.demo.generics.repositories.BaseRepository;
+import vrs.backend.demo.generics.services.BaseService;
 
 
 import java.io.Serializable;
