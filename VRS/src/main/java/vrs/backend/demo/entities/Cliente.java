@@ -29,7 +29,9 @@ public class Cliente extends Base {
     @JoinColumn(name = "fk_domicilio")
     private Domicilio domicilio;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_usuario")
     private Usuario usuario;
+
+
 }

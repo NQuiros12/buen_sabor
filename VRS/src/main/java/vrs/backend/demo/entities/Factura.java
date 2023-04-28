@@ -24,14 +24,21 @@ public class Factura extends Base {
     private int numero;
     @Column(name = "montoDescuento")
     private double montoDescuento;
-    @Column(name = "formaPago")
-    private String formaPago;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_formaPago")
+    private FormaPago formaPago;
+    //Ver si es una relacion One to one o one to Many
+
     @Column(name = "nroTarjeta")
     private String nroTarjeta;
+    /*
     @Column(name = "totalVenta")
     private double totalVenta;
     @Column(name = "totalCosto")
     private double totalCosto;
+
+     */
 /*
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(

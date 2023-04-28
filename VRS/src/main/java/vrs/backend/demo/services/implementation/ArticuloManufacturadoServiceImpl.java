@@ -10,7 +10,7 @@ import vrs.backend.demo.services.ArticuloManufacturadoService;
 @Service
 public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloManufacturado, Long> implements ArticuloManufacturadoService {
 
-    ArticuloManufacturadoRepository articuloManufacturadoRepository;
+    private ArticuloManufacturadoRepository articuloManufacturadoRepository;
 
     public ArticuloManufacturadoServiceImpl(BaseRepository<ArticuloManufacturado, Long> baseRepository) {
         super(baseRepository);
