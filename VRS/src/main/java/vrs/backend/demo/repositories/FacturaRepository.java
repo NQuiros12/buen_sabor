@@ -6,5 +6,5 @@ import vrs.backend.demo.generics.repositories.BaseRepository;
 
 @Repository
 public interface FacturaRepository extends BaseRepository<Factura, Long> {
-    // Métodos
+
 }
