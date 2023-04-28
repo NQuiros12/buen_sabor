@@ -21,7 +21,11 @@ public class Domicilio extends Base {
         private String localidad;
         @Column(name = "numero")
         private long numero;
+        @Column(name = "departamento")
+        private String departamento;
+        @Column(name = "piso")
+        private int piso;
 
-        //Ver tema de departamentos, piso y numero
+
 
 }

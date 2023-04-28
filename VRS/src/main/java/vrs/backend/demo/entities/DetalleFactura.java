@@ -20,7 +20,8 @@ public class DetalleFactura extends Base {
     @Column(name = "subtotal")
     private double subtotal;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "factura_id")
     private Factura factura;
+
 }
