@@ -1,4 +1,5 @@
 package vrs.backend.demo.entities;
+import jakarta.persistence.OneToMany;
 import vrs.backend.demo.generics.entities.Base;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "UnidadMedida")
@@ -17,4 +20,8 @@ import lombok.Setter;
 public class UnidadMedida extends Base {
     @Column(name = "tipo")
     private String tipo;
+    @OneToMany(mappedBy = "unidadMedida")
+    private List<ArticuloInsumo> articuloInsumos;
+    @OneToMany(mappedBy = "unidadMedida")
+    private List<DetalleArticuloManufacturado> detalleArticuloManufacturados;
 }

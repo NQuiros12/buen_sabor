@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vrs.backend.demo.generics.entities.Base;
 
+import java.util.List;
+
 @Entity
 @Table(name="ArticuloManufacturado")
 @NoArgsConstructor
@@ -24,4 +26,8 @@ public class ArticuloManufacturado extends Base {
     private double precioVenta;
     @Column(name="imagen")
     private String imagen;
+    @OneToMany(mappedBy = "articuloManufacturado")
+    private List<DetalleArticuloManufacturado> detalleArticuloManufacturados;
+    @OneToMany(mappedBy = "articuloManufacturado")
+    private List<DetalleFactura> detalleFactura;
 }

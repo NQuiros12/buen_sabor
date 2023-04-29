@@ -1,13 +1,14 @@
 package vrs.backend.demo.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.mapping.Join;
 import vrs.backend.demo.generics.entities.Base;
+
+import java.util.List;
 
 
 @Entity
@@ -30,4 +31,21 @@ public class ArticuloInsumo extends Base {
     private double stockActual;
     @Column(name = "stockMinimo")
     private double stockMinimo;
+
+    @ManyToOne
+    @JoinColumn(name="id")
+    @MapsId
+    private CategoriaArticulo categoria;
+
+    @OneToMany(mappedBy = "articuloInsumo")
+    private List<DetallePedido>  detallesPedido;
+    @OneToMany(mappedBy = "articuloInsumo")
+    private List<DetalleFactura>  detallesFactura;
+    @ManyToOne
+    @JoinColumn(name="id")
+    @MapsId
+    private UnidadMedida unidadMedida;
+
+
+
 }

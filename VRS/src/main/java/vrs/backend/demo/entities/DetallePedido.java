@@ -1,8 +1,6 @@
 package vrs.backend.demo.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,4 +21,8 @@ public class DetallePedido extends Base {
     private int cantidad;
     @Column(name = "subtotal")
     private double subtotal;
+    @ManyToOne
+    @JoinColumn(name="id")
+    @MapsId
+    private ArticuloInsumo articuloInsumo;
 }
