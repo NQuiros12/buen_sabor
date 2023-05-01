@@ -25,4 +25,8 @@ public class DetallePedido extends Base {
     @JoinColumn(name="id")
     @MapsId
     private ArticuloInsumo articuloInsumo;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_producto")
+    private Producto producto;
+
 }

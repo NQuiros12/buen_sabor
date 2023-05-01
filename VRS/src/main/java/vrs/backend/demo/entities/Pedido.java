@@ -1,8 +1,6 @@
 package vrs.backend.demo.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,4 +21,21 @@ public class Pedido extends Base {
     private Date fecha;
     @Column(name = "numero")
     private int numero;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_domicilio")
+    private Domicilio domicilio;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_estadoPedido")
+    private EstadoPedido estadoPedido;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_tipoEnvio ")
+    private TipoEnvio tipoEnvio;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_cliente")
+    private Cliente cliente;
 }
+

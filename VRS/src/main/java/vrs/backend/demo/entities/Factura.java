@@ -32,6 +32,10 @@ public class Factura extends Base {
 
     @Column(name = "nroTarjeta")
     private String nroTarjeta;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_pedido")
+    private Pedido pedido;
     /*
     @Column(name = "totalVenta")
     private double totalVenta;
