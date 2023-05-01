@@ -21,8 +21,12 @@ public class DetallePedido extends Base {
     private int cantidad;
     @Column(name = "subtotal")
     private double subtotal;
-
+    @ManyToOne
+    @JoinColumn(name="id")
+    @MapsId
+    private ArticuloInsumo articuloInsumo;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_producto")
     private Producto producto;
+
 }

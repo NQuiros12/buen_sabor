@@ -1,8 +1,6 @@
 package vrs.backend.demo.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,4 +16,12 @@ import vrs.backend.demo.generics.entities.Base;
 public class DetalleArticuloManufacturado extends Base {
     @Column(name = "cantidad")
     private int cantidad;
+    @ManyToOne
+    @JoinColumn(name="id")
+    @MapsId
+    private UnidadMedida unidadMedida;
+    @ManyToOne
+    @JoinColumn(name="id")
+    @MapsId
+    private ArticuloManufacturado articuloManufacturado;
 }

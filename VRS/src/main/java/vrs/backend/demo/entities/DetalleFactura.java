@@ -23,9 +23,12 @@ public class DetalleFactura extends Base {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "factura_id")
     private Factura factura;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_producto")
-    private Producto producto;
-
+    @ManyToOne
+    @JoinColumn(name="id")
+    @MapsId
+    private ArticuloInsumo articuloInsumo;
+    @ManyToOne
+    @JoinColumn(name="id")
+    @MapsId
+    private ArticuloManufacturado articuloManufacturado;
 }
