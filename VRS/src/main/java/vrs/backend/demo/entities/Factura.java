@@ -27,6 +27,7 @@ public class Factura extends Base {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_formaPago")
+    @MapsId
     private FormaPago formaPago;
     //Ver si es una relacion One to one o one to Many
 
