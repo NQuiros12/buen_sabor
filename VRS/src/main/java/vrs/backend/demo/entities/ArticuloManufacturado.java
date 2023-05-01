@@ -30,4 +30,6 @@ public class ArticuloManufacturado extends Base {
     private List<DetalleArticuloManufacturado> detalleArticuloManufacturados;
     @OneToMany(mappedBy = "articuloManufacturado")
     private List<DetalleFactura> detalleFactura;
+    @OneToMany(mappedBy = "articuloManufacturado")
+    private List<DetallePedido> detallePedidos ;
 }

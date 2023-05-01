@@ -28,5 +28,11 @@ public class DetallePedido extends Base {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_producto")
     private Producto producto;
+    @ManyToOne
+    @JoinColumn(name="fk_articulo_manufacturado")
+    private ArticuloManufacturado articuloManufacturado;
+    @ManyToOne
+    @JoinColumn(name="fk_pedido")
+    private Pedido pedido;
 
 }

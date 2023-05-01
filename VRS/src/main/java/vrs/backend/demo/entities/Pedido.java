@@ -8,6 +8,7 @@ import lombok.Setter;
 import vrs.backend.demo.generics.entities.Base;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Pedido")
@@ -37,5 +38,7 @@ public class Pedido extends Base {
     @ManyToOne
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
+    @OneToMany(mappedBy = "id")
+    private List<DetallePedido> detallePedidos  ;
 }
 
