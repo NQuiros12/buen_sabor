@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vrs.backend.demo.generics.entities.Base;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +39,12 @@ public class Pedido extends Base {
     @ManyToOne
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
-    @OneToMany(mappedBy = "id")
-    private List<DetallePedido> detallePedidos  ;
+
+    @OneToMany(mappedBy = "pedido")
+    private List<DetallePedido> detallePedidos = new ArrayList<DetallePedido>();
+
+    @OneToOne(mappedBy = "pedido")
+    private Factura factura;
+
 }
 

@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,7 +22,7 @@ public class UnidadMedida extends Base {
     @Column(name = "tipo")
     private String tipo;
     @OneToMany(mappedBy = "unidadMedida")
-    private List<ArticuloInsumo> articuloInsumos;
+    private List<ArticuloInsumo> articuloInsumos = new ArrayList<ArticuloInsumo>();
     @OneToMany(mappedBy = "unidadMedida")
-    private List<DetalleArticuloManufacturado> detalleArticuloManufacturados;
+    private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<DetalleArticuloManufacturado>();
 }

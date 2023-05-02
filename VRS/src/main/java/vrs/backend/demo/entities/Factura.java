@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vrs.backend.demo.generics.entities.Base;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Factura")
@@ -25,7 +27,7 @@ public class Factura extends Base {
     @Column(name = "montoDescuento")
     private double montoDescuento;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_formaPago")
     private FormaPago formaPago;
     //Ver si es una relacion One to one o one to Many
@@ -36,21 +38,7 @@ public class Factura extends Base {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_pedido")
     private Pedido pedido;
-    /*
-    @Column(name = "totalVenta")
-    private double totalVenta;
-    @Column(name = "totalCosto")
-    private double totalCosto;
-
-     */
-/*
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "factura_detalleFactura",
-            joinColumns = @JoinColumn(name = "facturaID"),
-            inverseJoinColumns = @JoinColumn(name = "detalleFacturaID")
-    )
+    @OneToMany(mappedBy = "factura")
     private List<DetalleFactura> detalleFacturas = new ArrayList<DetalleFactura>();
 
- */
 }

@@ -19,7 +19,7 @@ public class CategoriaArticulo extends Base {
     @Column(name="denominacion")
     private String denominacion;
     @OneToMany(mappedBy = "categoria")
-    private List<ArticuloInsumo> articulosInsumo;
+    private List<ArticuloInsumo> articulosInsumo = new ArrayList<ArticuloInsumo>();
 
     //Recursivo
     @ManyToOne(fetch = FetchType.LAZY)
@@ -27,7 +27,7 @@ public class CategoriaArticulo extends Base {
     private CategoriaArticulo parent;
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<CategoriaArticulo> children = new ArrayList<>();
+    private List<CategoriaArticulo> children = new ArrayList<CategoriaArticulo>();
 
     public void addChild(CategoriaArticulo child) {
         children.add(child);

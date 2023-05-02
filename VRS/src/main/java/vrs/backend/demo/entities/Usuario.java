@@ -2,6 +2,7 @@ package vrs.backend.demo.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,5 +25,7 @@ public class Usuario extends Base {
     @Column(name = "rol")
     private String rol; //Ver de usar enums para roles
 
+    @OneToOne(mappedBy = "usuario")
+    private Cliente cliente;
 
 }
