@@ -16,12 +16,12 @@ import vrs.backend.demo.generics.entities.Base;
 public class DetalleArticuloManufacturado extends Base {
     @Column(name = "cantidad")
     private int cantidad;
+
     @ManyToOne
     @JoinColumn(name="fk_unidad_medida")
-    @MapsId
     private UnidadMedida unidadMedida;
+
     @ManyToOne
     @JoinColumn(name="fk_articulo_manufacturado")
-    @MapsId
     private ArticuloManufacturado articuloManufacturado;
 }

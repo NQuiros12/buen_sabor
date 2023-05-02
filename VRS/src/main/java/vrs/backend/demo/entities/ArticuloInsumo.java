@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.hibernate.mapping.Join;
 import vrs.backend.demo.generics.entities.Base;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,17 +35,20 @@ public class ArticuloInsumo extends Base {
 
     @ManyToOne
     @JoinColumn(name="fk_categoria")
-    @MapsId
     private CategoriaArticulo categoria;
 
     @OneToMany(mappedBy = "articuloInsumo")
-    private List<DetallePedido>  detallesPedido;
+    private List<DetallePedido>  detallesPedido = new ArrayList<DetallePedido>();
     @OneToMany(mappedBy = "articuloInsumo")
-    private List<DetalleFactura>  detallesFactura;
+    private List<DetalleFactura>  detallesFactura = new ArrayList<DetalleFactura>();
     @ManyToOne
     @JoinColumn(name="fk_unidad_medida")
-    @MapsId
     private UnidadMedida unidadMedida;
+
+    @OneToOne
+    @JoinColumn(name = "fk_producto")
+    @MapsId
+    private Producto producto;
 
 
 
