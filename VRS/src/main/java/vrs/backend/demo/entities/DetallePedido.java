@@ -22,7 +22,7 @@ public class DetallePedido extends Base {
     @Column(name = "subtotal")
     private double subtotal;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="fk_articulo_insumo")
     @MapsId
     private ArticuloInsumo articuloInsumo;
     @ManyToOne(cascade = CascadeType.ALL)

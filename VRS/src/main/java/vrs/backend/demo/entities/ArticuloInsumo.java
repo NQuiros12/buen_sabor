@@ -33,7 +33,7 @@ public class ArticuloInsumo extends Base {
     private double stockMinimo;
 
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="fk_categoria")
     @MapsId
     private CategoriaArticulo categoria;
 
@@ -42,7 +42,7 @@ public class ArticuloInsumo extends Base {
     @OneToMany(mappedBy = "articuloInsumo")
     private List<DetalleFactura>  detallesFactura;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="fk_unidad_medida")
     @MapsId
     private UnidadMedida unidadMedida;
 
