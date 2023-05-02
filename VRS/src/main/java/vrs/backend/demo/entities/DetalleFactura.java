@@ -21,14 +21,14 @@ public class DetalleFactura extends Base {
     private double subtotal;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "factura_id")
+    @JoinColumn(name = "fk_factura")
     private Factura factura;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="fk_articulo_insumo")
     @MapsId
     private ArticuloInsumo articuloInsumo;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="fk_articulo_manufacturado")
     @MapsId
     private ArticuloManufacturado articuloManufacturado;
 }

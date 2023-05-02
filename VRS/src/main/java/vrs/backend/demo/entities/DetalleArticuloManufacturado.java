@@ -17,11 +17,11 @@ public class DetalleArticuloManufacturado extends Base {
     @Column(name = "cantidad")
     private int cantidad;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="fk_unidad_medida")
     @MapsId
     private UnidadMedida unidadMedida;
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="fk_articulo_manufacturado")
     @MapsId
     private ArticuloManufacturado articuloManufacturado;
 }
