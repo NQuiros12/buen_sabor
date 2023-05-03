@@ -37,10 +37,6 @@ public class ArticuloInsumo extends Base {
     @JoinColumn(name="fk_categoria")
     private CategoriaArticulo categoria;
 
-    @OneToMany(mappedBy = "articuloInsumo")
-    private List<DetallePedido>  detallesPedido = new ArrayList<DetallePedido>();
-    @OneToMany(mappedBy = "articuloInsumo")
-    private List<DetalleFactura>  detallesFactura = new ArrayList<DetalleFactura>();
     @ManyToOne
     @JoinColumn(name="fk_unidad_medida")
     private UnidadMedida unidadMedida;
