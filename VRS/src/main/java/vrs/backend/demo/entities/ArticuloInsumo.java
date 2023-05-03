@@ -43,7 +43,6 @@ public class ArticuloInsumo extends Base {
 
     @OneToOne
     @JoinColumn(name = "fk_producto")
-    @MapsId
     private Producto producto;
 
 

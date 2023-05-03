@@ -27,12 +27,10 @@ public class Cliente extends Base {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_domicilio")
-    @MapsId
     private Domicilio domicilio;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_usuario")
-    @MapsId
     private Usuario usuario;
 
 

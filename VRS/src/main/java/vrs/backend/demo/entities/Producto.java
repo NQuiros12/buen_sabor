@@ -22,6 +22,8 @@ public class Producto extends Base {
     @Column(name = "producto")
     private String producto;
 
+    @Column(name = "precioVenta")
+    private double precio_venta;
     @OneToMany(mappedBy = "producto")
     private List<DetalleFactura> detalleFacturas = new ArrayList<DetalleFactura>();
     @OneToMany(mappedBy = "producto")

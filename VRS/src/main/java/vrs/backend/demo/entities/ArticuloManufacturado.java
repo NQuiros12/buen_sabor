@@ -21,7 +21,7 @@ public class ArticuloManufacturado extends Base {
 
     @Column(name="tiempoEstimadoCocina")
     private int tiempoEstimadoCocina;
-    @Column(name="denominacion")
+    @Column(name="denominacion")//La denominacion es la Receta
     private String denominacion;
     @Column(name="precioVenta")
     private double precioVenta;
@@ -32,6 +32,5 @@ public class ArticuloManufacturado extends Base {
 
     @OneToOne
     @JoinColumn(name = "fk_producto")
-    @MapsId
     private Producto producto;
 }
