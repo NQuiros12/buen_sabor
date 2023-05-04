@@ -42,24 +42,24 @@ button,
     width: 100vw;
 }
 .subheader__container{
-    background-color: #f7583a;
-    height: 6vh;
-    display: flex;
-    justify-content: center;
     align-content: center;
+    background-color: #f7583a;
+    display: flex;
+    height: 6vh;
+    justify-content: center;
 }
 .subcontainer__actions{
+    align-items: center;
     display: flex;
     justify-content: space-around;
-    align-items: center;
     width: 50vw;
 }
 .subheaderList{
+    align-items: center;
+    color: var(--background);
     display: flex;
     justify-content: space-around;
-    align-items: center;
     width: 100%;
-    color: var(--background);
 }
 .container__navigation,
 .container__actions {
@@ -118,17 +118,17 @@ button,
 }
 
 .buttonIngresarHeader {
-    width: 10vw;
+    border: none;
     border-radius: .4rem;
     height: 4.2vh;
-    border: none;
+    width: 10vw;
 }
 
 /* <!-- Banner --> */
 .container__principalBanner {
     background-color: var(--backgroundSecundario);
     display: flex;
-    height: 60vh;
+    height: 56vh;
     justify-content: center;
     width: 100vw;
 }
@@ -183,7 +183,7 @@ button,
     align-items: center;
     background-color: var(--principal);
     display: flex;
-    height: 30vh;
+    height: 28vh;
     justify-content: center;
     width: 100vw;
 }
@@ -313,29 +313,29 @@ button,
 }
 
 .container-brand__footer {
-    width: 100vw;
-    margin-top: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 6vh; 
+    align-items: center; 
     background-color: #f7583a;
+    display: flex;
+    height: 6vh;
+    justify-content: center;
+    margin-top: 5vh;
+    width: 100vw;
   
   }
 html {
-  overflow-x: hidden;
   background-color: var(--backgroundSecundario);
   margin: 0;
+  overflow-x: hidden;
   padding: 0;
 
 
 }
 
 /*========== SCROLL BAR ==========*/
-::-webkit-scrollbar {
-width: .5vw; 
+::-webkit-scrollbar { 
 background-color: var(--backgroundSecundario);
 border-radius: 0.4rem;
+width: .5vw;
 
 }
 ::-webkit-scrollbar-thumb {
