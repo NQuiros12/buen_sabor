@@ -55,7 +55,7 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
         try{
             return ResponseEntity.status(HttpStatus.OK).body(service.save(entity));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\""+e);
         }
     }
 

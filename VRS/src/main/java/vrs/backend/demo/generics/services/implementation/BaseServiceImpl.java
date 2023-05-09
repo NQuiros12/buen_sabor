@@ -1,5 +1,6 @@
 package vrs.backend.demo.generics.services.implementation;
-
+import java.lang.reflect.Field;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -69,18 +70,51 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
         }
     }
 
+//    @Override
+//    public E update(ID id, E entity) throws Exception {
+//        try {
+//            Optional<E> entityOptional = repository.findById(id);
+//            if (entityOptional.isPresent()) {
+//                E entityUpdate = entityOptional.get();
+//                repository.deleteById(id);
+//                entityUpdate = repository.save(entity);
+//                return entityUpdate;
+//            } else {
+//                throw new Exception("Entidad no encontrada con el id: " + id);
+//            }
+//        } catch (Exception e) {
+//            throw new Exception(e.getMessage());
+//        }
+//    }
+
+
     @Override
     public E update(ID id, E entity) throws Exception {
-        try{
+        try {
             Optional<E> entityOptional = repository.findById(id);
-            E entityUpdate = entityOptional.get();
-            entityUpdate = repository.save(entity);
-            return entityUpdate;
-        }
-        catch (Exception e){
+            if (entityOptional.isPresent()) {
+                E entityUpdate = entityOptional.get();
+                Field[] fields = entity.getClass().getDeclaredFields();
+                for (Field field : fields) {
+                    field.setAccessible(true);
+                    Object value = field.get(entity);
+                    if (value != null) {
+                        field.set(entityUpdate, value);
+                    }
+                }
+                entityUpdate = repository.save(entityUpdate);
+                return entityUpdate;
+            } else {
+                throw new Exception("Entity not found with id: " + id);
+            }
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
+
+
+
+
 
     @Override
     public boolean delete(ID id) throws Exception {

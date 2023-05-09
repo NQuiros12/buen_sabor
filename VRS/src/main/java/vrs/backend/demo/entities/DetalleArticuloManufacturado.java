@@ -14,14 +14,19 @@ import vrs.backend.demo.generics.entities.Base;
 @Getter
 @Setter
 public class DetalleArticuloManufacturado extends Base {
+
     @Column(name = "cantidad")
     private int cantidad;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "fk_articuloInsumo")
+    private ArticuloInsumo articuloInsumo;
 
     @ManyToOne
     @JoinColumn(name="fk_unidad_medida")
     private UnidadMedida unidadMedida;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE })
     @JoinColumn(name="fk_articulo_manufacturado")
     private ArticuloManufacturado articuloManufacturado;
 }

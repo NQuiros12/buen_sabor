@@ -38,7 +38,10 @@ public class Factura extends Base {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_pedido")
     private Pedido pedido;
+    /*
     @OneToMany(mappedBy = "factura")
     private List<DetalleFactura> detalleFacturas = new ArrayList<DetalleFactura>();
+
+     */
 
 }

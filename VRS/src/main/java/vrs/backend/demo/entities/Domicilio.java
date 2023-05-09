@@ -29,13 +29,15 @@ public class Domicilio extends Base {
         @Column(name = "piso")
         private int piso;
 
-
+/*
         @OneToOne(mappedBy = "domicilio")
         private Cliente cliente;
 
         @OneToMany(mappedBy = "domicilio")
         private List<Pedido> pedidos =  new ArrayList<Pedido>();
-        
+
+ */
+
 
 
 }

@@ -33,11 +33,11 @@ public class ArticuloInsumo extends Base {
     @Column(name = "stockMinimo")
     private double stockMinimo;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="fk_categoria")
     private CategoriaArticulo categoria;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="fk_unidad_medida")
     private UnidadMedida unidadMedida;
 

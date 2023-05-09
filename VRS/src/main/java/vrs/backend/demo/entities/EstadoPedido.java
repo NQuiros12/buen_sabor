@@ -23,7 +23,9 @@ public class EstadoPedido extends Base {
 
     @Column(name = "EstadoPedido")
     private String estadoPedido;
-
+/*
     @OneToMany(mappedBy = "estadoPedido")
     private List<Pedido> pedidos = new ArrayList<Pedido>();
+
+ */
 }

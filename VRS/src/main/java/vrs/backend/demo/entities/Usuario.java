@@ -24,8 +24,10 @@ public class Usuario extends Base {
     private String clave;
     @Column(name = "rol")
     private String rol; //Ver de usar enums para roles
-
+/*
     @OneToOne(mappedBy = "usuario")
     private Cliente cliente;
+
+ */
 
 }
