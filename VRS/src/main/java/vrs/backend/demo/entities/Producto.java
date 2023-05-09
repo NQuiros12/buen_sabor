@@ -24,6 +24,7 @@ public class Producto extends Base {
 
     @Column(name = "precioVenta")
     private double precio_venta;
+    /*
     @OneToMany(mappedBy = "producto")
     private List<DetalleFactura> detalleFacturas = new ArrayList<DetalleFactura>();
     @OneToMany(mappedBy = "producto")
@@ -34,4 +35,6 @@ public class Producto extends Base {
 
     @OneToOne(mappedBy = "producto")
     private ArticuloManufacturado articuloManufacturado;
+
+     */
 }

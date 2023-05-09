@@ -20,7 +20,9 @@ public class FormaPago extends Base {
 
     @Column(name = "formaPago")
     private String formaPago;
-
+/*
     @OneToMany(mappedBy = "formaPago")
     private List<Factura> facturas = new ArrayList<Factura>();
+
+ */
 }

@@ -1,5 +1,6 @@
 package vrs.backend.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,9 +28,11 @@ public class ArticuloManufacturado extends Base {
     private double precioVenta;
     @Column(name="imagen")
     private String imagen;
-    @OneToMany(mappedBy = "articuloManufacturado")
-    private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<DetalleArticuloManufacturado>();
-
+//    @OneToMany(mappedBy = "articuloManufacturado")
+//    private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<DetalleArticuloManufacturado>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.REMOVE)
+    private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<>();
     @OneToOne
     @JoinColumn(name = "fk_producto")
     private Producto producto;

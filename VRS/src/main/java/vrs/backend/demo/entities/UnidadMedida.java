@@ -21,8 +21,11 @@ import java.util.List;
 public class UnidadMedida extends Base {
     @Column(name = "tipo")
     private String tipo;
+/*
     @OneToMany(mappedBy = "unidadMedida")
     private List<ArticuloInsumo> articuloInsumos = new ArrayList<ArticuloInsumo>();
     @OneToMany(mappedBy = "unidadMedida")
     private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<DetalleArticuloManufacturado>();
+
+ */
 }

@@ -18,24 +18,26 @@ import java.util.ArrayList;
 public class CategoriaArticulo extends Base {
     @Column(name="denominacion")
     private String denominacion;
-    @OneToMany(mappedBy = "categoria")
-    private List<ArticuloInsumo> articulosInsumo = new ArrayList<ArticuloInsumo>();
+//    @OneToMany(mappedBy = "categoria")
+//    private List<ArticuloInsumo> articulosInsumo = new ArrayList<ArticuloInsumo>();
 
     //Recursivo
-    @ManyToOne(fetch = FetchType.LAZY)
+//    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "parent_id")
     private CategoriaArticulo parent;
 
-    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<CategoriaArticulo> children = new ArrayList<CategoriaArticulo>();
+//    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "parent", cascade = CascadeType.MERGE)
+//    private List<CategoriaArticulo> children = new ArrayList<CategoriaArticulo>();
 
-    public void addChild(CategoriaArticulo child) {
-        children.add(child);
-        child.setParent(this);
-    }
-
-    public void removeChild(CategoriaArticulo child) {
-        children.remove(child);
-        child.setParent(null);
-    }
+//    public void addChild(CategoriaArticulo child) {
+////        children.add(child);
+//        child.setParent(this);
+//    }
+//
+//    public void removeChild(CategoriaArticulo child) {
+////        children.remove(child);
+//        child.setParent(null);
+//    }
 }

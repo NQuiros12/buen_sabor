@@ -14,8 +14,13 @@ import vrs.backend.demo.generics.entities.Base;
 @Getter
 @Setter
 public class DetalleArticuloManufacturado extends Base {
+
     @Column(name = "cantidad")
     private int cantidad;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_articuloInsumo")
+    private ArticuloInsumo articuloInsumo;
 
     @ManyToOne
     @JoinColumn(name="fk_unidad_medida")

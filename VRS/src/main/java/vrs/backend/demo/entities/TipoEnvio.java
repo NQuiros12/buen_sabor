@@ -24,7 +24,9 @@ public class TipoEnvio extends Base {
     @Column(name = "TipoEnvio")
     private String tipoEnvio;
 
-
+/*
     @OneToMany(mappedBy = "tipoEnvio")
     private List<Pedido> pedido = new ArrayList<Pedido>();
+
+ */
 }
