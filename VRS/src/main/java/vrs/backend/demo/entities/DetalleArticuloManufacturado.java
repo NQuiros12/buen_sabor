@@ -18,7 +18,7 @@ public class DetalleArticuloManufacturado extends Base {
     @Column(name = "cantidad")
     private int cantidad;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "fk_articuloInsumo")
     private ArticuloInsumo articuloInsumo;
 
@@ -26,7 +26,7 @@ public class DetalleArticuloManufacturado extends Base {
     @JoinColumn(name="fk_unidad_medida")
     private UnidadMedida unidadMedida;
 
-    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE })
+    @ManyToOne
     @JoinColumn(name="fk_articulo_manufacturado")
     private ArticuloManufacturado articuloManufacturado;
 }

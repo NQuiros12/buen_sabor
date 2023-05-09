@@ -23,7 +23,7 @@ public class CategoriaArticulo extends Base {
 
     //Recursivo
 //    @ManyToOne(fetch = FetchType.LAZY)
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "parent_id")
     private CategoriaArticulo parent;
 
