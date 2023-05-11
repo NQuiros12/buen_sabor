@@ -20,7 +20,6 @@ public class DetalleArticuloManufacturado extends Base {
     private int cantidad;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "fk_articuloInsumo")
     private ArticuloInsumo articuloInsumo;
 
