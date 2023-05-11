@@ -24,7 +24,7 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
         try {
             return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, por favor intente nuevamente...\"");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"\""+e);
 
         }
     }
@@ -36,7 +36,7 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
                     pagedSize,
                     Sort.by(Sort.Direction.DESC, "id"))));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, por favor intente nuevamente...\"");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"\""+e);
 
         }
     }
@@ -46,7 +46,7 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
         try{
             return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, por favor intente nuevamente...\"");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"\""+e);
         }
     }
 
@@ -55,7 +55,7 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
         try{
             return ResponseEntity.status(HttpStatus.OK).body(service.save(entity));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\""+e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"\""+e);
         }
     }
 
@@ -64,7 +64,7 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
         try{
             return ResponseEntity.status(HttpStatus.OK).body(service.update( id, entity));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"\""+e);
         }
     }
 
@@ -73,7 +73,7 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
         try{
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(service.delete(id));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, por favor intente nuevamente...\"");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"\""+e);
         }
     }
 

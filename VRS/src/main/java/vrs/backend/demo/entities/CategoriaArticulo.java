@@ -18,8 +18,6 @@ import java.util.ArrayList;
 public class CategoriaArticulo extends Base {
     @Column(name="denominacion")
     private String denominacion;
-//    @OneToMany(mappedBy = "categoria")
-//    private List<ArticuloInsumo> articulosInsumo = new ArrayList<ArticuloInsumo>();
 
     //Recursivo
 //    @ManyToOne(fetch = FetchType.LAZY)
