@@ -33,20 +33,15 @@ public class Pedido extends Base {
     private EstadoPedido estadoPedido;
 
     @ManyToOne
-    @JoinColumn(name = "fk_tipoEnvio ")
+    @JoinColumn(name = "fk_tipoEnvio")
     private TipoEnvio tipoEnvio;
 
     @ManyToOne
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
-/*
-    @OneToMany(mappedBy = "pedido")
-    private List<DetallePedido> detallePedidos = new ArrayList<DetallePedido>();
 
-    @OneToOne(mappedBy = "pedido")
-    private Factura factura;
-
- */
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.REMOVE)
+    private List<DetallePedido> detallePedidos = new ArrayList<>();
 
 }
 

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vrs.backend.demo.generics.entities.Base;
 
-import java.util.Date;
 
 @Entity
 @Table(name = "DetallePedido")
