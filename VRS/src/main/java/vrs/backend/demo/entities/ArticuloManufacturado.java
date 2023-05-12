@@ -28,12 +28,16 @@ public class ArticuloManufacturado extends Base {
     private double precioVenta;
     @Column(name="imagen")
     private String imagen;
-//    @OneToMany(mappedBy = "articuloManufacturado")
-//    private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<DetalleArticuloManufacturado>();
     @JsonIgnore
     @OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.REMOVE)
     private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<>();
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fk_producto")
     private Producto producto;
+
+    @ManyToOne
+    @JoinColumn(name="fk_categoria")
+    private CategoriaArticulo categoria;
+
 }
