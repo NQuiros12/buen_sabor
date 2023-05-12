@@ -19,9 +19,11 @@ public class ArticuloInsumoController extends BaseControllerImpl<ArticuloInsumo,
 
     long idNotProducto = 1L;
     private ProductoServiceImpl productoServiceIpml;
+    private  ArticuloInsumoServiceImpl articuloInsumoServiceImpl;
 
-    public ArticuloInsumoController(ProductoServiceImpl productoService) {
+    public ArticuloInsumoController(ProductoServiceImpl productoService, ArticuloInsumoServiceImpl articuloInsumoServiceImpl) {
         this.productoServiceIpml = productoService;
+        this.articuloInsumoServiceImpl = articuloInsumoServiceImpl;
     }
 
     @Override
@@ -77,4 +79,17 @@ public class ArticuloInsumoController extends BaseControllerImpl<ArticuloInsumo,
         return ResponseEntity.ok().build();
     }
 
+    @Override
+    public ResponseEntity<?> delete(Long id) {
+
+        try {
+            long idProducto = articuloInsumoServiceImpl.findById(id).getProducto().getId();
+            super.delete(id);
+            if (idProducto!=idNotProducto) productoServiceIpml.delete(idProducto);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return ResponseEntity.ok().build();
+    }
 }
