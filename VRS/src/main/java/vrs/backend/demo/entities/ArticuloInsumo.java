@@ -5,11 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.mapping.Join;
 import vrs.backend.demo.generics.entities.Base;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Entity

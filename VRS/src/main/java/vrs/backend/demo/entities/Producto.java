@@ -13,7 +13,7 @@ import vrs.backend.demo.generics.entities.Base;
 @Setter
 public class Producto extends Base {
 
-    //Ver que poner aca
+
     @Column(name = "producto")
     private String producto;
 

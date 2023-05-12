@@ -28,6 +28,7 @@ public class ArticuloManufacturado extends Base {
     private double precioVenta;
     @Column(name="imagen")
     private String imagen;
+
     @JsonIgnore
     @OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.REMOVE)
     private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<>();
