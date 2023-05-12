@@ -1,5 +1,6 @@
 package vrs.backend.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,21 +28,20 @@ public class Factura extends Base {
     @Column(name = "montoDescuento")
     private double montoDescuento;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "fk_formaPago")
     private FormaPago formaPago;
-    //Ver si es una relacion One to one o one to Many
 
     @Column(name = "nroTarjeta")
     private String nroTarjeta;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "fk_pedido")
     private Pedido pedido;
-    /*
-    @OneToMany(mappedBy = "factura")
-    private List<DetalleFactura> detalleFacturas = new ArrayList<DetalleFactura>();
 
-     */
+    @JsonIgnore
+    @OneToMany(mappedBy = "factura", cascade = CascadeType.REMOVE)
+    private List<DetalleFactura> detalleFacturas = new ArrayList<>();
+
 
 }
