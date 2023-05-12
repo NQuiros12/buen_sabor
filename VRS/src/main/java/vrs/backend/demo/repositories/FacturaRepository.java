@@ -1,10 +1,10 @@
 package vrs.backend.demo.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import vrs.backend.demo.entities.Factura;
+import vrs.backend.demo.generics.repositories.BaseRepository;
 
 @Repository
-public interface FacturaRepository extends JpaRepository<Factura, Long> {
-    // Métodos
+public interface FacturaRepository extends BaseRepository<Factura, Long> {
+
 }

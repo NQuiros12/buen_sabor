@@ -1,12 +1,13 @@
 package vrs.backend.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vrs.backend.demo.generics.entities.Base;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,26 +18,30 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Factura implements Serializable {
+public class Factura extends Base {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long facturaID;
+
     @Column(name = "fecha")
     private Date fecha;
     @Column(name = "numero")
     private int numero;
     @Column(name = "montoDescuento")
     private double montoDescuento;
-    @Column(name = "formaPago")
-    private String formaPago;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_formaPago")
+    private FormaPago formaPago;
+
     @Column(name = "nroTarjeta")
     private String nroTarjeta;
-    @Column(name = "totalVenta")
-    private double totalVenta;
-    @Column(name = "totalCosto")
-    private double totalCosto;
 
-    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetalleFactura> detallesFactura = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "fk_pedido")
+    private Pedido pedido;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "factura", cascade = CascadeType.REMOVE)
+    private List<DetalleFactura> detalleFacturas = new ArrayList<>();
+
+
 }

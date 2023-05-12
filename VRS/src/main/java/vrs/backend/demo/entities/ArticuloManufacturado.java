@@ -1,30 +1,44 @@
 package vrs.backend.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.envers.Audited;
+import vrs.backend.demo.generics.entities.Base;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="ArticuloManufacturado")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Audited
-public class ArticuloManufacturado implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idArticuloManufacturado;
+public class ArticuloManufacturado extends Base {
+
+
     @Column(name="tiempoEstimadoCocina")
     private int tiempoEstimadoCocina;
-    @Column(name="denominacion")
+    @Column(name="denominacion")//La denominacion es la Receta
     private String denominacion;
     @Column(name="precioVenta")
     private double precioVenta;
     @Column(name="imagen")
     private String imagen;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.REMOVE)
+    private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "fk_producto")
+    private Producto producto;
+
+    @ManyToOne
+    @JoinColumn(name="fk_categoria")
+    private CategoriaArticulo categoria;
+
 }

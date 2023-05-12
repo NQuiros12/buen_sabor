@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
+import vrs.backend.demo.generics.entities.Base;
 
 @Entity
 @Table(name = "Domicilio")
@@ -14,18 +13,28 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Domicilio implements Serializable {
+public class Domicilio extends Base {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private long domicilioID;
         @Column(name = "calle")
         private String calle;
         @Column(name = "localidad")
         private String localidad;
         @Column(name = "numero")
         private long numero;
+        @Column(name = "departamento")
+        private String departamento;
+        @Column(name = "piso")
+        private int piso;
 
-        //Ver tema de departamentos, piso y numero
+/*
+        @OneToOne(mappedBy = "domicilio")
+        private Cliente cliente;
+
+        @OneToMany(mappedBy = "domicilio")
+        private List<Pedido> pedidos =  new ArrayList<Pedido>();
+
+ */
+
+
 
 }

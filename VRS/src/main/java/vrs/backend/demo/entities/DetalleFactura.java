@@ -5,9 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
-import java.util.Date;
+import vrs.backend.demo.generics.entities.Base;
 
 @Entity
 @Table(name = "DetalleFactura")
@@ -15,16 +13,18 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-public class DetalleFactura implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long detalleFacturaID;
+public class DetalleFactura extends Base {
+
     @Column(name = "cantidad")
     private int cantidad;
     @Column(name = "subtotal")
     private double subtotal;
 
-    @ManyToOne
-    @JoinColumn(name = "factura_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_factura")
     private Factura factura;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_producto")
+    private Producto producto;
 }

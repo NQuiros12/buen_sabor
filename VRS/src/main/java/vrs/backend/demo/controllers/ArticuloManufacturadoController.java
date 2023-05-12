@@ -1,59 +1,49 @@
 package vrs.backend.demo.controllers;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import vrs.backend.demo.entities.ArticuloManufacturado;
-import vrs.backend.demo.services.ArticuloManufacturadoService;
+import vrs.backend.demo.entities.Producto;
+import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
+import vrs.backend.demo.services.implementation.ArticuloManufacturadoServiceImpl;
+import vrs.backend.demo.services.implementation.ProductoServiceImpl;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path="api/v1/articulosmanufacturados")
-public class ArticuloManufacturadoController {
-    private ArticuloManufacturadoService articuloManufacturadoService;
-    public ArticuloManufacturadoController(ArticuloManufacturadoService articuloManufacturadoService){
-        this.articuloManufacturadoService = articuloManufacturadoService;
+@RequestMapping(path = "/articulos_manufacturado")
+public class ArticuloManufacturadoController extends BaseControllerImpl<ArticuloManufacturado, ArticuloManufacturadoServiceImpl> {
+
+    private ProductoServiceImpl productoServiceIpml;
+
+    public ArticuloManufacturadoController(ProductoServiceImpl productoService) {
+        this.productoServiceIpml = productoService;
     }
-    @GetMapping("")
-    public ResponseEntity<?> getAll(){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(articuloManufacturadoService.findAll());
-        }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error por favor intente mas tarde.\"}");
+
+    @Override
+    public ResponseEntity<?> save(ArticuloManufacturado entity) {
+        super.save(entity);
+        Producto producto = new Producto(entity.getDenominacion(), entity.getPrecioVenta());
+        try {
+            productoServiceIpml.save(producto);
+            entity.setProducto(producto);
+            super.update(entity, entity.getId());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        return ResponseEntity.ok().build();
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getOne(@PathVariable Long id){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(articuloManufacturadoService.findById(id));
-        }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error por favor intente mas tarde.\"}");
+
+    @Override
+    public ResponseEntity<?> update(ArticuloManufacturado entity, Long id) {
+        super.update(entity, id);
+        try {
+            productoServiceIpml.update(entity.getProducto().getId(), new Producto(entity.getDenominacion(), entity.getPrecioVenta()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-    }
-    @PostMapping("")
-    public ResponseEntity<?> save(@RequestBody ArticuloManufacturado entity){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(articuloManufacturadoService.save(entity));
-        }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error por favor intente mas tarde.\"}");
-        }
-    }
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ArticuloManufacturado entity){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(articuloManufacturadoService.update(id,entity));
-        }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error por favor intente mas tarde.\"}");
-        }
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
-        try{
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(articuloManufacturadoService.delete(id));
-        }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error por favor intente mas tarde.\"}");
-        }
+        return ResponseEntity.ok().build();
     }
 
 }
