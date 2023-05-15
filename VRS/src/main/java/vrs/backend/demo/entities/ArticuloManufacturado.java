@@ -28,6 +28,8 @@ public class ArticuloManufacturado extends Base {
     private double precioVenta;
     @Column(name="imagen")
     private String imagen;
+    @Column(name = "altaBaja")
+    private boolean altaBaja;
 
     @JsonIgnore
     @OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.REMOVE)

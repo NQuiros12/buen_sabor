@@ -19,5 +19,7 @@ public class Producto extends Base {
 
     @Column(name = "precioVenta")
     private double precio_venta;
+    @Column(name = "altaBaja")
+    private boolean altaBaja;
 
 }
