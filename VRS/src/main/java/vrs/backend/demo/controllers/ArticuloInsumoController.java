@@ -32,7 +32,7 @@ public class ArticuloInsumoController extends BaseControllerImpl<ArticuloInsumo,
 
         try {
             if (!entity.isEsInsumo()) {
-                Producto producto = new Producto(entity.getDenominacion(), entity.getPrecioVenta());
+                Producto producto = new Producto(entity.getDenominacion(), entity.getPrecioVenta(), entity.isAltaBaja());
 
                 productoServiceIpml.save(producto);
                 entity.setProducto(producto);
@@ -55,10 +55,10 @@ public class ArticuloInsumoController extends BaseControllerImpl<ArticuloInsumo,
 
             if (!entity.isEsInsumo()) { // si es falso creamos producto
                 if (entity.getProducto().getId() != idNotProducto) {
-                    Producto producto = new Producto(entity.getDenominacion(), entity.getPrecioVenta());
+                    Producto producto = new Producto(entity.getDenominacion(), entity.getPrecioVenta(), entity.isAltaBaja());
                     productoServiceIpml.update(entity.getProducto().getId(), producto);
                 } else {
-                    Producto producto = new Producto(entity.getDenominacion(), entity.getPrecioVenta());
+                    Producto producto = new Producto(entity.getDenominacion(), entity.getPrecioVenta(), entity.isAltaBaja());
                     productoServiceIpml.save(producto);
                     entity.setProducto(producto);
                 }
