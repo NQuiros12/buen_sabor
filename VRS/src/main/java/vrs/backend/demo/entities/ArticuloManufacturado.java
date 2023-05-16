@@ -22,8 +22,13 @@ public class ArticuloManufacturado extends Base {
 
     @Column(name="tiempoEstimadoCocina")
     private int tiempoEstimadoCocina;
-    @Column(name="denominacion")//La denominacion es la Receta
+
+    @Column(name="denominacion")//Nombre
     private String denominacion;
+    @Column(name = "descripcion")//Descripcion para el usuario
+    private String descripcion;
+    @Column(name = "receta")//Receta
+    private String receta;
     @Column(name="precioVenta")
     private double precioVenta;
     @Column(name="imagen")
