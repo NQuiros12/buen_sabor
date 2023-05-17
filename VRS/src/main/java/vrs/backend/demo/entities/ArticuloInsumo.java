@@ -16,6 +16,8 @@ import vrs.backend.demo.generics.entities.Base;
 @Setter
 public class ArticuloInsumo extends Base {
 
+    private String tipoClase = "ArticuloInsumo";
+
     @Column(name = "denominacion")
     private String denominacion;
     @Column(name = "descripcion")

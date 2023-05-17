@@ -19,7 +19,7 @@ public class ArticuloInsumoController extends BaseControllerImpl<ArticuloInsumo,
 
     long idNotProducto = 1L;
     private ProductoServiceImpl productoServiceIpml;
-    private  ArticuloInsumoServiceImpl articuloInsumoServiceImpl;
+    private ArticuloInsumoServiceImpl articuloInsumoServiceImpl;
 
     public ArticuloInsumoController(ProductoServiceImpl productoService, ArticuloInsumoServiceImpl articuloInsumoServiceImpl) {
         this.productoServiceIpml = productoService;
@@ -28,12 +28,17 @@ public class ArticuloInsumoController extends BaseControllerImpl<ArticuloInsumo,
 
     @Override
     public ResponseEntity<?> save(ArticuloInsumo entity) {
-        super.save(entity);
+
 
         try {
+            super.save(entity);
             if (!entity.isEsInsumo()) {
-                Producto producto = new Producto(entity.getDenominacion(),entity.getDescripcion(),entity.getImagen() ,entity.getPrecioVenta(), entity.isAltaBaja());
-
+                Producto producto = Producto.builder()
+                        .producto(entity.getDenominacion())
+                        .descripcion(entity.getDescripcion())
+                        .imagen(entity.getImagen())
+                        .precio_venta(entity.getPrecioVenta())
+                        .altaBaja(entity.isAltaBaja()).build();
                 productoServiceIpml.save(producto);
                 entity.setProducto(producto);
                 super.update(entity, entity.getId());
@@ -47,30 +52,38 @@ public class ArticuloInsumoController extends BaseControllerImpl<ArticuloInsumo,
         }
         return ResponseEntity.ok().build();
     }
+
     @Override
     public ResponseEntity<?> update(ArticuloInsumo entity, Long id) {
         try {
 
             long idProductoAnterior = -1;
-
-            if (!entity.isEsInsumo()) { // si es falso creamos producto
-                if (entity.getProducto().getId() != idNotProducto) {
-                    Producto producto = new Producto(entity.getDenominacion(),entity.getDescripcion(),entity.getImagen() ,entity.getPrecioVenta(), entity.isAltaBaja());
+            if (!entity.isEsInsumo()) { // Si ahora insumo es falso es un producto entonces lo creamos
+                Producto producto = Producto.builder()
+                        .producto(entity.getDenominacion())
+                        .descripcion(entity.getDescripcion())
+                        .imagen(entity.getImagen())
+                        .precio_venta(entity.getPrecioVenta())
+                        .altaBaja(entity.isAltaBaja())
+                        .tipoClase("Producto")
+                        .build();
+                if (entity.getProducto().getId() != idNotProducto) {//si ya traia un id de un producto anterior actualizamos el producto
                     productoServiceIpml.update(entity.getProducto().getId(), producto);
-                } else {
-                    Producto producto = new Producto(entity.getDenominacion(),entity.getDescripcion(),entity.getImagen() ,entity.getPrecioVenta(), entity.isAltaBaja());
+                } else { //sino creamos el producto
                     productoServiceIpml.save(producto);
                     entity.setProducto(producto);
                 }
-            } else {
+            } else { //sino quiere decir que ahora es un insumo y no un producto por lo que asignamos al id 1 "No es Producto"
                 if (entity.getProducto().getId() != idNotProducto) {
                     idProductoAnterior = entity.getProducto().getId();
-                    Producto nuevoProducto = productoServiceIpml.findById(idNotProducto);
-                    entity.setProducto(nuevoProducto);
+                    Producto producto = productoServiceIpml.findById(idNotProducto);
+                    entity.setProducto(producto);
+                    entity.setImagen("");
+                    entity.setDescripcion("");
                 }
             }
-            super.update(entity, id);
-            if (idProductoAnterior != -1) {
+            super.update(entity, id); //Guardamos la entidad ahora con su nuevo producto o producto actualizado
+            if (idProductoAnterior != -1) { //borramos el producto que ya no tiene relaciones
                 productoServiceIpml.delete(idProductoAnterior);
             }
         } catch (Exception e) {
@@ -85,7 +98,7 @@ public class ArticuloInsumoController extends BaseControllerImpl<ArticuloInsumo,
         try {
             long idProducto = articuloInsumoServiceImpl.findById(id).getProducto().getId();
             super.delete(id);
-            if (idProducto!=idNotProducto) productoServiceIpml.delete(idProducto);
+            if (idProducto != idNotProducto) productoServiceIpml.delete(idProducto);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

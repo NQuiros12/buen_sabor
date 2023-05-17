@@ -20,6 +20,7 @@ import java.util.List;
 public class ArticuloManufacturado extends Base {
 
 
+    private String tipoClase = "ArticuloManufacturado";
     @Column(name="tiempoEstimadoCocina")
     private int tiempoEstimadoCocina;
 

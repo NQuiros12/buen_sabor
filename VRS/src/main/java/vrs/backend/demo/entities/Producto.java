@@ -9,9 +9,11 @@ import vrs.backend.demo.generics.entities.Base;
 @Table(name = "Producto")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 @Setter
 public class Producto extends Base {
+    private String tipoClase = "Producto";
     @Column(name = "producto")
     private String producto;
     @Column(name = "descripcion")

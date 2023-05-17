@@ -15,6 +15,7 @@ import vrs.backend.demo.generics.entities.Base;
 @Setter
 public class Domicilio extends Base {
 
+        private String tipoClase = "Domicilio";
         @Column(name = "calle")
         private String calle;
         @Column(name = "localidad")

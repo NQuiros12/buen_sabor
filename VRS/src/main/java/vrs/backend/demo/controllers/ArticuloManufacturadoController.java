@@ -23,9 +23,18 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
 
     @Override
     public ResponseEntity<?> save(ArticuloManufacturado entity) {
-        super.save(entity);
-        Producto producto = new Producto(entity.getDenominacion(),entity.getDescripcion(),entity.getImagen() ,entity.getPrecioVenta(), entity.isAltaBaja());
+
         try {
+            super.save(entity);
+            //Producto producto = new Producto(entity.getDenominacion(),entity.getDescripcion(),entity.getImagen() ,entity.getPrecioVenta(), entity.isAltaBaja());
+            Producto producto = Producto.builder()
+                    .producto(entity.getDenominacion())
+                    .descripcion(entity.getDescripcion())
+                    .imagen(entity.getImagen())
+                    .precio_venta(entity.getPrecioVenta())
+                    .altaBaja(entity.isAltaBaja())
+                    .tipoClase("Producto")
+                    .build();
             productoServiceIpml.save(producto);
             entity.setProducto(producto);
             super.update(entity, entity.getId());
@@ -37,9 +46,17 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
 
     @Override
     public ResponseEntity<?> update(ArticuloManufacturado entity, Long id) {
-        super.update(entity, id);
+
         try {
-            productoServiceIpml.update(entity.getProducto().getId(), new Producto(entity.getDenominacion(),entity.getDescripcion(),entity.getImagen() ,entity.getPrecioVenta(), entity.isAltaBaja()));
+            super.update(entity, id);
+            productoServiceIpml.update(entity.getProducto().getId(), Producto.builder()
+                    .producto(entity.getDenominacion())
+                    .descripcion(entity.getDescripcion())
+                    .imagen(entity.getImagen())
+                    .precio_venta(entity.getPrecioVenta())
+                    .altaBaja(entity.isAltaBaja())
+                    .tipoClase("Producto")
+                    .build());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
