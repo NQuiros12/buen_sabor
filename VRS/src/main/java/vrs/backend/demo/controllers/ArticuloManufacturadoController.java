@@ -24,7 +24,7 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
     @Override
     public ResponseEntity<?> save(ArticuloManufacturado entity) {
         super.save(entity);
-        Producto producto = new Producto(entity.getDenominacion(), entity.getPrecioVenta(), entity.isAltaBaja());
+        Producto producto = new Producto(entity.getDenominacion(),entity.getDescripcion(),entity.getImagen() ,entity.getPrecioVenta(), entity.isAltaBaja());
         try {
             productoServiceIpml.save(producto);
             entity.setProducto(producto);
@@ -39,7 +39,7 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
     public ResponseEntity<?> update(ArticuloManufacturado entity, Long id) {
         super.update(entity, id);
         try {
-            productoServiceIpml.update(entity.getProducto().getId(), new Producto(entity.getDenominacion(), entity.getPrecioVenta(), entity.isAltaBaja()));
+            productoServiceIpml.update(entity.getProducto().getId(), new Producto(entity.getDenominacion(),entity.getDescripcion(),entity.getImagen() ,entity.getPrecioVenta(), entity.isAltaBaja()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

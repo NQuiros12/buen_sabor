@@ -12,8 +12,6 @@ import vrs.backend.demo.generics.entities.Base;
 @Getter
 @Setter
 public class Producto extends Base {
-
-
     @Column(name = "producto")
     private String producto;
     @Column(name = "descripcion")
@@ -24,7 +22,5 @@ public class Producto extends Base {
     private double precio_venta;
     @Column(name = "altaBaja")
     private boolean altaBaja;
-
-
 
 }
