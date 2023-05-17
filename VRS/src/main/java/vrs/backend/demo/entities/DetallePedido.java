@@ -16,6 +16,7 @@ import vrs.backend.demo.generics.entities.Base;
 @Setter
 public class DetallePedido extends Base {
 
+    private String tipoClase = "DetallePedido";
     @Column(name = "cantidad")
     private int cantidad;
     @Column(name = "subtotal")

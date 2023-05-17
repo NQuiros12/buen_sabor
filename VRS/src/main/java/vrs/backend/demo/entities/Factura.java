@@ -21,6 +21,7 @@ import java.util.List;
 public class Factura extends Base {
 
 
+    private String tipoClase = "Factura";
     @Column(name = "fecha")
     private Date fecha;
     @Column(name = "numero")

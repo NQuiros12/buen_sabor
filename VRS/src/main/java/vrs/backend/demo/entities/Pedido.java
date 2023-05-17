@@ -19,6 +19,7 @@ import java.util.List;
 @Setter
 public class Pedido extends Base {
 
+    private String tipoClase = "Pedido";
     @Column(name = "fecha")
     private Date fecha;
     @Column(name = "numero")
