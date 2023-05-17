@@ -15,6 +15,8 @@ import vrs.backend.demo.generics.entities.Base;
 public class CategoriaArticulo extends Base {
     @Column(name="denominacion")
     private String denominacion;
+    @Column(name = "altaBaja")
+    private boolean altaBaja;
 
     //Recursivo
 //    @ManyToOne(fetch = FetchType.LAZY)

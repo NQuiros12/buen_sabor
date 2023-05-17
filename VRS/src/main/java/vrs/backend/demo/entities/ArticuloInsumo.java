@@ -18,6 +18,8 @@ public class ArticuloInsumo extends Base {
 
     @Column(name = "denominacion")
     private String denominacion;
+    @Column(name = "descripcion")
+    private String descripcion;
     @Column(name = "esInsumo")
     private boolean esInsumo;
     @Column(name = "precioCompra")
@@ -28,6 +30,10 @@ public class ArticuloInsumo extends Base {
     private double stockActual;
     @Column(name = "stockMinimo")
     private double stockMinimo;
+    @Column(name = "imagen")
+    private String imagen;
+    @Column(name = "altaBaja")
+    private boolean altaBaja;
 
     @ManyToOne
     @JoinColumn(name="fk_categoria")
