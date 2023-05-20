@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import vrs.backend.demo.generics.entities.Base;
 
 import java.io.Serializable;
+import java.util.List;
 
 public interface BaseController<E extends Base,ID extends Serializable> {
 
@@ -15,6 +16,7 @@ public interface BaseController<E extends Base,ID extends Serializable> {
     public ResponseEntity<?> getOne(@PathVariable ID id);
 
     public ResponseEntity<?> save(@RequestBody E entity);
+    public ResponseEntity<?> saveAll(@RequestBody List<E> entityList);
 
     public ResponseEntity<?> update( @RequestBody E entity, @PathVariable Long id);
 

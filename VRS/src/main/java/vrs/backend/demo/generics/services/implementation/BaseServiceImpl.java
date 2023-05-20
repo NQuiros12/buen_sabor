@@ -1,6 +1,6 @@
 package vrs.backend.demo.generics.services.implementation;
 import java.lang.reflect.Field;
-import jakarta.persistence.EntityManager;
+
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -69,6 +69,17 @@ public abstract class BaseServiceImpl<E extends Base, ID extends Serializable> i
             throw new Exception(e.getMessage());
         }
     }
+
+    @Override
+    @Transactional
+    public List<E> saveAll(List<E> entities) throws Exception {
+        try {
+            return repository.saveAll(entities);
+        } catch (Exception e) {
+            throw new Exception("Error al guardar las entidades: " + e.getMessage());
+        }
+    }
+
 
 //    @Override
 //    public E update(ID id, E entity) throws Exception {

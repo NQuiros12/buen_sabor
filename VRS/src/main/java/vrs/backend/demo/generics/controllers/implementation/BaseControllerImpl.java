@@ -11,6 +11,8 @@ import vrs.backend.demo.generics.controllers.BaseController;
 import vrs.backend.demo.generics.entities.Base;
 import vrs.backend.demo.generics.services.implementation.BaseServiceImpl;
 
+import java.util.List;
+
 public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceImpl<E, Long>> implements BaseController<E, Long> {
 
     @Autowired
@@ -74,6 +76,15 @@ public abstract class BaseControllerImpl<E extends Base, S extends BaseServiceIm
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(service.delete(id));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"\""+e);
+        }
+    }
+
+    @PostMapping("/saveAll")
+    public ResponseEntity<?> saveAll(@RequestBody List<E> entities) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(service.saveAll(entities));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"" + e.getMessage() + "\"}");
         }
     }
 
