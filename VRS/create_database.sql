@@ -1,2 +1,3 @@
+DROP database IF EXISTS VRS;
 CREATE DATABASE VRS CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

@@ -23,7 +23,8 @@ public class ArticuloManufacturado extends Base {
     private String tipoClase = "ArticuloManufacturado";
     @Column(name="tiempoEstimadoCocina")
     private int tiempoEstimadoCocina;
-
+    @Column(name="esProductoFinal")
+    private boolean productoFinal;
     @Column(name="denominacion")//Nombre
     private String denominacion;
     @Column(name = "descripcion")//Descripcion para el usuario
@@ -40,10 +41,6 @@ public class ArticuloManufacturado extends Base {
     @JsonIgnore
     @OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.REMOVE)
     private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<>();
-
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "fk_producto")
-    private Producto producto;
 
     @ManyToOne
     @JoinColumn(name="fk_categoria")
