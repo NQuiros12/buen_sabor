@@ -1,5 +1,6 @@
 package vrs.backend.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class DetalleArticuloManufacturado extends Base {
     @JoinColumn(name = "fk_articuloInsumo")
     private ArticuloInsumo articuloInsumo;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="fk_articulo_manufacturado")
     private ArticuloManufacturado articuloManufacturado;

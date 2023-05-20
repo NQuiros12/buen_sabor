@@ -1,5 +1,6 @@
 package vrs.backend.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -38,12 +39,16 @@ public class ArticuloManufacturado extends Base {
     @Column(name = "altaBaja")
     private boolean altaBaja;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.REMOVE)
     private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name="fk_categoria")
     private CategoriaArticulo categoria;
+
+    public List<DetalleArticuloManufacturado> getDetalleArticuloManufacturados() {
+        return detalleArticuloManufacturados;
+    }
 
 }
