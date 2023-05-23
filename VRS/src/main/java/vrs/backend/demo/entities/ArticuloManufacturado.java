@@ -40,7 +40,7 @@ public class ArticuloManufacturado extends Base {
     private boolean altaBaja;
 
 
-    @OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.ALL)
     private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<>();
 
     @ManyToOne
