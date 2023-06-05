@@ -3,12 +3,14 @@ package vrs.backend.demo.controllers;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vrs.backend.demo.entities.ArticuloManufacturado;
 import vrs.backend.demo.entities.DetalleArticuloManufacturado;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
+import vrs.backend.demo.repositories.ArticuloManufacturadoRepository;
 import vrs.backend.demo.services.implementation.ArticuloManufacturadoServiceImpl;
 import vrs.backend.demo.services.implementation.DetalleArticuloManufacturadoServiImpl;
 
@@ -153,7 +155,12 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
         articuloPrevio.setDetalleArticuloManufacturados(detalles);
     }
 
-
+    @Autowired
+    private ArticuloManufacturadoRepository articuloManufacturadoRepository;
+    @GetMapping("/buscar_nombre/{nombreArtMan}")
+    public List<ArticuloManufacturado> searchByName(@PathVariable String nombreArtMan) {
+        return articuloManufacturadoRepository.findByName(nombreArtMan);
+    }
 
 
 }
