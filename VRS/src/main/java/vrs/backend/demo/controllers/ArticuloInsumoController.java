@@ -1,5 +1,6 @@
 package vrs.backend.demo.controllers;
 
+import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import vrs.backend.demo.services.implementation.ArticuloInsumoServiceImpl;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "/articulosinsumos")
+@Transactional
 public class ArticuloInsumoController extends BaseControllerImpl<ArticuloInsumo, ArticuloInsumoServiceImpl> {
 
 }
