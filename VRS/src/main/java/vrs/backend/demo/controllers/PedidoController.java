@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vrs.backend.demo.entities.*;
+import vrs.backend.demo.enums.EstadoPedido;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
 import vrs.backend.demo.services.implementation.ArticuloInsumoServiceImpl;
 import vrs.backend.demo.services.implementation.DetallePedidoServiceImpl;
@@ -68,7 +69,7 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
                 throw new Exception("Debe proporcionar al menos un detalle de pedido.");
             }
 
-            if (pedidoRecibido.getEstadoPedido().getId() == 4) {
+            if (pedidoRecibido.getEstadoPedido() == EstadoPedido.PREPARACION ) {
                 try {
                     validarStockInsumos(pedidoRecibido);
                     actualizarStockInsumos(pedidoRecibido);

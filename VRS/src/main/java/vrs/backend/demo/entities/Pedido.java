@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import vrs.backend.demo.enums.EstadoPedido;
+import vrs.backend.demo.enums.FormaPago;
+import vrs.backend.demo.enums.TipoEnvio;
 import vrs.backend.demo.generics.entities.Base;
 
 import java.util.ArrayList;
@@ -32,15 +35,14 @@ public class Pedido extends Base {
     @JoinColumn(name = "fk_domicilio")
     private Domicilio domicilio;
 
-    @ManyToOne
     @JoinColumn(name = "fk_estadoPedido")
     private EstadoPedido estadoPedido;
 
-    @ManyToOne
+
     @JoinColumn(name = "fk_tipoEnvio")
     private TipoEnvio tipoEnvio;
 
-    @ManyToOne
+
     @JoinColumn(name = "fk_formaPago")
     private FormaPago formaPago;
 
