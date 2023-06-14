@@ -20,8 +20,11 @@ import java.util.List;
 public class Pedido extends Base {
 
     private String tipoClase = "Pedido";
+
     @Column(name = "fecha")
     private Date fecha;
+
+    //Ver
     @Column(name = "numero")
     private int numero;
 
@@ -38,11 +41,18 @@ public class Pedido extends Base {
     private TipoEnvio tipoEnvio;
 
     @ManyToOne
+    @JoinColumn(name = "fk_formaPago")
+    private FormaPago formaPago;
+
+    @ManyToOne
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "pedido",  cascade = CascadeType.ALL)
     private List<DetallePedido> detallePedidos = new ArrayList<>();
 
+    public List<DetallePedido> getDetallePedidos() {
+        return detallePedidos;
+    }
 }
 

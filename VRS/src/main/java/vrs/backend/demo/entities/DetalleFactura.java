@@ -1,5 +1,6 @@
 package vrs.backend.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,9 +22,11 @@ public class DetalleFactura extends Base {
     @Column(name = "subtotal")
     private double subtotal;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "fk_factura")
     private Factura factura;
+
     @ManyToOne
     @JoinColumn(name = "fk_articuloManufacturado")
     private ArticuloManufacturado articuloManufacturado;
