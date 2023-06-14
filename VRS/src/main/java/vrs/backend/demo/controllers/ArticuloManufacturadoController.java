@@ -14,6 +14,7 @@ import vrs.backend.demo.repositories.ArticuloManufacturadoRepository;
 import vrs.backend.demo.services.implementation.ArticuloManufacturadoServiceImpl;
 import vrs.backend.demo.services.implementation.DetalleArticuloManufacturadoServiImpl;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -28,6 +29,12 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
     private final DetalleArticuloManufacturadoServiImpl detalleArticuloManufacturadoServiImpl;
     private final ArticuloManufacturadoServiceImpl articuloManufacturadoServiceImpl;
 
+    @Autowired
+    private ArticuloManufacturadoRepository articuloManufacturadoRepository;
+    @GetMapping("/buscar_nombre/{nombreArtMan}")
+    public List<ArticuloManufacturado> searchByName(@PathVariable String nombreArtMan) {
+        return articuloManufacturadoRepository.findByName(nombreArtMan);
+    }
 
     @Override
     @Transactional
@@ -66,7 +73,7 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
             ArticuloManufacturado articuloPrevio = articuloManufacturadoServiceImpl.findById(id);
 
             if (articuloPrevio == null) {
-                return ResponseEntity.notFound().build();
+                throw new Exception("No se encontro el pedido");
             }
             // Actualizamos el articulo per
             actualizarArticuloPrevio(articuloPrevio, articuloRecibido);
@@ -88,16 +95,20 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
 
     //Metodo que actualiza todos los atributos del Articulo menos sus detalles
     private void actualizarArticuloPrevio(ArticuloManufacturado articuloPrevio, ArticuloManufacturado articuloRecibido) {
-        articuloPrevio.setTipoClase(articuloRecibido.getTipoClase());
-        articuloPrevio.setTiempoEstimadoCocina(articuloRecibido.getTiempoEstimadoCocina());
-        articuloPrevio.setProductoFinal(articuloRecibido.isProductoFinal());
-        articuloPrevio.setDenominacion(articuloRecibido.getDenominacion());
-        articuloPrevio.setDescripcion(articuloRecibido.getDescripcion());
-        articuloPrevio.setReceta(articuloRecibido.getReceta());
-        articuloPrevio.setPrecioVenta(articuloRecibido.getPrecioVenta());
-        articuloPrevio.setImagen(articuloRecibido.getImagen());
-        articuloPrevio.setAltaBaja(articuloRecibido.isAltaBaja());
-        articuloPrevio.setCategoria(articuloRecibido.getCategoria());
+        Field[] fields = articuloRecibido.getClass().getDeclaredFields();
+
+        for (Field field : fields) {
+            try {
+                field.setAccessible(true);
+                Object value = field.get(articuloRecibido);
+
+                if (!field.getName().equals("detalleArticuloManufacturados") && !field.getName().equals("id")) {
+                    field.set(articuloPrevio, value);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     //Metodo para eliminar sus detalles tanto del articulo como sus persistencias
@@ -155,12 +166,7 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
         articuloPrevio.setDetalleArticuloManufacturados(detalles);
     }
 
-    @Autowired
-    private ArticuloManufacturadoRepository articuloManufacturadoRepository;
-    @GetMapping("/buscar_nombre/{nombreArtMan}")
-    public List<ArticuloManufacturado> searchByName(@PathVariable String nombreArtMan) {
-        return articuloManufacturadoRepository.findByName(nombreArtMan);
-    }
+
 
 
 }
