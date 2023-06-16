@@ -26,6 +26,10 @@ public class ArticuloManufacturado extends Base {
     private int tiempoEstimadoCocina;
     @Column(name="esProductoFinal")
     private boolean productoFinal;
+    @Column(name = "stockActual")
+    private double stockActual;
+    @Column(name = "stockMinimo")
+    private double stockMinimo;
     @Column(name="denominacion")//Nombre
     private String denominacion;
     @Column(name = "descripcion")//Descripcion para el usuario
@@ -34,6 +38,8 @@ public class ArticuloManufacturado extends Base {
     private String receta;
     @Column(name="precioVenta")
     private double precioVenta;
+    @Column(name="precioCompra")
+    private double precioCompra;
     @Column(name="imagen")
     private String imagen;
     @Column(name = "altaBaja")

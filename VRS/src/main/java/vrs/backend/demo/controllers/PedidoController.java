@@ -9,6 +9,7 @@ import vrs.backend.demo.entities.*;
 import vrs.backend.demo.enums.EstadoPedido;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
 import vrs.backend.demo.services.implementation.ArticuloInsumoServiceImpl;
+import vrs.backend.demo.services.implementation.ArticuloManufacturadoServiceImpl;
 import vrs.backend.demo.services.implementation.DetallePedidoServiceImpl;
 import vrs.backend.demo.services.implementation.PedidoServiceImpl;
 
@@ -27,6 +28,7 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
     private final DetallePedidoServiceImpl detallePedidoServiceImpl;
     private final PedidoServiceImpl pedidoServiceImpl;
     private final ArticuloInsumoServiceImpl articuloInsumoServiceImpl;
+    private final ArticuloManufacturadoController articuloManufacturadoController;
 
     @Override
     @Transactional
@@ -101,7 +103,13 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
 
             // Verifica el stock disponible para cada ingrediente
             if (articulo.isProductoFinal()) {
-                System.out.println("Agregar atributo stock actual y mínimo.");
+                double cantidadRequerida = cantidadTotal;
+                double stockDisponible = articulo.getStockActual();
+
+                if (stockDisponible < cantidadRequerida) {
+                    // Maneja la situación donde el stock es insuficiente
+                    throw new Exception("El stock del producto '" + articulo.getDenominacion() + "' es insuficiente.");
+                }
             } else {
                 for (DetalleArticuloManufacturado detalleArticulo : articulo.getDetalleArticuloManufacturados()) {
                     ArticuloInsumo insumo = detalleArticulo.getArticuloInsumo();
@@ -128,7 +136,14 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
 
             // Verifica el stock disponible para cada ingrediente
             if (articulo.isProductoFinal()) {
-                System.out.println("Agregar atributo stock actual y mínimo.");
+                double cantidadRequerida = cantidadTotal;
+                double stockDisponible = articulo.getStockActual();
+                System.out.println(stockDisponible-cantidadRequerida);
+                articulo.setStockActual(stockDisponible-cantidadRequerida);
+                if (articulo.getStockActual() < articulo.getStockMinimo()) {
+                    articulo.setAltaBaja(false);
+                }
+                articuloManufacturadoController.update(articulo,articulo.getId());
             } else {
                 for (DetalleArticuloManufacturado detalleArticulo : articulo.getDetalleArticuloManufacturados()) {
                     ArticuloInsumo insumo = detalleArticulo.getArticuloInsumo();
@@ -139,8 +154,11 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
                     insumo.setStockActual(stockDisponible - cantidadRequerida);
                     if (insumo.getStockActual() < insumo.getStockMinimo()) {
                         insumo.setAltaBaja(false);
+                        articulo.setAltaBaja(false);
                     }
+                    articuloManufacturadoController.update(articulo,articulo.getId());
                     articuloInsumoServiceImpl.update(insumo.getId(), insumo);
+
                 }
             }
         }
