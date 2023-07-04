@@ -1,12 +1,14 @@
 package vrs.backend.demo.controllers;
 
-import com.mercadopago.client.preference.PreferenceItemRequest;
+import com.mercadopago.client.preference.*;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
+import com.mercadopago.resources.preference.Preference;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vrs.backend.demo.entities.MercadoPagoItem.ItemMercadoPago;
 import vrs.backend.demo.services.MercadoPagoService;
+
 import vrs.backend.demo.services.implementation.PedidoServiceImpl;
 
 import java.math.BigDecimal;
@@ -40,6 +42,22 @@ public class MercadoPagoController {
                         .build();
         items.add(item);
         //return item;
+        PreferenceBackUrlsRequest bu = PreferenceBackUrlsRequest.builder().success(urlSuccess).failure(urlFailure).pending(urlFailure).build();
+        List<PreferencePaymentTypeRequest> excludedPaymentTypes = new ArrayList<>();
+        excludedPaymentTypes.add(PreferencePaymentTypeRequest.builder().build().id("ticket").build());
+        PreferencePaymentMethodsRequest paymentMethods = PreferencePaymentMethodsRequest.builder()
+                .excludedPaymentTypes(excludedPaymentTypes)
+                .installments(1)
+                .build();
+
+        PreferenceRequest request = PreferenceRequest.builder()
+                .items(items)
+                .paymentMethods(paymentMethods)
+                .autoReturn("approved")
+                .externalReference(itemMercadoPago.getCode())
+                .backUrls(bu).build();
+
+        //PreferenceRequest request = PreferenceRequest.builder().items(items).build();
     }
 
 }
