@@ -15,7 +15,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UnidadMedida extends Base {
+
+    private String tipoClase = "UnidadMedida";
+    @Column(name = "denominacion")
+    private String denominacion;
     @Column(name = "tipo")
     private String tipo;
+    @Column(name = "altaBaja")
+    private boolean altaBaja;
 
 }

@@ -13,8 +13,11 @@ import vrs.backend.demo.generics.entities.Base;
 @Getter
 @Setter
 public class CategoriaArticulo extends Base {
+    private String tipoClase = "Categoria";
     @Column(name="denominacion")
     private String denominacion;
+    @Column(name = "altaBaja")
+    private boolean altaBaja;
 
     //Recursivo
 //    @ManyToOne(fetch = FetchType.LAZY)

@@ -1,6 +1,6 @@
 package vrs.backend.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import lombok.Setter;
 import vrs.backend.demo.generics.entities.Base;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,27 +20,22 @@ import java.util.List;
 public class Factura extends Base {
 
 
-    @Column(name = "fecha")
-    private Date fecha;
+    private String tipoClase = "Factura";
+    //Ver
     @Column(name = "numero")
     private int numero;
-    @Column(name = "montoDescuento")
-    private double montoDescuento;
-
-    @ManyToOne
-    @JoinColumn(name = "fk_formaPago")
-    private FormaPago formaPago;
-
-    @Column(name = "nroTarjeta")
-    private String nroTarjeta;
 
     @OneToOne
     @JoinColumn(name = "fk_pedido")
     private Pedido pedido;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "factura", cascade = CascadeType.REMOVE)
+
+    @OneToMany(mappedBy = "factura",  cascade = CascadeType.ALL)
     private List<DetalleFactura> detalleFacturas = new ArrayList<>();
+
+    public List<DetalleFactura> getDetalleFacturas() {
+        return detalleFacturas;
+    }
 
 
 }

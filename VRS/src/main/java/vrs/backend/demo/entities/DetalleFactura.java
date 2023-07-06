@@ -1,5 +1,6 @@
 package vrs.backend.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,16 +16,19 @@ import vrs.backend.demo.generics.entities.Base;
 @Setter
 public class DetalleFactura extends Base {
 
+    private String tipoClase = "DetalleFactura";
     @Column(name = "cantidad")
     private int cantidad;
     @Column(name = "subtotal")
     private double subtotal;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "fk_factura")
     private Factura factura;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_producto")
-    private Producto producto;
+    @ManyToOne
+    @JoinColumn(name = "fk_articuloManufacturado")
+    private ArticuloManufacturado articuloManufacturado;
+
 }

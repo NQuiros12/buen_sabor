@@ -1,5 +1,6 @@
 package vrs.backend.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,25 +21,40 @@ import java.util.List;
 public class ArticuloManufacturado extends Base {
 
 
+    private String tipoClase = "ArticuloManufacturado";
     @Column(name="tiempoEstimadoCocina")
     private int tiempoEstimadoCocina;
-    @Column(name="denominacion")//La denominacion es la Receta
+    @Column(name="esProductoFinal")
+    private boolean productoFinal;
+    @Column(name = "stockActual")
+    private double stockActual;
+    @Column(name = "stockMinimo")
+    private double stockMinimo;
+    @Column(name="denominacion")//Nombre
     private String denominacion;
+    @Column(name = "descripcion")//Descripcion para el usuario
+    private String descripcion;
+    @Column(name = "receta")//Receta
+    private String receta;
     @Column(name="precioVenta")
     private double precioVenta;
+    @Column(name="precioCompra")
+    private double precioCompra;
     @Column(name="imagen")
     private String imagen;
+    @Column(name = "altaBaja")
+    private boolean altaBaja;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.REMOVE)
+
+    @OneToMany(mappedBy = "articuloManufacturado", cascade = CascadeType.ALL)
     private List<DetalleArticuloManufacturado> detalleArticuloManufacturados = new ArrayList<>();
-
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "fk_producto")
-    private Producto producto;
 
     @ManyToOne
     @JoinColumn(name="fk_categoria")
     private CategoriaArticulo categoria;
+
+    public List<DetalleArticuloManufacturado> getDetalleArticuloManufacturados() {
+        return detalleArticuloManufacturados;
+    }
 
 }

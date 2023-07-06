@@ -16,10 +16,10 @@ import vrs.backend.demo.generics.entities.Base;
 @Setter
 public class ArticuloInsumo extends Base {
 
+    private String tipoClase = "ArticuloInsumo";
+
     @Column(name = "denominacion")
     private String denominacion;
-    @Column(name = "esInsumo")
-    private boolean esInsumo;
     @Column(name = "precioCompra")
     private double precioCompra;
     @Column(name = "precioVenta")
@@ -29,6 +29,9 @@ public class ArticuloInsumo extends Base {
     @Column(name = "stockMinimo")
     private double stockMinimo;
 
+    @Column(name = "altaBaja")
+    private boolean altaBaja;
+
     @ManyToOne
     @JoinColumn(name="fk_categoria")
     private CategoriaArticulo categoria;
@@ -36,11 +39,6 @@ public class ArticuloInsumo extends Base {
     @ManyToOne
     @JoinColumn(name="fk_unidad_medida")
     private UnidadMedida unidadMedida;
-
-    @OneToOne
-    @JoinColumn(name = "fk_producto")
-    private Producto producto;
-
 
 
 }
