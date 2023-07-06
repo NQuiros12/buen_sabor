@@ -5,6 +5,5 @@ public enum EstadoPedido {
     CAMINO ,
     PENDIENTE,
     RECHAZADO,
-    DEMORADO,
     PREPARACION
 }
