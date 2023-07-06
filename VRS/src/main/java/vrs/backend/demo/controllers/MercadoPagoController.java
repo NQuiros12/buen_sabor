@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import vrs.backend.demo.entities.MercadoPagoItem.ItemMercadoPago;
 import vrs.backend.demo.enums.EstadoPedido;
-import vrs.backend.demo.services.MercadoPagoService;
 
 import vrs.backend.demo.services.implementation.PedidoServiceImpl;
 
@@ -131,6 +130,6 @@ public class MercadoPagoController {
             System.out.println("No se pudo eliminar la orden");
         }
 
-        return new RedirectView("https://el-buen-sabor-frontend.vercel.app/cart?failure=true");
+        return new RedirectView("google.com");
     }
 }

@@ -1,5 +1,7 @@
 package vrs.backend.demo.entities;
+import com.mercadopago.*;
 
+import com.mercadopago.MercadoPagoConfig;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -15,6 +17,7 @@ import vrs.backend.demo.generics.entities.Base;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MercadoPago extends Base {
+
     private String paymentId;
     @OneToOne
     @JoinColumn(name = "fk_pedido")
