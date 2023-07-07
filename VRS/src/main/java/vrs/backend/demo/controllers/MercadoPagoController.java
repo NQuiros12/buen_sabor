@@ -24,8 +24,7 @@ import java.util.List;
 @RequestMapping(path = "mercadopago")
 public class MercadoPagoController {
     private PedidoServiceImpl pedidoService;
-    public String urlSuccess = "http://localhost:9000/mercadopago/success";
-    public String urlFailure = "http://localhost:9000/mercadopago/failure";
+
     public MercadoPagoController(PedidoServiceImpl pedidoService){
         this.pedidoService = pedidoService;
 
@@ -33,39 +32,13 @@ public class MercadoPagoController {
 
     @PostMapping("/createRedirect")
     public ResponseEntity<?> createRedirect(@RequestBody ItemMercadoPago itemMercadoPago) throws MPException, MPApiException,InterruptedException{
-        List<PreferenceItemRequest> items = new ArrayList<>();
-        PreferenceClient client = new PreferenceClient();
-
-        PreferenceItemRequest item =
-                PreferenceItemRequest.builder()
-                        .id(itemMercadoPago.getCode())
-                        .title(itemMercadoPago.getTitle())
-                        .description(itemMercadoPago.getDescription())
-                        .quantity(1)
-                        .currencyId("ARS")
-                        .unitPrice(new BigDecimal(itemMercadoPago.getPrice()))
-                        .build();
-        items.add(item);
-        //return item;
-        PreferenceBackUrlsRequest bu = PreferenceBackUrlsRequest.builder().success(urlSuccess).failure(urlFailure).pending(urlFailure).build();
-        List<PreferencePaymentTypeRequest> excludedPaymentTypes = new ArrayList<>();
-        //excludedPaymentTypes.add(PreferencePaymentTypeRequest.builder().build().id("ticket").build());
-        PreferencePaymentMethodsRequest paymentMethods = PreferencePaymentMethodsRequest.builder()
-                .excludedPaymentTypes(excludedPaymentTypes)
-                .installments(1)
-                .build();
-
-        PreferenceRequest request = PreferenceRequest.builder()
-                .items(items)
-                .paymentMethods(paymentMethods)
-                .autoReturn("approved")
-                .externalReference(itemMercadoPago.getCode())
-                .backUrls(bu).build();
-
-        Preference p = client.create(request);
-        String prefId = p.getId();
-
-        return ResponseEntity.status(HttpStatus.OK).body("{\"preferenceId\":\""+prefId+"\"}");
+            try{
+                Preference preference = pedidoService.crearPreferencia(itemMercadoPago);
+                return ResponseEntity.ok().body(preference);
+            }catch(Exception e){
+                e.printStackTrace();
+                return ResponseEntity.internalServerError().body("Error al crear preferencia"+e.getMessage());
+            }
     }
 
     @GetMapping("/success")
