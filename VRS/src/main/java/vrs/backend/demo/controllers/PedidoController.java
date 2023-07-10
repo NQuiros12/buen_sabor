@@ -1,15 +1,17 @@
 package vrs.backend.demo.controllers;
 
+
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import vrs.backend.demo.entities.*;
 import vrs.backend.demo.enums.EstadoPedido;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
 import vrs.backend.demo.services.implementation.ArticuloInsumoServiceImpl;
-import vrs.backend.demo.services.implementation.ArticuloManufacturadoServiceImpl;
 import vrs.backend.demo.services.implementation.DetallePedidoServiceImpl;
 import vrs.backend.demo.services.implementation.PedidoServiceImpl;
 
@@ -30,6 +32,8 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
     private final ArticuloInsumoServiceImpl articuloInsumoServiceImpl;
     private final ArticuloManufacturadoController articuloManufacturadoController;
 
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
     @Override
     @Transactional
     @PostMapping("")
@@ -46,7 +50,10 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
                 detalle.setPedido(pedido);
             }
             // Guardar los detalles
+
             detallePedidoServiceImpl.saveAll(pedido.getDetallePedidos());
+
+            simpMessagingTemplate.convertAndSend("/pedidows/public", "Nuevo pedido");
             return ResponseEntity.status(HttpStatus.OK).body(pedido);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"" + e.getMessage() + "\"}");
@@ -76,7 +83,9 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
                     validarStockInsumos(pedidoRecibido);
                     actualizarStockInsumos(pedidoRecibido);
                 } catch (Exception e) {
-                    throw e;
+                    e.printStackTrace();
+                    // También puedes lanzar una excepción más específica si es necesario
+                    throw new Exception("Error al validar o actualizar el stock de ingredientes ", e);
                 }
             }
             // Actualizar el pedido previo
@@ -85,8 +94,10 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
             // Actualizar los detalles del pedido
             actualizarDetallesPedido(pedidoPrevio, pedidoRecibido);
             // Guardar los cambios en la base de datos
-            pedidoServiceImpl.update(id, pedidoPrevio);
 
+            pedidoServiceImpl.update(id, pedidoPrevio);
+            simpMessagingTemplate.convertAndSendToUser(pedidoPrevio.getCliente().getUsuario().getUsuario(),"/private",pedidoPrevio.getId());
+            simpMessagingTemplate.convertAndSend("/pedidows/public", "Pedido actualizado");
             return ResponseEntity.ok("Pedido actualizado exitosamente.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el pedido: " + e.getMessage());
@@ -103,10 +114,9 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
 
             // Verifica el stock disponible para cada ingrediente
             if (articulo.isProductoFinal()) {
-                double cantidadRequerida = cantidadTotal;
                 double stockDisponible = articulo.getStockActual();
 
-                if (stockDisponible < cantidadRequerida) {
+                if (stockDisponible < cantidadTotal) {
                     // Maneja la situación donde el stock es insuficiente
                     throw new Exception("El stock del producto '" + articulo.getDenominacion() + "' es insuficiente.");
                 }
@@ -136,10 +146,9 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
 
             // Verifica el stock disponible para cada ingrediente
             if (articulo.isProductoFinal()) {
-                double cantidadRequerida = cantidadTotal;
                 double stockDisponible = articulo.getStockActual();
-                System.out.println(stockDisponible-cantidadRequerida);
-                articulo.setStockActual(stockDisponible-cantidadRequerida);
+                System.out.println(stockDisponible- cantidadTotal);
+                articulo.setStockActual(stockDisponible- cantidadTotal);
                 if (articulo.getStockActual() < articulo.getStockMinimo()) {
                     articulo.setAltaBaja(false);
                 }
