@@ -18,7 +18,10 @@ import vrs.backend.demo.generics.entities.Base;
 @Setter
 public class Usuario extends Base {
 
-    @Column(name = "usuario")
+    @Column(name = "idAuth0")
+    private String idAuth0;
+
+    @Column(name = "usuario")//correo del cliente
     private String usuario;
     @Column(name = "rol")
     private Rol rol;
