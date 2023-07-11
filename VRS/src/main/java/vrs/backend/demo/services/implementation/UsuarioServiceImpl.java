@@ -7,7 +7,6 @@ import vrs.backend.demo.generics.repositories.BaseRepository;
 import vrs.backend.demo.repositories.UsuarioRepository;
 import vrs.backend.demo.services.UsuarioService;
 
-
 @Service
 public class UsuarioServiceImpl extends BaseServiceImpl<Usuario,Long> implements UsuarioService {
 
@@ -19,5 +18,8 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario,Long> implements
         this.usuarioRepository = usuarioRepository;
     }
 
+    public Usuario searchByUsuario(String nombreUsuario) {
+        return usuarioRepository.findByNombreUsuario(nombreUsuario);
+    }
 
 }

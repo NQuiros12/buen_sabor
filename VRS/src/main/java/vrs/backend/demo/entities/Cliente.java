@@ -14,7 +14,7 @@ import vrs.backend.demo.generics.entities.Base;
 @Getter
 @Setter
 public class Cliente extends Base {
-
+    
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "apellido")
