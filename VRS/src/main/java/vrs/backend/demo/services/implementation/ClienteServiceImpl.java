@@ -10,10 +10,11 @@ import vrs.backend.demo.services.ClienteService;
 @Service
 public class ClienteServiceImpl extends BaseServiceImpl<Cliente,Long>implements ClienteService {
 
-    private ClienteRepository clienteRepository;
+    private final ClienteRepository clienteRepository;
 
-    public ClienteServiceImpl(BaseRepository<Cliente,Long> baseRepository){
+    public ClienteServiceImpl(BaseRepository<Cliente,Long> baseRepository, ClienteRepository clienteRepository){
         super(baseRepository);
+        this.clienteRepository = clienteRepository;
     }
 
 }

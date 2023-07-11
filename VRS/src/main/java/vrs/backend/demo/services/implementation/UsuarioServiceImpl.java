@@ -12,10 +12,11 @@ import vrs.backend.demo.services.UsuarioService;
 public class UsuarioServiceImpl extends BaseServiceImpl<Usuario,Long> implements UsuarioService {
 
 
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    public UsuarioServiceImpl(BaseRepository<Usuario,Long> baseRepository){
+    public UsuarioServiceImpl(BaseRepository<Usuario,Long> baseRepository, UsuarioRepository usuarioRepository){
         super(baseRepository);
+        this.usuarioRepository = usuarioRepository;
     }
 
 

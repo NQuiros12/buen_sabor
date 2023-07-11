@@ -10,9 +10,10 @@ import vrs.backend.demo.services.DetallePedidoService;
 @Service
 public class DetallePedidoServiceImpl extends BaseServiceImpl<DetallePedido,Long> implements DetallePedidoService {
 
-    private DetallePedidoRepository detallePedidoRepository;
+    private final DetallePedidoRepository detallePedidoRepository;
 
-    public DetallePedidoServiceImpl(BaseRepository<DetallePedido, Long> baseRepository) {
+    public  DetallePedidoServiceImpl(BaseRepository<DetallePedido, Long> baseRepository, DetallePedidoRepository detallePedidoRepository) {
         super(baseRepository);
+        this.detallePedidoRepository = detallePedidoRepository;
     }
 }

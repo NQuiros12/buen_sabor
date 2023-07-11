@@ -8,9 +8,10 @@ import vrs.backend.demo.repositories.DetalleArticuloManufacturadoRepository;
 import vrs.backend.demo.services.DetalleArticuloManufacturadoService;
 @Service
 public class DetalleArticuloManufacturadoServiImpl extends BaseServiceImpl<DetalleArticuloManufacturado,Long> implements DetalleArticuloManufacturadoService {
-    private DetalleArticuloManufacturadoRepository detalleArticuloManufacturadoRepository;
+    private final DetalleArticuloManufacturadoRepository detalleArticuloManufacturadoRepository;
 
-    public DetalleArticuloManufacturadoServiImpl(BaseRepository<DetalleArticuloManufacturado,Long> baseRepository){
+    public DetalleArticuloManufacturadoServiImpl(BaseRepository<DetalleArticuloManufacturado,Long> baseRepository, DetalleArticuloManufacturadoRepository detalleArticuloManufacturadoRepository){
         super(baseRepository);
+        this.detalleArticuloManufacturadoRepository = detalleArticuloManufacturadoRepository;
     }
 }

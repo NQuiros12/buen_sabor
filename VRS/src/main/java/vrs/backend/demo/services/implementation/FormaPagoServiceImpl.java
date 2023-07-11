@@ -10,9 +10,10 @@ import vrs.backend.demo.services.FormaPagoService;
 @Service
 public class FormaPagoServiceImpl extends BaseServiceImpl<FormaPago,Long> implements FormaPagoService {
 
-    private FormaPagoRepository formaPagoRepository;
+    private final FormaPagoRepository formaPagoRepository;
 
-    public FormaPagoServiceImpl(BaseRepository<FormaPago, Long> baseRepository) {
+    public FormaPagoServiceImpl(BaseRepository<FormaPago, Long> baseRepository, FormaPagoRepository formaPagoRepository) {
         super(baseRepository);
+        this.formaPagoRepository = formaPagoRepository;
     }
 }
