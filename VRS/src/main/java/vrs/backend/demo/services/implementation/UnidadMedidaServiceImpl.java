@@ -8,11 +8,12 @@ import vrs.backend.demo.services.UnidadMedidaService;
 import vrs.backend.demo.repositories.UnidadMedidaRepository;
 @Service
 public class UnidadMedidaServiceImpl extends BaseServiceImpl<UnidadMedida,Long> implements UnidadMedidaService {
-    private UnidadMedidaRepository unidadMedidaRepository;
+    private final UnidadMedidaRepository unidadMedidaRepository;
 
-    public UnidadMedidaServiceImpl(BaseRepository<UnidadMedida,Long> baseRepository){
+    public UnidadMedidaServiceImpl(BaseRepository<UnidadMedida,Long> baseRepository, UnidadMedidaRepository unidadMedidaRepository){
         super(baseRepository);
-        }
+        this.unidadMedidaRepository = unidadMedidaRepository;
+    }
 
 
         }

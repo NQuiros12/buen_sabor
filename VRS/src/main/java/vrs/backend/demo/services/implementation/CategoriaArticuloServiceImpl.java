@@ -10,9 +10,10 @@ import vrs.backend.demo.services.CategoriaArticuloService;
 @Service
 public class CategoriaArticuloServiceImpl extends BaseServiceImpl<CategoriaArticulo,Long> implements CategoriaArticuloService {
 
-    private CategoriaArticuloRepository categoriaArticuloRepository;
+    private final CategoriaArticuloRepository categoriaArticuloRepository;
 
-    public CategoriaArticuloServiceImpl(BaseRepository<CategoriaArticulo, Long> baseRepository) {
+    public CategoriaArticuloServiceImpl(BaseRepository<CategoriaArticulo, Long> baseRepository, CategoriaArticuloRepository categoriaArticuloRepository) {
         super(baseRepository);
+        this.categoriaArticuloRepository = categoriaArticuloRepository;
     }
 }

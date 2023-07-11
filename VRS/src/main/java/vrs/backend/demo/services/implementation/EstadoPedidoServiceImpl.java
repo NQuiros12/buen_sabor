@@ -10,9 +10,10 @@ import vrs.backend.demo.services.EstadoPedidoService;
 @Service
 public class EstadoPedidoServiceImpl extends BaseServiceImpl<EstadoPedido,Long> implements EstadoPedidoService {
 
-    private EstadoPedidoRepository estadoPedidoRepository;
+    private final EstadoPedidoRepository estadoPedidoRepository;
 
-    public EstadoPedidoServiceImpl(BaseRepository<EstadoPedido, Long> baseRepository) {
+    public EstadoPedidoServiceImpl(BaseRepository<EstadoPedido, Long> baseRepository, EstadoPedidoRepository estadoPedidoRepository) {
         super(baseRepository);
+        this.estadoPedidoRepository = estadoPedidoRepository;
     }
 }

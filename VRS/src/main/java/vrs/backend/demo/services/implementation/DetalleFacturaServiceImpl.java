@@ -10,9 +10,10 @@ import vrs.backend.demo.services.DetalleFacturaService;
 @Service
 public class DetalleFacturaServiceImpl extends BaseServiceImpl<DetalleFactura,Long> implements DetalleFacturaService {
 
-    private DetalleFacturaRepository detalleFacturaRepository;
+    private final DetalleFacturaRepository detalleFacturaRepository;
 
-    public DetalleFacturaServiceImpl(BaseRepository<DetalleFactura, Long> baseRepository) {
+    public DetalleFacturaServiceImpl(BaseRepository<DetalleFactura, Long> baseRepository, DetalleFacturaRepository detalleFacturaRepository) {
         super(baseRepository);
+        this.detalleFacturaRepository = detalleFacturaRepository;
     }
 }

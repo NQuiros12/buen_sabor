@@ -10,9 +10,10 @@ import vrs.backend.demo.services.TipoEnvioService;
 @Service
 public class TipoEnvioServiceImpl extends BaseServiceImpl<TipoEnvio, Long> implements TipoEnvioService {
 
-    private TipoEnvioRepository tipoEnvioRepository;
+    private final TipoEnvioRepository tipoEnvioRepository;
 
-    public TipoEnvioServiceImpl(BaseRepository<TipoEnvio, Long> baseRepository) {
+    public TipoEnvioServiceImpl(BaseRepository<TipoEnvio, Long> baseRepository, TipoEnvioRepository tipoEnvioRepository) {
         super(baseRepository);
+        this.tipoEnvioRepository = tipoEnvioRepository;
     }
 }

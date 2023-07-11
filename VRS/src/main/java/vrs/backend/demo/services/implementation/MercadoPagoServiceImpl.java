@@ -6,7 +6,7 @@ import vrs.backend.demo.generics.services.implementation.BaseServiceImpl;
 import vrs.backend.demo.repositories.MercadoPagoRepository;
 @Service
 public class MercadoPagoServiceImpl extends BaseServiceImpl<MercadoPago,Long> {
-    private MercadoPagoRepository mercadoPagoRepository;
+    private final MercadoPagoRepository mercadoPagoRepository;
 
     public MercadoPagoServiceImpl(MercadoPagoRepository mercadoPagoPaymentRepository) {
         super(mercadoPagoPaymentRepository);

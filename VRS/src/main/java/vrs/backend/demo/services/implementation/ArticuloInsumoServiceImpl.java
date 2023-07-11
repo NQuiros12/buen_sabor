@@ -10,9 +10,10 @@ import vrs.backend.demo.services.ArticuloInsumoService;
 @Service
 public class ArticuloInsumoServiceImpl extends BaseServiceImpl<ArticuloInsumo,Long> implements ArticuloInsumoService {
 
-    private ArticuloInsumoRepository articuloInsumoRepository;
+    private final ArticuloInsumoRepository articuloInsumoRepository;
 
-    public ArticuloInsumoServiceImpl(BaseRepository<ArticuloInsumo, Long> baseRepository) {
+    public ArticuloInsumoServiceImpl(BaseRepository<ArticuloInsumo, Long> baseRepository, ArticuloInsumoRepository articuloInsumoRepository) {
         super(baseRepository);
+        this.articuloInsumoRepository = articuloInsumoRepository;
     }
 }
