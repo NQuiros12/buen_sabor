@@ -84,7 +84,6 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
                     .backUrls(bu).build();
 
             Preference p = client.create(request);
-            String prefId = p.getId();
 
             return p;
         }

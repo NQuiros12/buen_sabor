@@ -23,6 +23,10 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
     public List<ArticuloManufacturado> searchByName(@PathVariable String nombreArtMan) {
         return articuloManufacturadoServiceImpl.buscarPorNombre(nombreArtMan);
     }
+    @GetMapping("/buscar_categoria/{nombreCategoria}")
+    public List<ArticuloManufacturado> artByCategoria(@PathVariable String nombreCategoria) {
+        return articuloManufacturadoServiceImpl.buscarPorNombre(nombreCategoria);
+    }
 
     @Override
     @Transactional

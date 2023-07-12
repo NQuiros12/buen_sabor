@@ -13,4 +13,6 @@ public interface ArticuloManufacturadoRepository extends BaseRepository<Articulo
 
     @Query("SELECT artMan FROM ArticuloManufacturado artMan WHERE artMan.denominacion like concat('%',:nombreArtMan,'%') order by artMan.precioVenta")
     List<ArticuloManufacturado> findByName(@Param("nombreArtMan") String nombreArtMan);
+    @Query("SELECT artMan from ArticuloManufacturado artMan where artMan.categoria.denominacion like concat('%',:nombreCategoria,'%')")
+    List<ArticuloManufacturado> artByCategoria(@Param("nombreCategoria") String nombreCategoria);
 }

@@ -28,6 +28,9 @@ public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloMa
     public List<ArticuloManufacturado> buscarPorNombre(String nombreArtMan) {
         return articuloManufacturadoRepository.findByName(nombreArtMan);
     }
+    public List<ArticuloManufacturado> buscarPorCategoria(String nombreCategoria){
+        return articuloManufacturadoRepository.artByCategoria(nombreCategoria);
+    }
     public void saveArticuloManufacturado(ArticuloManufacturado articuloManufacturado) throws Exception{
         if (articuloManufacturado.isProductoFinal())  articuloManufacturado.setDetalleArticuloManufacturados(null);
         save(articuloManufacturado);
