@@ -1,5 +1,7 @@
 package vrs.backend.demo.services.implementation;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import vrs.backend.demo.entities.ArticuloManufacturado;
 import vrs.backend.demo.entities.DetalleArticuloManufacturado;
@@ -9,15 +11,16 @@ import vrs.backend.demo.generics.repositories.BaseRepository;
 import vrs.backend.demo.services.ArticuloManufacturadoService;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloManufacturado, Long> implements ArticuloManufacturadoService {
 
     private final DetalleArticuloManufacturadoServiImpl detalleArticuloManufacturadoServiImpl;
     private final ArticuloManufacturadoRepository articuloManufacturadoRepository;
+    @Value("${paged.size}")
+    private int pagedSize;
+
     public ArticuloManufacturadoServiceImpl(BaseRepository<ArticuloManufacturado, Long> baseRepository,
                                             DetalleArticuloManufacturadoServiImpl detalleArticuloManufacturadoServiImpl,
                                             ArticuloManufacturadoRepository articuloManufacturadoRepository) {
@@ -28,6 +31,15 @@ public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloMa
     public List<ArticuloManufacturado> buscarPorNombre(String nombreArtMan) {
         return articuloManufacturadoRepository.findByName(nombreArtMan);
     }
+
+    public Page<ArticuloManufacturado> findByCategoryWithPagination(String nombreCategoria, Pageable pageable) {
+        List<ArticuloManufacturado> allByCategory = articuloManufacturadoRepository.findByCategory(nombreCategoria);
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), allByCategory.size());
+        List<ArticuloManufacturado> subList = allByCategory.subList(start, end);
+        return new PageImpl<>(subList, pageable, allByCategory.size());
+    }
+
     public void saveArticuloManufacturado(ArticuloManufacturado articuloManufacturado) throws Exception{
         if (articuloManufacturado.isProductoFinal())  articuloManufacturado.setDetalleArticuloManufacturados(null);
         save(articuloManufacturado);
@@ -131,4 +143,37 @@ public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloMa
         articuloPrevio.setDetalleArticuloManufacturados(detalles);
     }
 
+
+    public Page<ArticuloManufacturado> orderByPrice (Integer page, String orderPrice, String category) throws Exception{
+        try{
+            Sort.Direction sortDirection = Sort.Direction.ASC; // Orden ascendente por defecto
+            if (orderPrice.equalsIgnoreCase("mayor")) {
+                sortDirection = Sort.Direction.DESC; // Orden descendente si se solicita "mayor"
+            }
+            Pageable pageable = PageRequest.of(page, pagedSize, Sort.by(sortDirection, "precioVenta"));
+            Page<ArticuloManufacturado> pageResult = switch (category.toLowerCase()) {
+                case "hamburguesas" -> findByCategoryWithPagination("hamburguesas", pageable);
+                case "pizzas" -> findByCategoryWithPagination("pizzas", pageable);
+                case "bebidas" -> findByCategoryWithPagination("bebidas", pageable);
+                case "papas" -> findByCategoryWithPagination("papas", pageable);
+                default -> findAll(pageable);
+            };
+
+            List<ArticuloManufacturado> content = pageResult.getContent();
+            // Ordenar los resultados según el orderPrice
+            Comparator<ArticuloManufacturado> precioComparator = (a, b) -> Double.compare(a.getPrecioVenta(), b.getPrecioVenta());
+
+            List<ArticuloManufacturado> sortedContent = new ArrayList<>(content);
+            sortedContent.sort(precioComparator); // Orden ascendente por precio
+
+            if (orderPrice.equalsIgnoreCase("mayor")) {
+                Collections.reverse(sortedContent); // Invertir el orden para obtener una ordenación descendente
+            }
+
+            pageResult = new PageImpl<>(sortedContent, pageable, pageResult.getTotalElements());
+            return pageResult;
+        } catch (Exception e){
+            throw new Exception("No se pudo ordenar por precio"+e);
+        }
+    }
 }
