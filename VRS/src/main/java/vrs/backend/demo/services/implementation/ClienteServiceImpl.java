@@ -27,6 +27,11 @@ public class ClienteServiceImpl extends BaseServiceImpl<Cliente, Long> implement
 
     }
 
+    @Override
+    public Cliente findByUsuarioIdAuth0(String usuarioIdAuth0) {
+        return clienteRepository.findByUsuarioIdAuth0(usuarioIdAuth0);
+    }
+
     public void postCliente(Cliente cliente) throws Exception {
         Usuario usuario = usuarioRepository.findByNombreUsuario(cliente.getUsuario().getUsuario());
         if (usuario != null) {
