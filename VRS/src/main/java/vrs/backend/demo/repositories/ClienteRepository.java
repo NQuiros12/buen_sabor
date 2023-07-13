@@ -12,4 +12,7 @@ public interface ClienteRepository extends BaseRepository<Cliente, Long> {
 
     @Query("SELECT c FROM Cliente c WHERE c.usuario.id = :usuarioId")
     Cliente findByUsuarioId(@Param("usuarioId") Long usuarioId);
+
+    @Query("SELECT c FROM Cliente c WHERE c.usuario.idAuth0 = :usuarioIdAuth0")
+    Cliente findByUsuarioIdAuth0(@Param("usuarioIdAuth0") String usuarioIdAuth0);
 }

@@ -23,6 +23,11 @@ public class ClienteController extends BaseControllerImpl<Cliente, ClienteServic
         return clienteServiceImpl.findByUsuarioId(idUsuario);
     }
 
+    @GetMapping("/getByUsuarioIdAuth0/{idUsuarioAuth0}")
+    public Cliente searchByIdAuth0(@PathVariable String idUsuarioAuth0) {
+        return clienteServiceImpl.findByUsuarioIdAuth0(idUsuarioAuth0);
+    }
+
     @Override
     @Transactional
     @PostMapping("")
@@ -34,4 +39,6 @@ public class ClienteController extends BaseControllerImpl<Cliente, ClienteServic
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al crear cliente "+ e.getMessage());
         }
     }
+
+
 }
