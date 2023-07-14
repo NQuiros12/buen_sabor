@@ -68,7 +68,7 @@ public class MercadoPagoController {
         attributes.addFlashAttribute("merchant_account_id",merchantAccountId);
 
         pedidoService.cambiarEstadoEnvio(Long.valueOf(externalReference), EstadoPedido.ENTREGADO);
-        return new RedirectView("http://localhost:3000/"+externalReference +"?success=true");
+        return new RedirectView("http://localhost:5173/"+externalReference +"?success=true");
     }
 
     @GetMapping("/failure")
@@ -103,6 +103,6 @@ public class MercadoPagoController {
             System.out.println("No se pudo eliminar la orden");
         }
 
-        return new RedirectView("google.com");
+        return new RedirectView("http://localhost:3000/");
     }
 }

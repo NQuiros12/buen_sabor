@@ -29,7 +29,6 @@ public class ArticuloManufacturadoServiceImpl extends BaseServiceImpl<ArticuloMa
         this.articuloManufacturadoRepository = articuloManufacturadoRepository;
     }
 
-
     public void saveArticuloManufacturado(ArticuloManufacturado articuloManufacturado) throws Exception{
         if (articuloManufacturado.isProductoFinal())  articuloManufacturado.setDetalleArticuloManufacturados(null);
         save(articuloManufacturado);

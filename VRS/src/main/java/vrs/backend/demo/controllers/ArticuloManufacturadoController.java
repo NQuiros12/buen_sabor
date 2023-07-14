@@ -29,6 +29,10 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer productos " + e);
         }
     }
+    @GetMapping("/buscar_categoria/{nombreCategoria}")
+    public List<ArticuloManufacturado> artByCategoria(@PathVariable String nombreCategoria) {
+        return articuloManufacturadoServiceImpl.buscarPorNombre(nombreCategoria);
+    }
 
     @Override
     @Transactional
