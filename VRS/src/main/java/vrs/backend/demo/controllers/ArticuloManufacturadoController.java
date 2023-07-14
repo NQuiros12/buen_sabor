@@ -2,26 +2,32 @@ package vrs.backend.demo.controllers;
 
 
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
+import org.springframework.data.domain.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vrs.backend.demo.entities.ArticuloManufacturado;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
 import vrs.backend.demo.services.implementation.ArticuloManufacturadoServiceImpl;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@AllArgsConstructor
 @RequestMapping(path = "/articulos_manufacturado")
 public class ArticuloManufacturadoController extends BaseControllerImpl<ArticuloManufacturado, ArticuloManufacturadoServiceImpl> {
 
     private final ArticuloManufacturadoServiceImpl articuloManufacturadoServiceImpl;
+    public ArticuloManufacturadoController(ArticuloManufacturadoServiceImpl articuloManufacturadoServiceImpl) {
+        this.articuloManufacturadoServiceImpl = articuloManufacturadoServiceImpl;
+    }
 
-    @GetMapping("/buscar_nombre/{nombreArtMan}")
-    public List<ArticuloManufacturado> searchByName(@PathVariable String nombreArtMan) {
-        return articuloManufacturadoServiceImpl.buscarPorNombre(nombreArtMan);
+    @GetMapping("/allByName/{page}/{orderPrice}/{nombreArtMan}")
+    public ResponseEntity<?>  searchByName(@PathVariable Integer page,@PathVariable String nombreArtMan,@PathVariable String orderPrice) {
+        try {
+            Page<ArticuloManufacturado> pageResult = articuloManufacturadoServiceImpl.buscarPorNombre(nombreArtMan, page, orderPrice);
+            return ResponseEntity.status(HttpStatus.OK).body(pageResult);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer productos " + e);
+        }
     }
     @GetMapping("/buscar_categoria/{nombreCategoria}")
     public List<ArticuloManufacturado> artByCategoria(@PathVariable String nombreCategoria) {
@@ -51,5 +57,19 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar producto " + e.getMessage());
         }
     }
+
+    @GetMapping("/pagedPrice/{page}/{orderPrice}/{category}")
+    public ResponseEntity<?> getAllOrderPrice(@PathVariable Integer page, @PathVariable String orderPrice, @PathVariable String category) {
+        try {
+            Page<ArticuloManufacturado> pageResult = articuloManufacturadoServiceImpl.orderCategoryByPrice(page, orderPrice, category);
+            return ResponseEntity.status(HttpStatus.OK).body(pageResult);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer productos " + e);
+        }
+    }
+
+
+
+
 
 }

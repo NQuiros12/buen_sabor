@@ -6,4 +6,5 @@ import vrs.backend.demo.generics.services.BaseService;
 public interface ClienteService extends BaseService<Cliente, Long> {
 
     Cliente findByUsuarioId(Long idUsuario);
+    Cliente findByUsuarioIdAuth0(String usuarioIdAuth0);
 }
