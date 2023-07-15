@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface PedidoRepository extends BaseRepository<Pedido,Long> {
     //Query para obtener estados sin paginacion
-    @Query("select pedido from Pedido pedido where pedido.estadoPedido = :estadoPedido")
+    @Query("select pedido from Pedido pedido where pedido.estadoPedido = :estadoPedido order by pedido.fecha")
     List<Pedido> pedidosByState(@Param("estadoPedido") EstadoPedido estadoPedido);
     //Query estados del cocinero
-    @Query("select pedido from Pedido pedido where pedido.estadoPedido in (:estado1,:estado2)")
+    @Query("select pedido from Pedido pedido where pedido.estadoPedido in (:estado1,:estado2) order by pedido.fecha")
     List<Pedido> pedidosBy2States(EstadoPedido estado1, EstadoPedido estado2);
 }
