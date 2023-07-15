@@ -303,11 +303,35 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
         return pedidoRepository.pedidosBy2States(EstadoPedido.ESPERA,EstadoPedido.PREPARACION);
     }
     //Rechazados y entregados
+    //Sin paginacion
+    public List<Pedido> pedidosRechazadosEntregados(){
+        return pedidoRepository.pedidosBy2States(EstadoPedido.RECHAZADO,EstadoPedido.ENTREGADO);
+    }
+    public List<Pedido> pedidosById(long idInput){
+        return pedidoRepository.pedidosById(idInput);
+    }
+    public List<Pedido> pedidosByCliente(Long idCliente){
+        return pedidoRepository.pedidosByCliente(idCliente);
+    }
+    //Con paginación
+    //RECHAZADOS Y ENTREGADOS
     public Page<Pedido> PedidosByRechazadosEntregados(Integer page){
         Pageable pageable = PageRequest.of(page, pagedSize);
         //En este caso solo se recibe como parametro el tamaño de la paginacion.
         //Los dos estados una vez mas son constantes
         List<Pedido> pedidos_rech_entr = pedidoRepository.pedidosBy2States(EstadoPedido.RECHAZADO,EstadoPedido.ENTREGADO);
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), pedidos_rech_entr.size());
+        List<Pedido> subList = pedidos_rech_entr.subList(start, end);
+        Page<Pedido> pageResult = new PageImpl<>(subList, pageable, pedidos_rech_entr.size());
+
+        return pageResult;
+    }
+    public Page<Pedido> PedidosNotRechazadosEntregados(Integer page){
+        Pageable pageable = PageRequest.of(page, pagedSize);
+        //En este caso solo se recibe como parametro el tamaño de la paginacion.
+        //Los dos estados una vez mas son constantes
+        List<Pedido> pedidos_rech_entr = pedidoRepository.pedidosNot2States(EstadoPedido.RECHAZADO,EstadoPedido.ENTREGADO);
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), pedidos_rech_entr.size());
         List<Pedido> subList = pedidos_rech_entr.subList(start, end);

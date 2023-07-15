@@ -30,15 +30,55 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
     public List<Pedido> pedidosChef(){
         return pedidoServiceImpl.buscarPedidosEstadoChef();
     }
+    @GetMapping("/rejected_and_delivered/")
+    public ResponseEntity<?> pedidosRejectedDelivered(){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosRechazadosEntregados());
+        }
+        catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer pedidos rechazados y entregados" + e);
+
+        }
+
+    }
     @GetMapping("/rejected_and_delivered/{page}")
-    public ResponseEntity<?> pedidosRejectedDelivered(@PathVariable Integer page){
+    public ResponseEntity<?> pedidosRejectedDeliveredPage(@PathVariable Integer page){
         try{
             Page<Pedido> pageResult = pedidoServiceImpl.PedidosByRechazadosEntregados(page);
             return ResponseEntity.status(HttpStatus.OK).body(pageResult);
         }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer productos " + e);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer pedidos rechazados y entregados " + e);
 
         }
+    }
+    //Para todos los demas estados que no sean Rechazado y Entregado
+    @GetMapping("/not_rejected_and_delivered/{page}")
+    public ResponseEntity<?> pedidosNotRejectedNotDeliveredPage(@PathVariable Integer page){
+        try{
+            Page<Pedido> pageResult = pedidoServiceImpl.PedidosNotRechazadosEntregados(page);
+            return ResponseEntity.status(HttpStatus.OK).body(pageResult);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer pedidos distintos rechazados y entregados " + e);
+
+        }
+    }
+    @GetMapping("/pedidos_id/{idInput}")
+    public ResponseEntity<?> pedidosById(@PathVariable Long idInput){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosById(idInput));
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al buscar por ID"+e);
+        }
+    }
+    @GetMapping("/pedidosByCliente/{idCliente}")
+    public ResponseEntity<?> pedidosByCliente(@PathVariable Long idCliente){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosByCliente(idCliente));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.OK).body("Error al buscar por cliente" + e);
+        }
+
     }
     @Override
     @Transactional
