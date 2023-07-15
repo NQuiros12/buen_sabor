@@ -15,6 +15,6 @@ public interface ArticuloManufacturadoRepository extends BaseRepository<Articulo
     List<ArticuloManufacturado> findByName(@Param("nombreArtMan") String nombreArtMan);
 
     @Query("SELECT artMan from ArticuloManufacturado artMan where artMan.categoria.denominacion = :nombreCategoria")
-    List<ArticuloManufacturado> artByCategoria(@Param("nombreCategoria") String nombreCategoria);
+    List<ArticuloManufacturado> findByCategory(@Param("nombreCategoria") String nombreCategoria);
 
 }

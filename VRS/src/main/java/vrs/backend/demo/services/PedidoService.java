@@ -1,6 +1,7 @@
 package vrs.backend.demo.services;
 
 import com.mercadopago.resources.preference.Preference;
+import org.springframework.data.domain.Page;
 import vrs.backend.demo.entities.MercadoPagoItem.ItemMercadoPago;
 import vrs.backend.demo.entities.Pedido;
 import vrs.backend.demo.enums.EstadoPedido;
@@ -11,4 +12,5 @@ public interface PedidoService extends BaseService<Pedido,Long> {
     void updatePedido(Pedido pedidoRecibido, Long id) throws Exception;
     void cambiarEstadoEnvio(Long pedidoId, EstadoPedido estado);
     Preference crearPreferencia(ItemMercadoPago itemMercadoPago);
+    Page<Pedido> PedidosByRechazadosEntregados(Integer page);
 }
