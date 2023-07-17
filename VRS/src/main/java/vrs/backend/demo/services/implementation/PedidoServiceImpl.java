@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import vrs.backend.demo.controllers.ArticuloManufacturadoController;
 import vrs.backend.demo.entities.*;
 import vrs.backend.demo.entities.MercadoPagoItem.ItemMercadoPago;
-import vrs.backend.demo.entities.analytics.PedidoByDay;
 import vrs.backend.demo.enums.EstadoPedido;
 import vrs.backend.demo.generics.repositories.BaseRepository;
 import vrs.backend.demo.generics.services.implementation.BaseServiceImpl;
@@ -96,13 +95,20 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
 
 
     //Cambiar estado de Envio
-    public void cambiarEstadoEnvio(Long pedidoId, EstadoPedido estado) {
-        Optional<Pedido> optionalPedido = pedidoRepository.findById(pedidoId);
+    public void cambiarEstadoEnvio(Long pedidoId, EstadoPedido estado) throws Exception {
+        try {
+            Optional<Pedido> optionalPedido = pedidoRepository.findById(pedidoId);
 
-        if (optionalPedido.isPresent()) {
-            Pedido pedido = optionalPedido.get();
-            pedido.setEstadoPedido(estado);
-            pedidoRepository.save(pedido);
+            if (optionalPedido.isPresent()) {
+                Pedido pedido = optionalPedido.get();
+                pedido.setEstadoPedido(estado);
+                pedidoRepository.save(pedido);
+                simpMessagingTemplate.convertAndSend("/pedidows/public", "Estado Actualizado");
+            } else {
+                throw new Exception("No se encontro el pedido");
+            }
+        } catch (Exception e){
+            throw new Exception("No se pudo actualizar estado pedido"+e);
         }
     }
     public void savePedido(Pedido pedido) throws Exception{
@@ -298,7 +304,7 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
     }
     //En este caso no recibe parametros por que se trata de dos estados que son constantes
     public List<Pedido> buscarPedidosEstadoChef()  {
-        return pedidoRepository.pedidosBy2States(EstadoPedido.ESPERA,EstadoPedido.PREPARACION);
+        return pedidoRepository.pedidosBy2States(EstadoPedido.PREPARADO,EstadoPedido.RECHAZADO);
     }
     //Rechazados y entregados
     //Sin paginacion
