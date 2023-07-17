@@ -11,7 +11,12 @@ import vrs.backend.demo.entities.*;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
 import vrs.backend.demo.services.implementation.PedidoServiceImpl;
 import vrs.backend.demo.enums.EstadoPedido;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -102,6 +107,21 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
             return ResponseEntity.ok("Pedido actualizado exitosamente.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el pedido: " + e.getMessage());
+        }
+    }
+    //Analitica y estadistica
+    @PostMapping("/analitica/pedidosByDay")
+    public ResponseEntity<?> pedidosByDay(@RequestBody Map<String, String> params) throws ParseException {
+        String fecha1 = params.get("fecha1");
+        String fecha2 = params.get("fecha2");
+
+        Date fecha1Formateada = new SimpleDateFormat("yyyy-MM-dd").parse(fecha1);
+        Date fecha2Formateada = new SimpleDateFormat("yyyy-MM-dd").parse(fecha2);
+
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosByDay(fecha1Formateada, fecha2Formateada));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encuentran pedidos para esas fechas."+e.getMessage());
         }
     }
 

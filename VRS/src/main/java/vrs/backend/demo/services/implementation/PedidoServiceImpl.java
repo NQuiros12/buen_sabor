@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import vrs.backend.demo.controllers.ArticuloManufacturadoController;
 import vrs.backend.demo.entities.*;
 import vrs.backend.demo.entities.MercadoPagoItem.ItemMercadoPago;
+import vrs.backend.demo.entities.analytics.PedidoByDay;
 import vrs.backend.demo.enums.EstadoPedido;
 import vrs.backend.demo.generics.repositories.BaseRepository;
 import vrs.backend.demo.generics.services.implementation.BaseServiceImpl;
@@ -23,10 +24,7 @@ import vrs.backend.demo.services.PedidoService;
 import javax.annotation.PostConstruct;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements PedidoService {
@@ -339,5 +337,8 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
 
         return pageResult;
     }
-
+    //Analitica y Estadistica
+    public List<Integer> pedidosByDay(Date diaIn, Date diaEnd){
+        return pedidoRepository.pedidosByDay(diaIn,diaEnd);
+    }
 }
