@@ -27,15 +27,15 @@ import java.util.Map;
 public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceImpl> {
 
     private final PedidoServiceImpl pedidoServiceImpl;
-    @GetMapping("/buscar_pedido/{estadoPedido}")
+    @GetMapping("/byEstado/{estadoPedido}")
     public List<Pedido> pedidoByEstado(@PathVariable EstadoPedido estadoPedido) throws Exception {
         return pedidoServiceImpl.buscarPedidosEstado(estadoPedido);
     }
-    @GetMapping("/buscar_pedido_chef")
+    @GetMapping("/preparedAndDelivered")
     public List<Pedido> pedidosChef(){
         return pedidoServiceImpl.buscarPedidosEstadoChef();
     }
-    @GetMapping("/rejected_and_delivered/")
+    @GetMapping("/rejectedAndDelivered")
     public ResponseEntity<?> pedidosRejectedDelivered(){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosRechazadosEntregados());
@@ -46,7 +46,7 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
         }
 
     }
-    @GetMapping("/rejected_and_delivered/{page}")
+    @GetMapping("/rejectedAndDeliveredPaged/{page}")
     public ResponseEntity<?> pedidosRejectedDeliveredPage(@PathVariable Integer page){
         try{
             Page<Pedido> pageResult = pedidoServiceImpl.PedidosByRechazadosEntregados(page);
@@ -57,7 +57,7 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
         }
     }
     //Para todos los demas estados que no sean Rechazado y Entregado
-    @GetMapping("/not_rejected_and_delivered/{page}")
+    @GetMapping("/notRejectedAndDeliveredPaged/{page}")
     public ResponseEntity<?> pedidosNotRejectedNotDeliveredPage(@PathVariable Integer page){
         try{
             Page<Pedido> pageResult = pedidoServiceImpl.PedidosNotRechazadosEntregados(page);
@@ -67,7 +67,7 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
 
         }
     }
-    @GetMapping("/pedidos_id/{idInput}")
+    @GetMapping("/byId/{idInput}")
     public ResponseEntity<?> pedidosById(@PathVariable Long idInput){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosById(idInput));
@@ -76,7 +76,7 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al buscar por ID"+e);
         }
     }
-    @GetMapping("/pedidosByCliente/{idCliente}")
+    @GetMapping("/byCliente/{idCliente}")
     public ResponseEntity<?> pedidosByCliente(@PathVariable Long idCliente){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosByCliente(idCliente));
@@ -122,6 +122,16 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
             return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosByDay(fecha1Formateada, fecha2Formateada));
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encuentran pedidos para esas fechas."+e.getMessage());
+        }
+    }
+    @PutMapping("/updateEstado/{id}/{estadoRecibido}")
+    @Transactional
+    public ResponseEntity<?> updateEstado(@PathVariable EstadoPedido estadoRecibido, @PathVariable("id") Long id) {
+        try {
+            pedidoServiceImpl.cambiarEstadoEnvio(id,estadoRecibido);
+            return ResponseEntity.ok("Estado actualizado exitosamente.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el estado: " + e.getMessage());
         }
     }
 
