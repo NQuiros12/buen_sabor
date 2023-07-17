@@ -1,11 +1,11 @@
 package vrs.backend.demo.controllers;
 
-import com.mercadopago.client.preference.*;
+
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.preference.Preference;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -14,10 +14,6 @@ import vrs.backend.demo.entities.MercadoPagoItem.ItemMercadoPago;
 import vrs.backend.demo.enums.EstadoPedido;
 
 import vrs.backend.demo.services.implementation.PedidoServiceImpl;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -54,7 +50,7 @@ public class MercadoPagoController {
             @RequestParam("processing_mode") String processingMode,
             @RequestParam("merchant_account_id") String merchantAccountId,
             RedirectAttributes attributes)
-            throws MPException {
+            throws Exception {
 
         attributes.addFlashAttribute("genericResponse", true);
         attributes.addFlashAttribute("collection_id", collectionId);
