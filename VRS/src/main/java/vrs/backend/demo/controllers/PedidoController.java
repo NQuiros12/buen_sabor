@@ -3,12 +3,20 @@ package vrs.backend.demo.controllers;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vrs.backend.demo.entities.*;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
 import vrs.backend.demo.services.implementation.PedidoServiceImpl;
+import vrs.backend.demo.enums.EstadoPedido;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -19,7 +27,64 @@ import vrs.backend.demo.services.implementation.PedidoServiceImpl;
 public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceImpl> {
 
     private final PedidoServiceImpl pedidoServiceImpl;
+    @GetMapping("/buscar_pedido/{estadoPedido}")
+    public List<Pedido> pedidoByEstado(@PathVariable EstadoPedido estadoPedido) throws Exception {
+        return pedidoServiceImpl.buscarPedidosEstado(estadoPedido);
+    }
+    @GetMapping("/buscar_pedido_chef")
+    public List<Pedido> pedidosChef(){
+        return pedidoServiceImpl.buscarPedidosEstadoChef();
+    }
+    @GetMapping("/rejected_and_delivered/")
+    public ResponseEntity<?> pedidosRejectedDelivered(){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosRechazadosEntregados());
+        }
+        catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer pedidos rechazados y entregados" + e);
 
+        }
+
+    }
+    @GetMapping("/rejected_and_delivered/{page}")
+    public ResponseEntity<?> pedidosRejectedDeliveredPage(@PathVariable Integer page){
+        try{
+            Page<Pedido> pageResult = pedidoServiceImpl.PedidosByRechazadosEntregados(page);
+            return ResponseEntity.status(HttpStatus.OK).body(pageResult);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer pedidos rechazados y entregados " + e);
+
+        }
+    }
+    //Para todos los demas estados que no sean Rechazado y Entregado
+    @GetMapping("/not_rejected_and_delivered/{page}")
+    public ResponseEntity<?> pedidosNotRejectedNotDeliveredPage(@PathVariable Integer page){
+        try{
+            Page<Pedido> pageResult = pedidoServiceImpl.PedidosNotRechazadosEntregados(page);
+            return ResponseEntity.status(HttpStatus.OK).body(pageResult);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer pedidos distintos rechazados y entregados " + e);
+
+        }
+    }
+    @GetMapping("/pedidos_id/{idInput}")
+    public ResponseEntity<?> pedidosById(@PathVariable Long idInput){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosById(idInput));
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al buscar por ID"+e);
+        }
+    }
+    @GetMapping("/pedidosByCliente/{idCliente}")
+    public ResponseEntity<?> pedidosByCliente(@PathVariable Long idCliente){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosByCliente(idCliente));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.OK).body("Error al buscar por cliente" + e);
+        }
+
+    }
     @Override
     @Transactional
     @PostMapping("")
@@ -42,6 +107,21 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
             return ResponseEntity.ok("Pedido actualizado exitosamente.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el pedido: " + e.getMessage());
+        }
+    }
+    //Analitica y estadistica
+    @PostMapping("/analitica/pedidosByDay")
+    public ResponseEntity<?> pedidosByDay(@RequestBody Map<String, String> params) throws ParseException {
+        String fecha1 = params.get("fecha1");
+        String fecha2 = params.get("fecha2");
+
+        Date fecha1Formateada = new SimpleDateFormat("yyyy-MM-dd").parse(fecha1);
+        Date fecha2Formateada = new SimpleDateFormat("yyyy-MM-dd").parse(fecha2);
+
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosByDay(fecha1Formateada, fecha2Formateada));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encuentran pedidos para esas fechas."+e.getMessage());
         }
     }
 

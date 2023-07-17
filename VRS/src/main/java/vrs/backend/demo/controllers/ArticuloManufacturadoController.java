@@ -10,6 +10,8 @@ import vrs.backend.demo.entities.ArticuloManufacturado;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
 import vrs.backend.demo.services.implementation.ArticuloManufacturadoServiceImpl;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "/articulos_manufacturado")
@@ -26,12 +28,8 @@ public class ArticuloManufacturadoController extends BaseControllerImpl<Articulo
             Page<ArticuloManufacturado> pageResult = articuloManufacturadoServiceImpl.buscarPorNombre(nombreArtMan, page, orderPrice);
             return ResponseEntity.status(HttpStatus.OK).body(pageResult);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer productos " + e);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al traer pedidos " + e);
         }
-    }
-    @GetMapping("/buscar_categoria/{nombreCategoria}")
-    public List<ArticuloManufacturado> artByCategoria(@PathVariable String nombreCategoria) {
-        return articuloManufacturadoServiceImpl.buscarPorNombre(nombreCategoria);
     }
 
     @Override

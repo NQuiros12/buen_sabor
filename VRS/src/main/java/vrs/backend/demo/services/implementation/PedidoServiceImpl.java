@@ -6,11 +6,14 @@ import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.preference.Preference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.*;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import vrs.backend.demo.controllers.ArticuloManufacturadoController;
 import vrs.backend.demo.entities.*;
 import vrs.backend.demo.entities.MercadoPagoItem.ItemMercadoPago;
+import vrs.backend.demo.entities.analytics.PedidoByDay;
 import vrs.backend.demo.enums.EstadoPedido;
 import vrs.backend.demo.generics.repositories.BaseRepository;
 import vrs.backend.demo.generics.services.implementation.BaseServiceImpl;
@@ -21,10 +24,7 @@ import vrs.backend.demo.services.PedidoService;
 import javax.annotation.PostConstruct;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements PedidoService {
@@ -36,7 +36,8 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
     private SimpMessagingTemplate simpMessagingTemplate;
     private final String urlSuccess = "http://localhost:9000/mercadopago/success";
     private final String urlFailure = "http://localhost:9000/mercadopago/failure";
-
+    @Value("${paged.size}")
+    private int pagedSize;
     public PedidoServiceImpl(BaseRepository<Pedido, Long> baseRepository,
                              PedidoRepository pedidoRepository,
                              DetallePedidoServiceImpl detallePedidoServiceImpl,
@@ -286,5 +287,58 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
             }
         }
         pedidoPrevio.setDetallePedidos(detalles);
+    }
+    public List<Pedido> buscarPedidosEstado(EstadoPedido estadoPedido) throws Exception {
+        if (estadoPedido != null) {
+            return pedidoRepository.pedidosByState(estadoPedido);
+        }
+        else{
+            throw new Exception();
+        }
+    }
+    //En este caso no recibe parametros por que se trata de dos estados que son constantes
+    public List<Pedido> buscarPedidosEstadoChef()  {
+        return pedidoRepository.pedidosBy2States(EstadoPedido.ESPERA,EstadoPedido.PREPARACION);
+    }
+    //Rechazados y entregados
+    //Sin paginacion
+    public List<Pedido> pedidosRechazadosEntregados(){
+        return pedidoRepository.pedidosBy2States(EstadoPedido.RECHAZADO,EstadoPedido.ENTREGADO);
+    }
+    public List<Pedido> pedidosById(long idInput){
+        return pedidoRepository.pedidosById(idInput);
+    }
+    public List<Pedido> pedidosByCliente(Long idCliente){
+        return pedidoRepository.pedidosByCliente(idCliente);
+    }
+    //Con paginación
+    //RECHAZADOS Y ENTREGADOS
+    public Page<Pedido> PedidosByRechazadosEntregados(Integer page){
+        Pageable pageable = PageRequest.of(page, pagedSize);
+        //En este caso solo se recibe como parametro el tamaño de la paginacion.
+        //Los dos estados una vez mas son constantes
+        List<Pedido> pedidos_rech_entr = pedidoRepository.pedidosBy2States(EstadoPedido.RECHAZADO,EstadoPedido.ENTREGADO);
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), pedidos_rech_entr.size());
+        List<Pedido> subList = pedidos_rech_entr.subList(start, end);
+        Page<Pedido> pageResult = new PageImpl<>(subList, pageable, pedidos_rech_entr.size());
+
+        return pageResult;
+    }
+    public Page<Pedido> PedidosNotRechazadosEntregados(Integer page){
+        Pageable pageable = PageRequest.of(page, pagedSize);
+        //En este caso solo se recibe como parametro el tamaño de la paginacion.
+        //Los dos estados una vez mas son constantes
+        List<Pedido> pedidos_rech_entr = pedidoRepository.pedidosNot2States(EstadoPedido.RECHAZADO,EstadoPedido.ENTREGADO);
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), pedidos_rech_entr.size());
+        List<Pedido> subList = pedidos_rech_entr.subList(start, end);
+        Page<Pedido> pageResult = new PageImpl<>(subList, pageable, pedidos_rech_entr.size());
+
+        return pageResult;
+    }
+    //Analitica y Estadistica
+    public List<Integer> pedidosByDay(Date diaIn, Date diaEnd){
+        return pedidoRepository.pedidosByDay(diaIn,diaEnd);
     }
 }
