@@ -350,10 +350,6 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
     }
     //Clientes rankeados
     public List<TopClientes> topClientes(Date diaIn, Date diaEnd){
-        System.out.println("SIZE = "+pedidoRepository.topClientes(diaIn,diaEnd).size());
-        for(TopClientes top :pedidoRepository.topClientes(diaIn,diaEnd)){
-            System.out.println(top.getNombreCompleto());
-        }
         return pedidoRepository.topClientes(diaIn,diaEnd);
     }
 }

@@ -29,14 +29,15 @@ public interface PedidoRepository extends BaseRepository<Pedido,Long> {
     @Query("select count(pedido) from Pedido pedido where date(pedido.fecha) between :diaIn and :diaEnd group by pedido.fecha")
     List<Integer> pedidosByDay(Date diaIn, Date diaEnd);
     //Top Clientes
-    //TODO: REVISAR ESTOOOOOOO con el Fede
-    @Query(value = "select count(0) as countCompras,concat(c.nombre,' ',c.apellido) as nombreCompleto\n" +
-            "from pedido p\n" +
-            "inner join cliente c\n" +
-            "    on p.fk_cliente = c.id\n" +
-            "where date(p.fecha) between :diaIn and :diaEnd \n"+
-            "group by c.id \n",
-            nativeQuery = true)
+    @Query("select count(0) as countCompras ,u.usuario as emailUsuario \n" +
+            "from Pedido p \n" +
+            "inner join Cliente c \n" +
+            "    on p.cliente.id = c.id \n" +
+            "inner join Usuario u \n" +
+            "    on c.usuario.id = u.id \n" +
+            "where date(p.fecha) between :diaIn and :diaEnd \n" +
+            "group by u.id \n" +
+            "order by 1 desc")
     List<TopClientes> topClientes(Date diaIn, Date diaEnd);
 
 }
