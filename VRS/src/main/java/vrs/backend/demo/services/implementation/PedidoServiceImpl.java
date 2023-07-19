@@ -343,6 +343,28 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
 
         return pageResult;
     }
+    public List<Pedido> PedidosNotRechazadosYEntregados(){
+        return pedidoRepository.pedidosNot2States(EstadoPedido.RECHAZADO,EstadoPedido.ENTREGADO);
+    }
+
+    @Override
+    public void cambiarPagoConfirmado(Long pedidoId, boolean pago) throws Exception {
+        try {
+            Optional<Pedido> optionalPedido = pedidoRepository.findById(pedidoId);
+
+            if (optionalPedido.isPresent()) {
+                Pedido pedido = optionalPedido.get();
+                pedido.setPagoConfirmado(pago);
+                pedidoRepository.save(pedido);
+                simpMessagingTemplate.convertAndSend("/pedidows/public", "Pago Actualizado");
+            } else {
+                throw new Exception("No se encontro el pedido");
+            }
+        } catch (Exception e){
+            throw new Exception("No se pudo actualizar pago"+e);
+        }
+    }
+
     //Analitica y Estadistica
     public List<Integer> pedidosByDay(Date diaIn, Date diaEnd){
         return pedidoRepository.pedidosByDay(diaIn,diaEnd);

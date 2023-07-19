@@ -135,4 +135,24 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
         }
     }
 
+    @GetMapping("/allCaja")
+    public ResponseEntity<?> pedidosByCliente(){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.PedidosNotRechazadosYEntregados());
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.OK).body("Error al buscar por cliente" + e);
+        }
+    }
+
+    @PutMapping("/updatePago/{id}/{pagoConfirmado}")
+    @Transactional
+    public ResponseEntity<?> updatePago(@PathVariable boolean pagoConfirmado, @PathVariable("id") Long id) {
+        try {
+            pedidoServiceImpl.cambiarPagoConfirmado(id,pagoConfirmado);
+            return ResponseEntity.ok("Pago actualizado exitosamente.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el pago: " + e.getMessage());
+        }
+    }
+
 }
