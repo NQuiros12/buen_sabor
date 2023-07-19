@@ -31,6 +31,12 @@ public class Pedido extends Base {
     @Column(name = "numero")
     private int numero;
 
+    @Column(name = "monto")
+    private double monto;
+
+    @Column(name = "pagoConfirmado")
+    private boolean pagoConfirmado;
+
     @ManyToOne
     @JoinColumn(name = "fk_domicilio")
     private Domicilio domicilio;
@@ -50,7 +56,7 @@ public class Pedido extends Base {
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido",  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<DetallePedido> detallePedidos = new ArrayList<>();
 
     public List<DetallePedido> getDetallePedidos() {
