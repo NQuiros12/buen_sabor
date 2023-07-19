@@ -31,7 +31,14 @@ insert  into `detalle_articulo_manufacturado`(`id`,`cantidad`,`tipo_clase`,`fk_a
 
 /*Data for the table `cliente` */
 
-insert  into `cliente`(`id`,`apellido`,`email`,`nombre`,`telefono`,`fk_domicilio`,`fk_usuario`) values (1,'Doe2d3ConCascade1ll','john@example.com','John',123456789,1,1),(2,'Doe2d3ConCascade1ll','john@example.com','Josue',123456789,2,2),(14,'pitton','fedejpitton@gmail.com','federico',0,6,15),(15,'ChiroliPittonQuiros','vrscpq@gmail.com','VenRapidoYSabroso',0,7,16),(16,'Pitton','fjosepitton@gmail.com','Federico',0,8,17),(17,'','probando@test.com','',0,9,18);
+INSERT INTO `cliente` (`id`, `apellido`, `email`, `nombre`, `telefono`, `fk_domicilio`, `fk_usuario`)
+VALUES
+    (1, 'Doe2d3ConCascade1ll', 'john@example.com', 'John', 123456789, 1, 1),
+    (2, 'Doe2d3ConCascade1ll', 'john@example.com', 'Josue', 123456789, 2, 2),
+    (14, 'pitton', 'fedejpitton@gmail.com', 'federico', 0, 6, 15),
+    (15, 'ChiroliPittonQuiros', 'vrscpq@gmail.com', 'VenRapidoYSabroso', 0, 7, 16),
+    (16, 'Pitton', 'fjosepitton@gmail.com', 'Federico', 0, 8, 17),
+    (17, '', 'probando@test.com', '', 0, 9, 18);
 
 
 /*Data for the table `detalle_factura` */

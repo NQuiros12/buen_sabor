@@ -23,7 +23,7 @@ public class DetallePedidoController extends BaseControllerImpl<DetallePedido, D
     public DetallePedidoController(DetallePedidoServiceImpl detallePedidoServiceImpl){
         this.detallePedidoServiceImpl = detallePedidoServiceImpl;
     }
-    @PostMapping("/getBestProducts")
+    @PostMapping("/analitica/getBestProducts")
     public ResponseEntity<?> getBestProducts(@RequestBody Map<String, String> params) throws ParseException {
             String fecha1 = params.get("fecha1");
             String fecha2 = params.get("fecha2");
