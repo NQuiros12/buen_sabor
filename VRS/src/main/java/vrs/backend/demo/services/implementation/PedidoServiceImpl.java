@@ -294,12 +294,12 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
         }
         pedidoPrevio.setDetallePedidos(detalles);
     }
-    public List<Pedido> buscarPedidosEstado(EstadoPedido estadoPedido) throws Exception {
+    public List<Pedido> buscarPedidosEstado(EstadoPedido estadoPedido) throws Exception { //corregir Exception para que se mas claro
         if (estadoPedido != null) {
             return pedidoRepository.pedidosByState(estadoPedido);
         }
         else{
-            throw new Exception();
+            throw new Exception("Estado pedido se encuentra vacio");
         }
     }
     //En este caso no recibe parametros por que se trata de dos estados que son constantes
