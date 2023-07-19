@@ -63,7 +63,7 @@ public class MercadoPagoController {
         attributes.addFlashAttribute("processing_mode",processingMode);
         attributes.addFlashAttribute("merchant_account_id",merchantAccountId);
 
-        pedidoService.cambiarEstadoEnvio(Long.valueOf(externalReference), EstadoPedido.ENTREGADO);
+//        pedidoService.cambiarEstadoEnvio(Long.valueOf(externalReference), EstadoPedido.ENTREGADO);
         return new RedirectView("http://localhost:5173/"+externalReference +"?success=true");
     }
 
@@ -93,12 +93,12 @@ public class MercadoPagoController {
         attributes.addFlashAttribute("processing_mode",processingMode);
         attributes.addFlashAttribute("merchant_account_id",merchantAccountId);
 
-        try {//polemico
-            pedidoService.delete(Long.valueOf(externalReference));
-        }catch (Exception e){
-            System.out.println("No se pudo eliminar la orden");
-        }
+//        try {//polemico
+//            pedidoService.delete(Long.valueOf(externalReference));
+//        }catch (Exception e){
+//            System.out.println("No se pudo eliminar la orden");
+//        }
 
-        return new RedirectView("http://localhost:3000/");
+        return new RedirectView("http://localhost:5173/"+externalReference +"?success=false");
     }
 }
