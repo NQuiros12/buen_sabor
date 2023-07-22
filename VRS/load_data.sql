@@ -16,17 +16,38 @@ insert  into `usuario`(`id`,`rol`,`usuario`,`id_auth0`) values (1,4,'jCASCADAELA
 insert  into `domicilio`(`id`,`calle`,`departamento`,`localidad`,`numero`,`piso`,`tipo_clase`) values (1,'ExamplCASCACDEALL 1 et','Example Department','Example City',123,5,'Domicilio'),(2,'ExamplCASCACDEALL 1 et','Example Department','Example City',123,5,'Domicilio'),(6,'probando','ewq','ewq3',321,21,'Domicilio'),(7,'direccion del vrs','MEdn','Menodo',1234,2,'Domicilio'),(8,'wqeeqewq','ewqewq','ewqeqw',32131,321321,'Domicilio'),(9,'Buena vida','Guaymallen','San Jose',1423,4,'Domicilio');
 
 /*Data for the table `categoria_articulo` */
-insert  into `categoria_articulo`(`id`,`alta_baja`,`denominacion`,`tipo_clase`,`parent_id`) values (1,'','papas','Categoria',NULL),(2,'','hamburguesas','Categoria',NULL);
+insert  into `categoria_articulo`(`id`,`alta_baja`,`denominacion`,`tipo_clase`,`parent_id`) values
+(1,'','papas','Categoria',NULL),
+(2,'','hamburguesas','Categoria',NULL),
+(3,'','pizzas','Categoria',NULL),
+(4,'','lacteos','Categoria',NULL),
+(5,'','verduras','Categoria',NULL),
+(6,'','harinas','Categoria',NULL);
 
-insert  into `articulo_insumo`(`id`,`alta_baja`,`denominacion`,`precio_compra`,`precio_venta`,`stock_actual`,`stock_minimo`,`tipo_clase`,`fk_categoria`,`fk_unidad_medida`) values (1,'','eqweqw',321312,32,322,2,'ArticuloInsumo',1,1);
+insert  into `articulo_insumo`(`id`,`alta_baja`,`denominacion`,`precio_compra`,`precio_venta`,`stock_actual`,`stock_minimo`,`tipo_clase`,`fk_categoria`,`fk_unidad_medida`) values
+(2,'','queso',100,120,20,10,'ArticuloInsumo',2,1),
+(3,'','tomate',80,85,20,10,'ArticuloInsumo',5,1),
+(4,'','harina para pizzas',50,60,20,10,'ArticuloInsumo',6,1);
 
 /*Data for the table `articulo_manufacturado` */
-
-insert  into `articulo_manufacturado`(`id`,`alta_baja`,`denominacion`,`descripcion`,`imagen`,`precio_compra`,`precio_venta`,`es_producto_final`,`receta`,`stock_actual`,`stock_minimo`,`tiempo_estimado_cocina`,`tipo_clase`,`fk_categoria`) values (1,'','ewqewqewq','ewqewewqqew','',321,23232,'','ewqewewqqew',231,2,321321,'ArticuloManufacturado',1),(2,'\0','Alto producto burguer2','Una gran burger','aca va la imagen',0,22.5,'\0','amor y pasion',0,0,20,'ArticuloManufacturado',1),(3,'\0','Alto producto burguer2','Una gran burger','aca va la imagen',0,22.5,'\0','amor y pasion',0,0,20,'ArticuloManufacturado',2),(4,'','Pizza margueerrirrtaa','pizzaa','https://res.cloudinary.com/dka1fqaps/image/upload/v1689297347/bvjtccfyp1shg1ymwe1c.jpg',100,12000,'','pizzaa',312,2,120,'ArticuloManufacturado',1),(5,'','ewqewqewq','ewqewewqqew','',321,23232,'','ewqewewqqew',231,2,321321,'ArticuloManufacturado',1);
+insert  into `articulo_manufacturado`(`id`,`alta_baja`,`denominacion`,`descripcion`,`imagen`,`precio_compra`,`precio_venta`,`es_producto_final`,`receta`,`stock_actual`,`stock_minimo`,`tiempo_estimado_cocina`,`tipo_clase`,`fk_categoria`) values
+(1,'','ewqewqewq','ewqewewqqew','',321,23232,'','ewqewewqqew',231,2,321321,'ArticuloManufacturado',1),
+(2,'\0','Alto producto burguer2','Una gran burger','aca va la imagen',0,22.5,'\0','amor y pasion',0,0,20,'ArticuloManufacturado',1),
+(3,'\0','Alto producto burguer2','Una gran burger','aca va la imagen',0,22.5,'\0','amor y pasion',0,0,20,'ArticuloManufacturado',2),
+(4,'','Pizza margueerrirrtaa','pizzaa','https://res.cloudinary.com/dka1fqaps/image/upload/v1689297347/bvjtccfyp1shg1ymwe1c.jpg',100,12000,'','pizzaa',312,2,120,'ArticuloManufacturado',1),
+(5,'','ewqewqewq','ewqewewqqew','',321,23232,'','ewqewewqqew',231,2,321321,'ArticuloManufacturado',1),
+(6,'','pizza','pizza basica con muzzarela','',230,300,'','harina agua, horno, salsa y queso',10,5,2,'ArticuloManufacturado',3);
 
 /*Data for the table `detalle_articulo_manufacturado` */
-
-insert  into `detalle_articulo_manufacturado`(`id`,`cantidad`,`tipo_clase`,`fk_articulo_insumo`,`fk_articulo_manufacturado`) values (1,10250,'DetalleArticuloManufacturado',1,2),(2,92,'DetalleArticuloManufacturado',1,2),(3,10250,'DetalleArticuloManufacturado',1,3),(4,92,'DetalleArticuloManufacturado',1,3);
+insert  into `detalle_articulo_manufacturado`
+    (`id`,`cantidad`,`tipo_clase`,`fk_articulo_insumo`,`fk_articulo_manufacturado`) values
+            (1,10250,'DetalleArticuloManufacturado',2,2),
+            (2,92,'DetalleArticuloManufacturado',2,2),
+            (3,10250,'DetalleArticuloManufacturado',2,3),
+            (4,92,'DetalleArticuloManufacturado',2,3),
+            (5,1,'DetalleArticuloManufacturado',4,5),
+            (6,2,'DetalleArticuloManufacturado',3,5),
+            (7,2,'DetalleArticuloManufacturado',2,5);
 
 
 /*Data for the table `cliente` */
@@ -45,47 +66,48 @@ VALUES
 
 
 /*Data for the table `pedido` */
-
-INSERT INTO pedido (id, estado_pedido, fecha, forma_pago, numero, tipo_clase, tipo_envio, fk_cliente, fk_domicilio)
+INSERT INTO pedido (id, estado_pedido, fecha, forma_pago, numero, tipo_clase, tipo_envio, fk_cliente, fk_domicilio, monto, pago_confirmado)
 VALUES
-    (4, 5, '2023-06-14 12:34:56', 1, 123, 'Pedido', 1, 1, 1),
-    (5, 5, '2023-06-15 09:12:45', 1, 123, 'Pedido', 1, 1, 1),
-    (6, 5, '2023-06-16 15:23:10', 1, 123, 'Pedido', 1, 1, 1),
-    (7, 5, '2023-06-17 17:45:30', 1, 123, 'Pedido', 1, 1, 1),
-    (8, 5, '2023-06-14 08:57:20', 1, 123, 'Pedido', 1, 1, 1),
-    (18, 4, '2023-06-15 11:22:40', 1, 123, 'Pedido', 1, 1, 1),
-    (19, 5, '2023-06-16 14:35:15', 1, 123, 'Pedido', 1, 1, 1),
-    (20, 5, '2023-06-17 16:48:05', 1, 123, 'Pedido', 1, 1, 1),
-    (21, 5, '2023-06-14 10:09:25', 1, 123, 'Pedido', 1, 1, 1),
-    (22, 5, '2023-06-15 13:17:50', 1, 123, 'Pedido', 1, 1, 1),
-    (23, 5, '2023-06-16 18:30:00', 1, 123, 'Pedido', 1, 1, 1),
-    (24, 5, '2023-06-17 20:40:55', 1, 123, 'Pedido', 1, 1, 1),
-    (25, 4, '2023-06-14 09:00:30', 1, 123, 'Pedido', 1, 1, 1),
-    (26, 6, '2023-06-15 16:10:20', 1, 123, 'Pedido', 1, 1, 1),
-    (27, 6, '2023-06-16 11:55:40', 1, 123, 'Pedido', 1, 2, 1),
-    (28, 6, '2023-06-17 09:20:15', 1, 123, 'Pedido', 1, 2, 1),
-    (29, 3, '2023-06-14 13:40:25', 1, 123, 'Pedido', 1, 2, 1),
-    (30, 5, '2023-06-15 08:30:55', 1, 123, 'Pedido', 1, 2, 1),
-    (31, 3, '2023-06-16 16:05:10', 1, 123, 'Pedido', 1, 2, 1),
-    (32, 4, '2023-06-17 17:55:45', 1, 123, 'Pedido', 1, 2, 1),
-    (33, 6, '2023-06-14 09:40:00', 1, 123, 'Pedido', 1, 2, 1),
-    (34, 3, '2023-06-15 14:25:30', 1, 123, 'Pedido', 1, 2, 1),
-    (35, 4, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1),
-    (36, 3, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1),
-    (37, 3, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1),
-    (38, 3, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1),
-    (39, 3, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1),
-    (40, 3, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1),
-    (41, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1),
-    (42, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1),
-    (43, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1),
-    (44, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1),
-    (45, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1),
-    (46, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1),
-    (47, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1),
-    (48, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1),
-    (49, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1),
-    (50, 5, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1);
+    (4, 5, '2023-06-14 12:34:56', 1, 123, 'Pedido', 1, 1, 1, 559, 1),
+    (5, 5, '2023-06-15 09:12:45', 1, 123, 'Pedido', 1, 1, 1, 702, 0),
+    (6, 5, '2023-06-16 15:23:10', 1, 123, 'Pedido', 1, 1, 1, 330, 1),
+    (7, 5, '2023-06-17 17:45:30', 1, 123, 'Pedido', 1, 1, 1, 720, 0),
+    (8, 5, '2023-06-14 08:57:20', 1, 123, 'Pedido', 1, 1, 1, 775, 1),
+    (18, 4, '2023-06-15 11:22:40', 1, 123, 'Pedido', 1, 1, 1, 229, 0),
+    (19, 5, '2023-06-16 14:35:15', 1, 123, 'Pedido', 1, 1, 1, 441, 1),
+    (20, 5, '2023-06-17 16:48:05', 1, 123, 'Pedido', 1, 1, 1, 674, 0),
+    (21, 5, '2023-06-14 10:09:25', 1, 123, 'Pedido', 1, 1, 1, 755, 1),
+    (22, 5, '2023-06-15 13:17:50', 1, 123, 'Pedido', 1, 1, 1, 829, 0),
+    (23, 5, '2023-06-16 18:30:00', 1, 123, 'Pedido', 1, 1, 1, 337, 1),
+    (24, 5, '2023-06-17 20:40:55', 1, 123, 'Pedido', 1, 1, 1, 978, 1),
+    (25, 4, '2023-06-14 09:00:30', 1, 123, 'Pedido', 1, 1, 1, 521, 1),
+    (26, 6, '2023-06-15 16:10:20', 1, 123, 'Pedido', 1, 1, 1, 161, 0),
+    (27, 6, '2023-06-16 11:55:40', 1, 123, 'Pedido', 1, 2, 1, 996, 1),
+    (28, 6, '2023-06-17 09:20:15', 1, 123, 'Pedido', 1, 2, 1, 854, 1),
+    (29, 3, '2023-06-14 13:40:25', 1, 123, 'Pedido', 1, 2, 1, 177, 1),
+    (30, 5, '2023-06-15 08:30:55', 1, 123, 'Pedido', 1, 2, 1, 791, 1),
+    (31, 3, '2023-06-16 16:05:10', 1, 123, 'Pedido', 1, 2, 1, 621, 0),
+    (32, 4, '2023-06-17 17:55:45', 1, 123, 'Pedido', 1, 2, 1, 768, 0),
+    (33, 6, '2023-06-14 09:40:00', 1, 123, 'Pedido', 1, 2, 1, 721, 0),
+    (34, 3, '2023-06-15 14:25:30', 1, 123, 'Pedido', 1, 2, 1, 841, 1),
+    (35, 4, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1, 476, 0),
+    (36, 3, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1, 888, 1),
+    (37, 3, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1, 539, 1),
+    (38, 3, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1, 339, 0),
+    (39, 3, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1, 437, 1),
+    (40, 3, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 2, 1, 577, 1),
+    (41, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1, 927, 1),
+    (42, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1, 651, 0),
+    (43, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1, 176, 1),
+    (44, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1, 663, 1),
+    (45, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1, 822, 1),
+    (46, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1, 529, 1),
+    (47, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1, 735, 0),
+    (48, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1, 694, 0),
+    (49, 2, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1, 167, 1),
+    (50, 5, '2023-06-13 22:00:00', 1, 123, 'Pedido', 1, 14, 1, 409, 0),
+    (51, 2, '2023-07-20 22:00:00', 1, 123, 'Pedido', 1, 14, 1, 802, 1);
+
 /*Data for the table `detalle_pedido` */
 INSERT INTO `detalle_pedido` (`id`, `cantidad`, `subtotal`, `tipo_clase`, `fk_articulo_manufacturado`, `fk_pedido`) VALUES
                                                                                                                         (5, 1, 15.99, 'DetallePedido', 1, 4),
@@ -210,6 +232,7 @@ INSERT INTO `detalle_pedido` (`id`, `cantidad`, `subtotal`, `tipo_clase`, `fk_ar
                                                                                                                         (133, 4, 15.99, 'DetallePedido', 5, 50),
                                                                                                                         (134, 4, 15.99, 'DetallePedido', 1, 50),
                                                                                                                         (135, 4, 15.99, 'DetallePedido', 2, 50),
-                                                                                                                        (136, 4, 15.99, 'DetallePedido', 3, 50);
+                                                                                                                        (136, 4, 15.99, 'DetallePedido', 3, 50),
+                                                                                                                        (137, 4, 15.99, 'DetallePedido',5,51);
 
 

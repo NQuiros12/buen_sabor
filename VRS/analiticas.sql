@@ -27,3 +27,16 @@ inner join cliente c
 inner join detalle_pedido dp
     on p.id = dp.fk_pedido
 where c.id = 2;
+-- costos y ganancias
+select sum(ai.precio_venta - ai.precio_compra) as ganancia,
+        sum(ai.precio_compra) as costos,
+        date(p.fecha) fecha_legal
+from detalle_pedido dp
+join articulo_manufacturado am
+    on am.id = dp.fk_articulo_manufacturado
+join detalle_articulo_manufacturado dam
+    on am.id = dam.fk_articulo_manufacturado
+join articulo_insumo ai on ai.id = dam.fk_articulo_insumo
+join pedido p on dp.fk_pedido = p.id
+where date(p.fecha) between '2023-07-10' and '2023-07-22'
+group by date(p.fecha);
