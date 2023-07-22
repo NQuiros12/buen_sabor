@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import vrs.backend.demo.controllers.ArticuloManufacturadoController;
 import vrs.backend.demo.entities.*;
 import vrs.backend.demo.entities.MercadoPagoItem.ItemMercadoPago;
+import vrs.backend.demo.entities.projections.CostosGanancias;
 import vrs.backend.demo.entities.projections.TopClientes;
 import vrs.backend.demo.enums.EstadoPedido;
 import vrs.backend.demo.generics.repositories.BaseRepository;
@@ -373,5 +374,8 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
     //Clientes rankeados
     public List<TopClientes> topClientes(Date diaIn, Date diaEnd){
         return pedidoRepository.topClientes(diaIn,diaEnd);
+    }
+    public List<CostosGanancias> costosGananciasByDate(Date diaIn,Date diaEnd){
+        return pedidoRepository.costosGananciasByDate(diaIn,diaEnd);
     }
 }
