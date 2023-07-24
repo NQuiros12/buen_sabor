@@ -44,7 +44,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/api/public").permitAll()
-                .requestMatchers("/**").permitAll()
+                .requestMatchers("/ws/**").permitAll()
+                .requestMatchers("/**").authenticated()
                 .and().oauth2ResourceServer()
                 .jwt()
                 .decoder(jwtDecoder())
@@ -89,5 +90,4 @@ public class SecurityConfig {
         jwtConverter.setJwtGrantedAuthoritiesConverter(converter);
         return jwtConverter;
     }
-
 }
