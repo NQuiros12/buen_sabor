@@ -9,6 +9,4 @@ public interface CostosGanancias {
     Double getGanancias();
     @JsonProperty("costos")
     Double getCostos();
-    @JsonProperty("fecha_legal")
-    Date getFechaLegal();
 }

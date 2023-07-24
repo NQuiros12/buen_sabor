@@ -42,8 +42,7 @@ public interface PedidoRepository extends BaseRepository<Pedido,Long> {
     List<TopClientes> topClientes(Date diaIn, Date diaEnd);
     //Costos y Ganancias
     @Query(value = "select sum(ai.precio_venta - ai.precio_compra) as ganancias,\n" +
-            "        sum(ai.precio_compra) as costos,\n" +
-            "        date(p.fecha) fecha_legal\n" +
+            "        sum(ai.precio_compra) as costos \n" +
             "from detalle_pedido dp\n" +
             "join articulo_manufacturado am\n" +
             "    on am.id = dp.fk_articulo_manufacturado\n" +
