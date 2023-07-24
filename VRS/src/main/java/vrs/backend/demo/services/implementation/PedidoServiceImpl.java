@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import vrs.backend.demo.controllers.ArticuloManufacturadoController;
 import vrs.backend.demo.entities.*;
 import vrs.backend.demo.entities.MercadoPagoItem.ItemMercadoPago;
+import vrs.backend.demo.entities.projections.CostosGanancias;
+import vrs.backend.demo.entities.projections.TopClientes;
 import vrs.backend.demo.enums.EstadoPedido;
 import vrs.backend.demo.generics.repositories.BaseRepository;
 import vrs.backend.demo.generics.services.implementation.BaseServiceImpl;
@@ -294,12 +296,12 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
         }
         pedidoPrevio.setDetallePedidos(detalles);
     }
-    public List<Pedido> buscarPedidosEstado(EstadoPedido estadoPedido) throws Exception {
+    public List<Pedido> buscarPedidosEstado(EstadoPedido estadoPedido) throws Exception { //corregir Exception para que se mas claro
         if (estadoPedido != null) {
             return pedidoRepository.pedidosByState(estadoPedido);
         }
         else{
-            throw new Exception();
+            throw new Exception("Estado pedido se encuentra vacio");
         }
     }
     //En este caso no recibe parametros por que se trata de dos estados que son constantes
@@ -368,5 +370,12 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
     //Analitica y Estadistica
     public List<Integer> pedidosByDay(Date diaIn, Date diaEnd){
         return pedidoRepository.pedidosByDay(diaIn,diaEnd);
+    }
+    //Clientes rankeados
+    public List<TopClientes> topClientes(Date diaIn, Date diaEnd){
+        return pedidoRepository.topClientes(diaIn,diaEnd);
+    }
+    public List<CostosGanancias> costosGananciasByDate(Date diaIn,Date diaEnd){
+        return pedidoRepository.costosGananciasByDate(diaIn,diaEnd);
     }
 }

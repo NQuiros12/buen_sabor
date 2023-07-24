@@ -124,6 +124,35 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encuentran pedidos para esas fechas."+e.getMessage());
         }
     }
+    @PostMapping("/analitica/topClientes")
+    public ResponseEntity<?> topClientes(@RequestBody Map<String, String> params) throws ParseException {
+        String fecha1 = params.get("fecha1");
+        String fecha2 = params.get("fecha2");
+
+        Date fecha1Formateada = new SimpleDateFormat("yyyy-MM-dd").parse(fecha1);
+        Date fecha2Formateada = new SimpleDateFormat("yyyy-MM-dd").parse(fecha2);
+
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.topClientes(fecha1Formateada, fecha2Formateada));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encuentran clientes con compras para esas fechas. "+e.getMessage());
+        }
+    }
+    @PostMapping("/analitica/costosGanancias")
+    public ResponseEntity<?> costosGanancias(@RequestBody Map<String, String> params) throws ParseException {
+        String fecha1 = params.get("fecha1");
+        String fecha2 = params.get("fecha2");
+
+        Date fecha1Formateada = new SimpleDateFormat("yyyy-MM-dd").parse(fecha1);
+        Date fecha2Formateada = new SimpleDateFormat("yyyy-MM-dd").parse(fecha2);
+
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.costosGananciasByDate(fecha1Formateada, fecha2Formateada));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encuentran clientes con compras para esas fechas. "+e.getMessage());
+        }
+    }
+
     @PutMapping("/updateEstado/{id}/{estadoRecibido}")
     @Transactional
     public ResponseEntity<?> updateEstado(@PathVariable EstadoPedido estadoRecibido, @PathVariable("id") Long id) {
