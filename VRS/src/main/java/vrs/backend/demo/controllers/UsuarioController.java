@@ -18,5 +18,9 @@ public class UsuarioController extends BaseControllerImpl<Usuario, UsuarioServic
     public Usuario searchByName(@PathVariable String nombreUsuario) {
         return usuarioServiceImpl.searchByUsuario(nombreUsuario);
     }
+    @GetMapping("/getByIdAuth0/{idAuth0}")
+    public Usuario searchByIdAuth0(@PathVariable String idAuth0) {
+        return usuarioServiceImpl.searchByIdAuth0(idAuth0);
+    }
 
 }
