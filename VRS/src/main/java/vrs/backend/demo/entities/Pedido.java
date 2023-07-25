@@ -1,5 +1,6 @@
 package vrs.backend.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class Pedido extends Base {
 
     private String tipoClase = "Pedido";
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Column(name = "fecha")
     private Date fecha;
 
