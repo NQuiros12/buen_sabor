@@ -22,4 +22,9 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario,Long> implements
         return usuarioRepository.findByNombreUsuario(nombreUsuario);
     }
 
+    @Override
+    public Usuario searchByIdAuth0(String idAuth0) {
+        return usuarioRepository.findByAuth0Id(idAuth0);
+    }
+
 }

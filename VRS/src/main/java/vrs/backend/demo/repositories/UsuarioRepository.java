@@ -11,4 +11,6 @@ public interface UsuarioRepository extends BaseRepository<Usuario, Long> {
 
     @Query("SELECT u FROM Usuario u WHERE u.usuario = :nombreUsuario")
     Usuario findByNombreUsuario(@Param("nombreUsuario") String nombreUsuario);
+    @Query("SELECT u FROM Usuario u WHERE u.idAuth0 = :idAuth0")
+    Usuario findByAuth0Id(@Param("idAuth0") String idAuth0);
 }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import vrs.backend.demo.entities.MercadoPagoItem.ItemMercadoPago;
-import vrs.backend.demo.enums.EstadoPedido;
 
 import vrs.backend.demo.services.implementation.PedidoServiceImpl;
 
@@ -19,7 +18,7 @@ import vrs.backend.demo.services.implementation.PedidoServiceImpl;
 @CrossOrigin("*")
 @RequestMapping(path = "mercadopago")
 public class MercadoPagoController {
-    private PedidoServiceImpl pedidoService;
+    private final PedidoServiceImpl pedidoService;
 
     public MercadoPagoController(PedidoServiceImpl pedidoService){
         this.pedidoService = pedidoService;
@@ -62,9 +61,7 @@ public class MercadoPagoController {
         attributes.addFlashAttribute("site_id",siteId);
         attributes.addFlashAttribute("processing_mode",processingMode);
         attributes.addFlashAttribute("merchant_account_id",merchantAccountId);
-
-//        pedidoService.cambiarEstadoEnvio(Long.valueOf(externalReference), EstadoPedido.ENTREGADO);
-        return new RedirectView("http://localhost:5173/"+externalReference +"?success=true");
+        return new RedirectView("http://localhost:5173/cart/"+preferenceId+"?success=true");
     }
 
     @GetMapping("/failure")
@@ -99,6 +96,6 @@ public class MercadoPagoController {
 //            System.out.println("No se pudo eliminar la orden");
 //        }
 
-        return new RedirectView("http://localhost:5173/"+externalReference +"?success=false");
+        return new RedirectView("http://localhost:5173/cart/?success=false");
     }
 }

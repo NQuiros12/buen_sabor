@@ -1,13 +1,10 @@
 package vrs.backend.demo.controllers;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vrs.backend.demo.entities.ArticuloInsumo;
 import vrs.backend.demo.entities.DetallePedido;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
-import vrs.backend.demo.services.implementation.ArticuloInsumoServiceImpl;
 import vrs.backend.demo.services.implementation.DetallePedidoServiceImpl;
 
 import java.text.ParseException;
