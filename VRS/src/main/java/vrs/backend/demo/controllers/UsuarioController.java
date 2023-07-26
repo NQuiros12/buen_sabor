@@ -3,6 +3,7 @@ package vrs.backend.demo.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import vrs.backend.demo.entities.Usuario;
+import vrs.backend.demo.enums.Rol;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
 import vrs.backend.demo.services.implementation.UsuarioServiceImpl;
 
@@ -21,6 +22,11 @@ public class UsuarioController extends BaseControllerImpl<Usuario, UsuarioServic
     @GetMapping("/getByIdAuth0/{idAuth0}")
     public Usuario searchByIdAuth0(@PathVariable String idAuth0) {
         return usuarioServiceImpl.searchByIdAuth0(idAuth0);
+    }
+
+    @GetMapping("/getByRol/{rol}")
+    public Usuario searchByRol(@PathVariable Rol rol) {
+        return usuarioServiceImpl.searchByRol(rol);
     }
 
 }

@@ -2,6 +2,7 @@ package vrs.backend.demo.services.implementation;
 
 import org.springframework.stereotype.Service;
 import vrs.backend.demo.entities.Usuario;
+import vrs.backend.demo.enums.Rol;
 import vrs.backend.demo.generics.services.implementation.BaseServiceImpl;
 import vrs.backend.demo.generics.repositories.BaseRepository;
 import vrs.backend.demo.repositories.UsuarioRepository;
@@ -25,6 +26,11 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario,Long> implements
     @Override
     public Usuario searchByIdAuth0(String idAuth0) {
         return usuarioRepository.findByAuth0Id(idAuth0);
+    }
+
+    @Override
+    public Usuario searchByRol(Rol rol) {
+        return usuarioRepository.findByRol(rol);
     }
 
 }
