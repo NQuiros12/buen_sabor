@@ -26,6 +26,9 @@ public interface PedidoRepository extends BaseRepository<Pedido,Long> {
     List<Pedido> pedidosById(long idInput);
     @Query("select pedido from Pedido pedido where pedido.cliente.id = :IdCliente")
     List<Pedido> pedidosByCliente(long IdCliente);
+
+    @Query("select pedido from Pedido pedido where pedido.usuarioEntrega.idAuth0 = :idAuth0")
+    List<Pedido> pedidosByUsuarioEntrega(String idAuth0);
     //Pedidos por dia
     @Query("select count(pedido) from Pedido pedido where date(pedido.fecha) between :diaIn and :diaEnd group by pedido.fecha")
     List<Integer> pedidosByDay(Date diaIn, Date diaEnd);

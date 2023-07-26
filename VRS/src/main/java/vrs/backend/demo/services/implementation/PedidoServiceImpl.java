@@ -33,6 +33,8 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
     private final DetallePedidoServiceImpl detallePedidoServiceImpl;
     private final ArticuloInsumoServiceImpl articuloInsumoServiceImpl;
     private final ArticuloManufacturadoController articuloManufacturadoController;
+
+    private final UsuarioServiceImpl usuarioServiceImpl;
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
     private final String urlSuccess = "http://localhost:9000/mercadopago/success";
@@ -43,12 +45,13 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
                              PedidoRepository pedidoRepository,
                              DetallePedidoServiceImpl detallePedidoServiceImpl,
                              ArticuloInsumoServiceImpl articuloInsumoServiceImpl,
-                             ArticuloManufacturadoController articuloManufacturadoController) {
+                             ArticuloManufacturadoController articuloManufacturadoController, UsuarioServiceImpl usuarioServiceImpl) {
         super(baseRepository);
         this.pedidoRepository = pedidoRepository;
         this.detallePedidoServiceImpl = detallePedidoServiceImpl;
         this.articuloInsumoServiceImpl = articuloInsumoServiceImpl;
         this.articuloManufacturadoController = articuloManufacturadoController;
+        this.usuarioServiceImpl = usuarioServiceImpl;
     }
     @PostConstruct
     public void initMPConfig(){
@@ -104,6 +107,24 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
             if (optionalPedido.isPresent()) {
                 Pedido pedido = optionalPedido.get();
                 pedido.setEstadoPedido(estado);
+                pedidoRepository.save(pedido);
+                simpMessagingTemplate.convertAndSend("/pedidows/public", "Estado Actualizado");
+            } else {
+                throw new Exception("No se encontro el pedido");
+            }
+        } catch (Exception e){
+            throw new Exception("No se pudo actualizar estado pedido"+e);
+        }
+    }
+
+    public void cambiarEstadoEnvioEntrega(Long pedidoId, EstadoPedido estado, String idAuth0) throws Exception {
+        try {
+            Optional<Pedido> optionalPedido = pedidoRepository.findById(pedidoId);
+            Usuario usuarioEntrega = usuarioServiceImpl.searchByIdAuth0(idAuth0);
+            if (optionalPedido.isPresent()) {
+                Pedido pedido = optionalPedido.get();
+                pedido.setEstadoPedido(estado);
+                pedido.setUsuarioEntrega(usuarioEntrega);
                 pedidoRepository.save(pedido);
                 simpMessagingTemplate.convertAndSend("/pedidows/public", "Estado Actualizado");
             } else {
@@ -347,6 +368,11 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
     }
     public List<Pedido> PedidosNotRechazadosYEntregados(){
         return pedidoRepository.pedidosNot2States(EstadoPedido.RECHAZADO,EstadoPedido.ENTREGADO);
+    }
+
+    @Override
+    public List<Pedido> pedidosByUsuarioEntrega(String idAuth0) {
+        return pedidoRepository.pedidosByUsuarioEntrega(idAuth0);
     }
 
     @Override

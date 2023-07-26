@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import vrs.backend.demo.entities.*;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
@@ -173,6 +174,15 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
         }
     }
 
+    @GetMapping("/allByDelivery/{idAuth0}")
+    public ResponseEntity<?> pedidosByDelivery(@PathVariable String idAuth0){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoServiceImpl.pedidosByUsuarioEntrega(idAuth0));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.OK).body("Error al buscar por cliente" + e);
+        }
+    }
+
     @PutMapping("/updatePago/{id}/{pagoConfirmado}")
     @Transactional
     public ResponseEntity<?> updatePago(@PathVariable boolean pagoConfirmado, @PathVariable("id") Long id) {
@@ -183,5 +193,17 @@ public class PedidoController extends BaseControllerImpl<Pedido, PedidoServiceIm
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el pago: " + e.getMessage());
         }
     }
+
+    @PutMapping("/updateEstadoEntrega/{id}/{estadoRecibido}/{idAuth0}")
+    @Transactional
+    public ResponseEntity<?> updateEstadoEntrega(@PathVariable EstadoPedido estadoRecibido, @PathVariable("id") Long id, @PathVariable String idAuth0) {
+        try {
+            pedidoServiceImpl.cambiarEstadoEnvioEntrega(id,estadoRecibido,idAuth0);
+            return ResponseEntity.ok("Estado actualizado exitosamente.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el estado: " + e.getMessage());
+        }
+    }
+
 
 }

@@ -50,13 +50,16 @@ public class Pedido extends Base {
     @JoinColumn(name = "fk_tipoEnvio")
     private TipoEnvio tipoEnvio;
 
-
     @JoinColumn(name = "fk_formaPago")
     private FormaPago formaPago;
 
     @ManyToOne
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_usuario")
+    private Usuario usuarioEntrega;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<DetallePedido> detallePedidos = new ArrayList<>();
