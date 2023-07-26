@@ -1,1 +1,0 @@
-SQL_URL=mysql://root:efdwJx2hXFO17pwDnECF@containers-us-west-35.railway.app:5547/railway;DB_NAME=railway;DB_HOST=containers-us-west-35.railway.app;DB_PASS=efdwJx2hXFO17pwDnECF;DB_PORT=5547;DB_USER=root
