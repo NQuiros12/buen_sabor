@@ -16,5 +16,7 @@ public interface PedidoService extends BaseService<Pedido,Long> {
     Preference crearPreferencia(ItemMercadoPago itemMercadoPago);
     Page<Pedido> PedidosByRechazadosEntregados(Integer page);
     List<Pedido> PedidosNotRechazadosYEntregados();
+
+    List<Pedido> pedidosByUsuarioEntrega(String idAuth0);
     void cambiarPagoConfirmado(Long pedidoId, boolean pago) throws Exception;
 }
