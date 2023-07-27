@@ -45,7 +45,7 @@ public class SecurityConfig {
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/api/public").permitAll()
                 .requestMatchers("/ws/**").permitAll()
-                .requestMatchers("/**").authenticated()
+                .requestMatchers("/**").permitAll()
                 .and().oauth2ResourceServer()
                 .jwt()
                 .decoder(jwtDecoder())
