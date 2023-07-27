@@ -37,8 +37,10 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
     private final UsuarioServiceImpl usuarioServiceImpl;
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
-    private final String urlSuccess = "http://localhost:9000/mercadopago/success";
-    private final String urlFailure = "http://localhost:9000/mercadopago/failure";
+    @Value("${railway}")
+    private String urlrailway;
+    private final String urlSuccess = urlrailway+"mercadopago/success";
+    private final String urlFailure = urlrailway+"mercadopago/failure";
     @Value("${paged.size}")
     private int pagedSize;
     public PedidoServiceImpl(BaseRepository<Pedido, Long> baseRepository,
