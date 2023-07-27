@@ -7,6 +7,8 @@ import vrs.backend.demo.entities.Usuario;
 import vrs.backend.demo.enums.Rol;
 import vrs.backend.demo.generics.repositories.BaseRepository;
 
+import java.util.List;
+
 @Repository
 public interface UsuarioRepository extends BaseRepository<Usuario, Long> {
 
@@ -15,5 +17,5 @@ public interface UsuarioRepository extends BaseRepository<Usuario, Long> {
     @Query("SELECT u FROM Usuario u WHERE u.idAuth0 = :idAuth0")
     Usuario findByAuth0Id(@Param("idAuth0") String idAuth0);
     @Query("SELECT u FROM Usuario u WHERE u.rol = :rol")
-    Usuario findByRol(@Param("rol") Rol rol);
+    List<Usuario> findByRol(@Param("rol") Rol rol);
 }

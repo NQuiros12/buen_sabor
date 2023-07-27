@@ -7,6 +7,8 @@ import vrs.backend.demo.enums.Rol;
 import vrs.backend.demo.generics.controllers.implementation.BaseControllerImpl;
 import vrs.backend.demo.services.implementation.UsuarioServiceImpl;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*")
 @AllArgsConstructor
@@ -25,7 +27,7 @@ public class UsuarioController extends BaseControllerImpl<Usuario, UsuarioServic
     }
 
     @GetMapping("/getByRol/{rol}")
-    public Usuario searchByRol(@PathVariable Rol rol) {
+    public List<Usuario> searchByRol(@PathVariable Rol rol) {
         return usuarioServiceImpl.searchByRol(rol);
     }
 
