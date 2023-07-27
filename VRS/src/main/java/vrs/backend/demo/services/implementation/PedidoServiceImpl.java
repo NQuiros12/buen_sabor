@@ -39,8 +39,8 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
     private SimpMessagingTemplate simpMessagingTemplate;
     @Value("${railway.url}")
     private String urlrailway;
-    private final String urlSuccess = urlrailway+"mercadopago/success";
-    private final String urlFailure = urlrailway+"mercadopago/failure";
+    private final String urlSuccess = "https://buensabor-production.up.railway.app/mercadopago/success";
+    private final String urlFailure = "https://buensabor-production.up.railway.app/mercadopago/failure";
     @Value("${paged.size}")
     private int pagedSize;
     public PedidoServiceImpl(BaseRepository<Pedido, Long> baseRepository,
