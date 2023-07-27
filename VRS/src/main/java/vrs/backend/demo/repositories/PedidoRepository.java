@@ -44,17 +44,16 @@ public interface PedidoRepository extends BaseRepository<Pedido,Long> {
             "order by 1 desc")
     List<TopClientes> topClientes(Date diaIn, Date diaEnd);
     //Costos y Ganancias
-    @Query(value = "select sum(ai.precio_venta - ai.precio_compra) as ganancias,\n" +
-            "        sum(ai.precio_compra) as costos \n" +
-            "from detalle_pedido dp\n" +
-            "join articulo_manufacturado am\n" +
-            "    on am.id = dp.fk_articulo_manufacturado\n" +
-            "join detalle_articulo_manufacturado dam\n" +
-            "    on am.id = dam.fk_articulo_manufacturado\n" +
-            "join articulo_insumo ai on ai.id = dam.fk_articulo_insumo\n" +
-            "join pedido p on dp.fk_pedido = p.id\n" +
+    @Query(value = "select sum(monto) ganancias,\n" +
+            "       sum(am.precio_compra) costos \n" +
+            "from pedido p \n" +
+            "inner join detalle_pedido dp \n" +
+            "    on p.id = dp.fk_pedido \n" +
+            "inner join articulo_manufacturado am \n" +
+            "    on dp.fk_articulo_manufacturado = am.id \n" +
             "where date(p.fecha) between :diaIn and :diaEnd \n" +
-            "group by date(p.fecha)",nativeQuery = true)
+            "group by date(p.fecha);",
+            nativeQuery = true)
     List<CostosGanancias> costosGananciasByDate(Date diaIn, Date diaEnd);
 
 }
