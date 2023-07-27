@@ -8,6 +8,8 @@ import vrs.backend.demo.generics.repositories.BaseRepository;
 import vrs.backend.demo.repositories.UsuarioRepository;
 import vrs.backend.demo.services.UsuarioService;
 
+import java.util.List;
+
 @Service
 public class UsuarioServiceImpl extends BaseServiceImpl<Usuario,Long> implements UsuarioService {
 
@@ -29,7 +31,7 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario,Long> implements
     }
 
     @Override
-    public Usuario searchByRol(Rol rol) {
+    public List<Usuario> searchByRol(Rol rol) {
         return usuarioRepository.findByRol(rol);
     }
 
