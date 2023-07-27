@@ -37,7 +37,7 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
     private final UsuarioServiceImpl usuarioServiceImpl;
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
-    @Value("${railway}")
+    @Value("${railway.url}")
     private String urlrailway;
     private final String urlSuccess = urlrailway+"mercadopago/success";
     private final String urlFailure = urlrailway+"mercadopago/failure";
