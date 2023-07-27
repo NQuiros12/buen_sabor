@@ -107,7 +107,7 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
             if (optionalPedido.isPresent()) {
                 Pedido pedido = optionalPedido.get();
                 pedido.setEstadoPedido(estado);
-                pedidoRepository.save(pedido);
+                updatePedido(pedido,pedidoId);
                 simpMessagingTemplate.convertAndSend("/pedidows/public", "Estado Actualizado");
             } else {
                 throw new Exception("No se encontro el pedido");
@@ -125,7 +125,7 @@ public class PedidoServiceImpl extends BaseServiceImpl<Pedido,Long> implements P
                 Pedido pedido = optionalPedido.get();
                 pedido.setEstadoPedido(estado);
                 pedido.setUsuarioEntrega(usuarioEntrega);
-                pedidoRepository.save(pedido);
+                updatePedido(pedido,pedidoId);
                 simpMessagingTemplate.convertAndSend("/pedidows/public", "Estado Actualizado");
             } else {
                 throw new Exception("No se encontro el pedido");
